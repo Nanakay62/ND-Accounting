@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ND Accounting">
+  <meta name="application-name" content="ND Accounting Books">
+  <meta name="theme-color" content="#0d0d0f" id="themeColorMeta">
+  <meta name="msapplication-TileColor" content="#d4af37">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>ND - Accounting Books</title>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/json;charset=utf-8;base64,ewogICJuYW1lIjogIk5EIC0gQWNjb3VudGluZyBCb29rcyIsCiAgInNob3J0X25hbWUiOiAiTkQgQWNjb3VudGluZyIsCiAgImRlc2NyaXB0aW9uIjogIkNvbnZlcnNhdGlvbmFsIEFjY291bnRpbmcgZm9yIEdoYW5haWFuIEJ1c2luZXNzZXMiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBkMGQwZiIsCiAgInRoZW1lX2NvbG9yIjogIiNkNGFmMzciLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgInNjb3BlIjogWyIvIl0sCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEyOCAxMjgnPjxyZWN0IHdpZHRoPScxMjgnIGhlaWdodD0nMTI4JyBmaWxsPSclMjMxYTFhMjQnIHJ4PScyNCcvPjxnPjxyZWN0IHg9JzI0JyB5PScyNCcgd2lkdGg9JzgwJyBoZWlnaHQ9JzgwJyByeD0nMTInIGZpbGw9JyUyM2Q0YWYzNycvPjx0ZXh0IHg9JzY0JyB5PSc4MCcgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nNTYnIGZvbnQtd2VpZ2h0PSc3MDAnIGZpbGw9JyUyMzFhMWEyNCcgdGV4dC1hbmNob3I9J21pZGRsZSc+TkQ8L3RleHQ+PC9nPjwvc3ZnPiIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXSwKICAiY2F0ZWdvcmllcyI6IFsiZmluYW5jZSIsICJidXNpbmVzcyIsICJwcm9kdWN0aXZpdHkiXQp9">
+  
+  <!-- iOS Splash Screens -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%231a1a24' rx='36'/><g><rect x='34' y='34' width='112' height='112' rx='17' fill='%23d4af37'/><text x='90' y='115' font-family='sans-serif' font-size='78' font-weight='700' fill='%231a1a24' text-anchor='middle'>ND</text></g></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Dexie.js for IndexedDB -->
+  <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.min.js"></script>
+  
+  <!-- jsPDF for PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            base: {
+              900: '#0d0d0f',
+              800: '#13131a',
+              700: '#1a1a24',
+              600: '#24242f',
+              500: '#2e2e3a',
+            },
+            gold: {
+              DEFAULT: '#d4af37',
+              light: '#e8c84a',
+              dark: '#b8942d',
+              glow: 'rgba(212, 175, 55, 0.15)',
+            },
+            sale: '#10b981',
+            expense: '#f43f5e',
+            credit: '#f59e0b',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --fg: #f5f5f5;
+      --muted: #71717a;
+      --accent: #d4af37;
+      --card: rgba(26, 26, 36, 0.9);
+      --card-solid: #1a1a24;
+      --border: rgba(212, 175, 55, 0.1);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    
+    .light-mode {
+      --bg: #f8f8fa;
+      --fg: #1a1a24;
+      --muted: #71717a;
+      --card: rgba(255, 255, 255, 0.95);
+      --card-solid: #ffffff;
+      --border: rgba(212, 175, 55, 0.2);
+    }
+    
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    /* Background Effects */
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .light-mode .bg-noise {
+      opacity: 0.015;
+    }
+    
+    .gradient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .light-mode .gradient-orb {
+      opacity: 0.1;
+    }
+    
+    .orb-1 {
+      width: min(400px, 100vw);
+      height: min(400px, 100vw);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
+      top: min(-150px, -30vw);
+      right: min(-100px, -20vw);
+    }
+    
+    .orb-2 {
+      width: min(500px, 120vw);
+      height: min(500px, 120vw);
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      bottom: 15%;
+      left: min(-200px, -40vw);
+    }
+    
+    /* Glass Card */
+    .glass-card {
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .light-mode .glass-card {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Chart bars */
+    .chart-bar {
+      transition: height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    /* Tab Navigation */
+    .tab-btn {
+      transition: all 0.2s ease;
+    }
+    
+    .tab-btn.active {
+      color: #d4af37;
+      background: rgba(212, 175, 55, 0.1);
+    }
+    
+    .tab-btn:not(.active):hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    /* Chat Bubbles */
+    .bubble {
+      max-width: 85%;
+      animation: bubbleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    @keyframes bubbleIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .bubble-sale {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%);
+      border-left: 3px solid #10b981;
+    }
+    
+    .light-mode .bubble-sale {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    }
+    
+    .bubble-expense {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(244, 63, 94, 0.08) 100%);
+      border-left: 3px solid #f43f5e;
+    }
+    
+    .light-mode .bubble-expense {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(244, 63, 94, 0.05) 100%);
+    }
+    
+    .bubble-credit {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%);
+      border-left: 3px solid #f59e0b;
+    }
+    
+    .light-mode .bubble-credit {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+    }
+    
+    /* Input Area */
+    .input-wrapper {
+      background: linear-gradient(180deg, transparent 0%, var(--bg) 30%);
+    }
+    
+    .input-field {
+      background: var(--card-solid);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+      color: var(--fg);
+    }
+    
+    .input-field::placeholder {
+      color: var(--muted);
+    }
+    
+    .input-field:focus {
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+      outline: none;
+    }
+    
+    /* Mic Button */
+    .mic-btn {
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    
+    .mic-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    .mic-btn:active {
+      transform: scale(0.95);
+    }
+    
+    .mic-btn.recording {
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+      }
+    }
+    
+    /* Scrollbar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 4px;
+    }
+    
+    /* Stagger Animation */
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .stagger-item.visible {
+      animation: staggerIn 0.5s ease forwards;
+    }
+    
+    @keyframes staggerIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    
+    /* Typing indicator */
+    .typing-dot {
+      animation: typingBounce 1.4s infinite ease-in-out both;
+    }
+    
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    
+    /* Stat Card Hover */
+    .stat-card {
+      transition: all 0.2s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 175, 55, 0.2);
+    }
+    
+    /* Report Period Buttons */
+    .period-btn {
+      transition: all 0.2s ease;
+    }
+    
+    .period-btn.active {
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+    
+    /* View transitions */
+    .view {
+      display: none;
+    }
+    
+    .view.active {
+      display: flex;
+    }
+    
+    /* Professional Logo */
+    .logo-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .logo-box {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #d4af37 0%, #e8c84a 50%, #b8942d 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    }
+    
+    .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1a1a24;
+      letter-spacing: -0.5px;
+    }
+    
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      background: var(--card-solid);
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #d4af37;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    
+    .toggle-switch.active::after {
+      transform: translateX(22px);
+    }
+    
+    /* Desktop responsive */
+    @media (min-width: 768px) {
+      .mobile-container {
+        max-width: 100%;
+        margin: 0 auto;
+        height: 100%;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .desktop-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        height: calc(100% - 120px);
+      }
+      
+      .desktop-layout > div {
+        height: 100%;
+        overflow-y: auto;
+      }
+      
+      .mobile-container {
+        max-width: 100%;
+      }
+    }
+    
+    /* Landscape phone adjustments */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .glass-card {
+        padding: 0.75rem;
+      }
+      
+      .stat-card {
+        padding: 0.75rem;
+      }
+    }
+    
+    /* Report Card Styling */
+    .report-card {
+      background: var(--card-solid);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+    
+    .report-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .report-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--fg);
+    }
+    
+    .report-badge {
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-container flex flex-col h-full relative">
+    <!-- Background Effects -->
+    <div class="bg-noise"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    
+    <!-- Main Container -->
+    <div class="flex-1 flex flex-col relative z-10 overflow-hidden">
+      
+      <!-- Header -->
+      <header class="px-4 pt-3 pb-2 shrink-0">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <!-- Professional Logo -->
+            <div class="logo-container">
+              <div class="logo-box">
+                <span class="logo-text">ND</span>
+              </div>
+            </div>
+            <div>
+              <h1 class="font-display font-bold text-lg leading-tight" style="color: var(--fg);">ND - Accounting Books</h1>
+              <p class="text-xs" style="color: var(--muted);" id="shopName">Mama Adwoa's Store</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Theme Toggle -->
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" style="color: var(--muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              </svg>
+              <div class="toggle-switch" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme"></div>
+              <svg class="w-4 h-4" style="color: var(--muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+            </div>
+            <button id="settingsBtn" class="w-10 h-10 rounded-full glass-card flex items-center justify-center" style="border-color: var(--border);" aria-label="Settings">
+              <svg class="w-5 h-5" style="color: var(--muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Tab Navigation -->
+      <nav class="px-4 mb-2 shrink-0">
+        <div class="flex gap-1 p-1 rounded-xl glass-card">
+          <button class="tab-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium active" data-tab="chat" style="color: var(--muted);">
+            <span class="flex items-center justify-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
+              <span class="hidden sm:inline">Entry</span>
+            </span>
+          </button>
+          <button class="tab-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" data-tab="dashboard" style="color: var(--muted);">
+            <span class="flex items-center justify-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+              <span class="hidden sm:inline">Dashboard</span>
+            </span>
+          </button>
+          <button class="tab-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" data-tab="reports" style="color: var(--muted);">
+            <span class="flex items-center justify-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              <span class="hidden sm:inline">Reports</span>
+            </span>
+          </button>
+        </div>
+      </nav>
+      
+      <!-- Content Area -->
+      <div class="flex-1 overflow-hidden flex flex-col">
+        
+        <!-- Chat View -->
+        <div id="chatView" class="view active flex-1 flex flex-col overflow-hidden">
+          <!-- Balance Mini Card -->
+          <div class="px-4 mb-3 shrink-0">
+            <div class="glass-card rounded-xl p-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background: rgba(212, 175, 55, 0.15);">
+                    <svg class="w-5 h-5" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs" style="color: var(--muted);">Today's Balance</p>
+                    <p class="font-display font-bold text-xl" style="color: var(--fg);">GH₵ <span id="headerBalance">0.00</span></p>
+                  </div>
+                </div>
+                <div class="flex gap-3 text-right">
+                  <div>
+                    <p class="text-xs" style="color: var(--muted);">Sales</p>
+                    <p class="font-semibold text-sm" style="color: #10b981;" id="headerSales">GH₵ 0</p>
+                  </div>
+                  <div>
+                    <p class="text-xs" style="color: var(--muted);">Expenses</p>
+                    <p class="font-semibold text-sm" style="color: #f43f5e;" id="headerExpenses">GH₵ 0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Date Header -->
+          <div class="px-4 mb-2">
+            <div class="flex items-center justify-center">
+              <span class="text-xs font-medium px-3 py-1 rounded-full" style="background: var(--card-solid); color: var(--muted); border: 1px solid var(--border);" id="chatDateHeader">Today</span>
+            </div>
+          </div>
+          
+          <!-- Chat Area -->
+          <div class="flex-1 overflow-y-auto custom-scroll px-4" id="chatContainer">
+            <!-- Welcome message -->
+            <div class="text-center py-6" id="welcomeMessage">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mb-3" style="background: rgba(212, 175, 55, 0.1);">
+                <svg class="w-7 h-7" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+              </div>
+              <h2 class="font-display font-bold text-lg mb-1" style="color: var(--fg);">Welcome to ND Accounting Books</h2>
+              <p class="text-sm max-w-xs mx-auto mb-4" style="color: var(--muted);">Record transactions by typing or speaking naturally.</p>
+              
+              <div class="space-y-2 text-left max-w-xs mx-auto">
+                <p class="text-xs uppercase tracking-wider mb-1" style="color: var(--muted);">Try saying:</p>
+                <button class="quick-entry w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors" style="background: var(--card-solid); color: var(--fg); border: 1px solid var(--border);">
+                  "Sold 2 bags of sugar for 50 cedis"
+                </button>
+                <button class="quick-entry w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors" style="background: var(--card-solid); color: var(--fg); border: 1px solid var(--border);">
+                  "Paid 20ghs for light bill"
+                </button>
+                <button class="quick-entry w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors" style="background: var(--card-solid); color: var(--fg); border: 1px solid var(--border);">
+                  "Kofi took 3 bread on credit, 45gh"
+                </button>
+              </div>
+            </div>
+            
+            <!-- Chat messages -->
+            <div id="chatMessages"></div>
+            
+            <!-- Typing indicator -->
+            <div id="typingIndicator" class="hidden flex items-center gap-2 py-2">
+              <div class="w-7 h-7 rounded-full flex items-center justify-center" style="background: rgba(212, 175, 55, 0.2);">
+                <svg class="w-3.5 h-3.5" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div class="flex gap-1">
+                <div class="w-1.5 h-1.5 rounded-full typing-dot" style="background: #d4af37;"></div>
+                <div class="w-1.5 h-1.5 rounded-full typing-dot" style="background: #d4af37;"></div>
+                <div class="w-1.5 h-1.5 rounded-full typing-dot" style="background: #d4af37;"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Input Area -->
+          <div class="input-wrapper px-4 pt-2 pb-2 shrink-0">
+            <div class="flex items-end gap-2">
+              <div class="flex-1 relative">
+                <input 
+                  type="text" 
+                  id="messageInput"
+                  class="input-field w-full rounded-2xl px-4 py-3 pr-12 font-body"
+                  placeholder="Type your transaction..."
+                  autocomplete="off"
+                >
+                <button 
+                  id="sendBtn"
+                  class="absolute right-2 bottom-1.5 w-9 h-9 rounded-xl flex items-center justify-center transition-colors"
+                  style="background: #d4af37;"
+                  aria-label="Send"
+                >
+                  <svg class="w-4 h-4" style="color: #1a1a24;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                  </svg>
+                </button>
+              </div>
+              <button 
+                id="micBtn"
+                class="mic-btn w-12 h-12 rounded-2xl glass-card flex items-center justify-center shrink-0"
+                style="border-color: var(--border);"
+                aria-label="Voice input"
+              >
+                <svg class="w-5 h-5" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dashboard View - Standalone -->
+        <div id="dashboardView" class="view flex-1 overflow-y-auto custom-scroll">
+          <div class="p-4 space-y-4">
+            
+            <!-- Dashboard Header -->
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <h2 class="font-display font-bold text-xl" style="color: var(--fg);">Dashboard</h2>
+                <p class="text-sm" style="color: var(--muted);" id="dashboardDate">Loading...</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(212, 175, 55, 0.15); color: #d4af37;" id="dashboardPeriod">Today</span>
+              </div>
+            </div>
+            
+            <!-- Main Stats Grid -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="stat-card glass-card rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(16, 185, 129, 0.15);">
+                    <svg class="w-4 h-4" style="color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs" style="color: var(--muted);">Total Sales</span>
+                </div>
+                <p class="font-display font-bold text-2xl" style="color: #10b981;" id="dashTotalSales">GH₵ 0</p>
+                <p class="text-xs mt-1" style="color: var(--muted);"><span id="dashSaleCount">0</span> transactions</p>
+              </div>
+              
+              <div class="stat-card glass-card rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(244, 63, 94, 0.15);">
+                    <svg class="w-4 h-4" style="color: #f43f5e;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs" style="color: var(--muted);">Total Expenses</span>
+                </div>
+                <p class="font-display font-bold text-2xl" style="color: #f43f5e;" id="dashTotalExpenses">GH₵ 0</p>
+                <p class="text-xs mt-1" style="color: var(--muted);"><span id="dashExpenseCount">0</span> transactions</p>
+              </div>
+              
+              <div class="stat-card glass-card rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(245, 158, 11, 0.15);">
+                    <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs" style="color: var(--muted);">Credit Sales</span>
+                </div>
+                <p class="font-display font-bold text-2xl" style="color: #f59e0b;" id="dashTotalCredit">GH₵ 0</p>
+                <p class="text-xs mt-1" style="color: var(--muted);"><span id="dashCreditCount">0</span> pending</p>
+              </div>
+              
+              <div class="stat-card glass-card rounded-xl p-4" style="border-color: rgba(212, 175, 55, 0.2);">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(212, 175, 55, 0.15);">
+                    <svg class="w-4 h-4" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs" style="color: var(--muted);">Net Balance</span>
+                </div>
+                <p class="font-display font-bold text-2xl" style="color: #d4af37;" id="dashNetBalance">GH₵ 0</p>
+                <p class="text-xs mt-1" style="color: var(--muted);">Today's profit</p>
+              </div>
+            </div>
+            
+            <!-- Daily Chart -->
+            <div class="glass-card rounded-xl p-4">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display font-bold" style="color: var(--fg);">Hourly Activity</h3>
+                <div class="flex items-center gap-3 text-xs">
+                  <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background: #10b981;"></span> Sales</span>
+                  <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background: #f43f5e;"></span> Expenses</span>
+                </div>
+              </div>
+              
+              <!-- Hourly Chart -->
+              <div class="h-28 sm:h-32 flex items-end justify-between gap-1" id="hourlyChart">
+                <!-- Chart bars will be generated -->
+              </div>
+              <div class="flex justify-between mt-2 text-xs" style="color: var(--muted);">
+                <span>6am</span>
+                <span>12pm</span>
+                <span>6pm</span>
+                <span>Now</span>
+              </div>
+            </div>
+            
+            <!-- Recent Transactions -->
+            <div class="glass-card rounded-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display font-bold" style="color: var(--fg);">Recent Transactions</h3>
+                <button class="text-xs font-medium hover:opacity-80 transition-opacity" style="color: #d4af37;" onclick="switchTab('reports')">View All</button>
+              </div>
+              <div class="space-y-2" id="recentTransactions">
+                <p class="text-sm text-center py-4" style="color: var(--muted);">No transactions yet today</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <!-- Reports View - Standalone -->
+        <div id="reportsView" class="view flex-1 overflow-y-auto custom-scroll">
+          <div class="p-4 space-y-4">
+            
+            <!-- Reports Header -->
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <h2 class="font-display font-bold text-xl" style="color: var(--fg);">Reports</h2>
+                <p class="text-sm" style="color: var(--muted);">Transaction summaries and exports</p>
+              </div>
+            </div>
+            
+            <!-- Period Selector -->
+            <div class="flex gap-2">
+              <button class="period-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium active" style="background: transparent; color: var(--muted); border: 1px solid var(--border);" data-period="daily">Daily</button>
+              <button class="period-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" style="background: transparent; color: var(--muted); border: 1px solid var(--border);" data-period="weekly">Weekly</button>
+              <button class="period-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" style="background: transparent; color: var(--muted); border: 1px solid var(--border);" data-period="monthly">Monthly</button>
+            </div>
+            
+            <!-- Summary Report Card -->
+            <div class="report-card">
+              <div class="report-header">
+                <div>
+                  <h3 class="report-title" id="reportTitle">Daily Summary</h3>
+                  <p class="text-xs mt-1" style="color: var(--muted);" id="reportDateRange">Today's transactions</p>
+                </div>
+                <span class="report-badge" id="reportBadge">TODAY</span>
+              </div>
+              
+              <!-- Summary Grid -->
+              <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="p-3 rounded-lg" style="background: rgba(16, 185, 129, 0.08);">
+                  <p class="text-xs mb-1" style="color: var(--muted);">Total Sales</p>
+                  <p class="font-display font-bold text-lg" style="color: #10b981;" id="reportSales">GH₵ 0.00</p>
+                </div>
+                <div class="p-3 rounded-lg" style="background: rgba(244, 63, 94, 0.08);">
+                  <p class="text-xs mb-1" style="color: var(--muted);">Total Expenses</p>
+                  <p class="font-display font-bold text-lg" style="color: #f43f5e;" id="reportExpenses">GH₵ 0.00</p>
+                </div>
+                <div class="p-3 rounded-lg" style="background: rgba(245, 158, 11, 0.08);">
+                  <p class="text-xs mb-1" style="color: var(--muted);">Credit Sales</p>
+                  <p class="font-display font-bold text-lg" style="color: #f59e0b;" id="reportCredit">GH₵ 0.00</p>
+                </div>
+                <div class="p-3 rounded-lg" style="background: rgba(212, 175, 55, 0.08);">
+                  <p class="text-xs mb-1" style="color: var(--muted);">Net Balance</p>
+                  <p class="font-display font-bold text-lg" style="color: #d4af37;" id="reportNet">GH₵ 0.00</p>
+                </div>
+              </div>
+              
+              <!-- Transaction Count -->
+              <div class="grid grid-cols-3 gap-2 p-3 rounded-lg" style="background: var(--card-solid); border: 1px solid var(--border);">
+                <div class="text-center">
+                  <p class="text-2xl font-display font-bold" style="color: #10b981;" id="reportSaleCount">0</p>
+                  <p class="text-xs" style="color: var(--muted);">Sales</p>
+                </div>
+                <div class="text-center border-x" style="border-color: var(--border);">
+                  <p class="text-2xl font-display font-bold" style="color: #f43f5e;" id="reportExpenseCount">0</p>
+                  <p class="text-xs" style="color: var(--muted);">Expenses</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-2xl font-display font-bold" style="color: #f59e0b;" id="reportCreditCount">0</p>
+                  <p class="text-xs" style="color: var(--muted);">Credits</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Transaction Details -->
+            <div class="report-card">
+              <h3 class="font-display font-bold mb-3" style="color: var(--fg);">Transaction Details</h3>
+              <div class="space-y-2" id="reportTransactions">
+                <p class="text-sm text-center py-4" style="color: var(--muted);">No transactions in this period</p>
+              </div>
+            </div>
+            
+            <!-- Export Options -->
+            <div class="flex gap-3">
+              <button id="exportPdfBtn" class="flex-1 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors" style="background: #d4af37; color: #1a1a24;">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Export PDF
+              </button>
+              <button id="shareReportBtn" class="py-3 px-4 rounded-xl glass-card font-semibold flex items-center justify-center gap-2 transition-colors" style="color: var(--fg); border-color: var(--border);">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+              </button>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Footer -->
+      <footer class="shrink-0 px-4 py-2.5 text-center border-t backdrop-blur-sm" style="background: rgba(13, 13, 15, 0.8); border-color: var(--border);">
+        <p class="text-xs" style="color: var(--muted);">Made by <span style="color: #d4af37;" class="font-medium">Nana Kwame Dickson</span></p>
+      </footer>
+      
+    </div>
+  </div>
+  
+  <!-- Receipt Modal -->
+  <div id="receiptModal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
+    <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-md mx-auto">
+      <div class="glass-card rounded-2xl p-6" id="receiptContent" style="background: var(--card-solid);"></div>
+    </div>
+  </div>
+  
+  <!-- PIN Setup Modal -->
+  <div id="pinModal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0"></div>
+    <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-sm mx-auto">
+      <div class="glass-card rounded-2xl p-6 text-center" style="background: var(--card-solid);">
+        <h3 class="font-display font-bold text-lg mb-2" style="color: var(--fg);">Set Your PIN</h3>
+        <p class="text-sm mb-6" style="color: var(--muted);">This 4-digit PIN will encrypt your data locally.</p>
+        <div class="flex justify-center gap-3 mb-6">
+          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="0">
+          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="1">
+          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="2">
+          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="3">
+        </div>
+        <button id="savePinBtn" class="w-full py-3 rounded-xl font-semibold transition-colors" style="background: #d4af37; color: #1a1a24;">
+          Save PIN
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Install PWA Prompt -->
+  <div id="installPrompt" class="fixed bottom-20 left-4 right-4 max-w-md mx-auto z-40 hidden">
+    <div class="glass-card rounded-xl p-4" style="border-color: rgba(212, 175, 55, 0.2);">
+      <div class="flex items-center gap-3">
+        <div class="logo-box shrink-0">
+          <span class="logo-text">ND</span>
+        </div>
+        <div class="flex-1">
+          <p class="font-medium text-sm" style="color: var(--fg);">Install ND Accounting Books</p>
+          <p class="text-xs" style="color: var(--muted);">Add to home screen for quick access</p>
+        </div>
+        <button id="installBtn" class="px-4 py-2 rounded-lg text-sm font-semibold transition-colors" style="background: #d4af37; color: #1a1a24;">
+          Install
+        </button>
+      </div>
+      <button id="dismissInstall" class="absolute top-2 right-2" style="color: var(--muted);">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // INITIALIZATION & STATE
+    // ========================================
+    
+    let userPin = null;
+    let isRecording = false;
+    let recognition = null;
+    let db = null;
+    let currentPeriod = 'daily';
+    let deferredPrompt = null;
+    let isLightMode = false;
+    
+    // ========================================
+    // THEME TOGGLE
+    // ========================================
+    
+    function initTheme() {
+      const savedTheme = localStorage.getItem('ndTheme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        isLightMode = true;
+        document.getElementById('themeToggle').classList.add('active');
+        document.getElementById('themeColorMeta').setAttribute('content', '#f8f8fa');
+      }
+    }
+    
+    function toggleTheme() {
+      isLightMode = !isLightMode;
+      document.body.classList.toggle('light-mode', isLightMode);
+      document.getElementById('themeToggle').classList.toggle('active', isLightMode);
+      localStorage.setItem('ndTheme', isLightMode ? 'light' : 'dark');
+      document.getElementById('themeColorMeta').setAttribute('content', isLightMode ? '#f8f8fa' : '#0d0d0f');
+    }
+    
+    // ========================================
+    // PWA INSTALLATION
+    // ========================================
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installPrompt').classList.remove('hidden');
+    });
+    
+    function initInstallPrompt() {
+      const installBtn = document.getElementById('installBtn');
+      const dismissBtn = document.getElementById('dismissInstall');
+      const installPrompt = document.getElementById('installPrompt');
+      
+      if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const result = await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            installPrompt.classList.add('hidden');
+          }
+        });
+      }
+      
+      if (dismissBtn) {
+        dismissBtn.addEventListener('click', () => {
+          installPrompt.classList.add('hidden');
+        });
+      }
+    }
+    
+    // ========================================
+    // DATABASE SETUP (Dexie.js)
+    // ========================================
+    
+    function initDatabase() {
+      db = new Dexie('NDShopData');
+      db.version(1).stores({
+        transactions: '++id, type, item, qty, price, status, timestamp, encrypted',
+        inventory: '++id, name, qty, price, updated'
+      });
+    }
+    
+    function encrypt(text, pin) {
+      if (!pin || !text) return text;
+      const pinStr = String(pin).repeat(Math.ceil(text.length / 4));
+      let result = '';
+      for (let i = 0; i < text.length; i++) {
+        result += String.fromCharCode(text.charCodeAt(i) ^ pinStr.charCodeAt(i));
+      }
+      return btoa(result);
+    }
+    
+    function decrypt(encoded, pin) {
+      if (!pin || !encoded) return encoded;
+      try {
+        const text = atob(encoded);
+        const pinStr = String(pin).repeat(Math.ceil(text.length / 4));
+        let result = '';
+        for (let i = 0; i < text.length; i++) {
+          result += String.fromCharCode(text.charCodeAt(i) ^ pinStr.charCodeAt(i));
+        }
+        return result;
+      } catch {
+        return encoded;
+      }
+    }
+    
+    // ========================================
+    // TRANSACTION PARSER
+    // ========================================
+    
+    function parseGhanaianTransaction(text) {
+      const normalized = text.toLowerCase().trim();
+      
+      const saleKeywords = ['sold', 'sell', 'sale', 'received', 'got'];
+      const expenseKeywords = ['paid', 'bought', 'buy', 'spent', 'expense', 'cost'];
+      const creditKeywords = ['credit', 'owe', 'owing', 'borrowed', 'took on credit', 'on credit'];
+      
+      let type = 'unknown';
+      let status = 'completed';
+      
+      if (creditKeywords.some(k => normalized.includes(k))) {
+        type = 'sale';
+        status = 'credit';
+      } else if (saleKeywords.some(k => normalized.includes(k))) {
+        type = 'sale';
+      } else if (expenseKeywords.some(k => normalized.includes(k))) {
+        type = 'expense';
+      }
+      
+      let price = 0;
+      const pricePatterns = [
+        /(\d+(?:\.\d+)?)\s*(?:ghs|cedis?|gh|gh¢|¢)/gi,
+        /(?:for|at|cost)\s*(\d+(?:\.\d+)?)/gi,
+        /(\d+(?:\.\d+)?)\s*(?:cedis?|ghs)/gi
+      ];
+      
+      for (const pattern of pricePatterns) {
+        const match = normalized.match(pattern);
+        if (match) {
+          const numMatch = match[0].match(/(\d+(?:\.\d+)?)/);
+          if (numMatch) {
+            price = parseFloat(numMatch[1]);
+            break;
+          }
+        }
+      }
+      
+      let qty = 1;
+      const qtyMatch = normalized.match(/(\d+)\s*(?:bags?|pieces?|pcs?|items?|loaves?|bottles?|boxes?|cartons?|units?)?/i);
+      if (qtyMatch) {
+        qty = parseInt(qtyMatch[1]);
+      }
+      
+      let item = 'item';
+      const itemPatterns = [
+        /(?:sold|sell|sale)\s+(?:\d+\s+)?(?:bags?\s+of\s+)?([a-zA-Z\s]+?)(?:\s+for|\s+at)/i,
+        /(?:bought|buy|paid)\s+(?:\d+\s+)?([a-zA-Z\s]+?)(?:\s+for|\s+at|\s+\d)/i,
+        /(?:took|borrowed)\s+(?:\d+\s+)?([a-zA-Z\s]+?)(?:\s+on\s+credit|\s+for)/i,
+        /(\d+\s+(?:bags?\s+of\s+)?[a-zA-Z\s]+?)(?:\s+for|\s+at)/i
+      ];
+      
+      for (const pattern of itemPatterns) {
+        const match = normalized.match(pattern);
+        if (match && match[1]) {
+          item = match[1].trim();
+          item = item.replace(/^\d+\s+/, '').replace(/\s+(for|at)\s*$/i, '').trim();
+          if (item.length > 2) break;
+        }
+      }
+      
+      const expenseItemMatch = normalized.match(/(?:paid|spent)\s+(?:\d+\s*(?:ghs|cedis?|gh)?\s+)?for\s+([a-zA-Z\s]+)/i);
+      if (expenseItemMatch && type === 'expense') {
+        item = expenseItemMatch[1].trim();
+      }
+      
+      return {
+        type,
+        qty: Math.max(1, qty),
+        item: item.charAt(0).toUpperCase() + item.slice(1),
+        price: Math.max(0, price),
+        status,
+        raw: text
+      };
+    }
+    
+    // ========================================
+    // DATABASE OPERATIONS
+    // ========================================
+    
+    async function saveTransaction(transaction) {
+      if (!db) return null;
+      
+      const encryptedItem = userPin ? encrypt(transaction.item, userPin) : transaction.item;
+      const encryptedPrice = userPin ? encrypt(String(transaction.price), userPin) : String(transaction.price);
+      
+      const record = {
+        ...transaction,
+        item: encryptedItem,
+        price: encryptedPrice,
+        encrypted: !!userPin,
+        timestamp: new Date().toISOString()
+      };
+      
+      const id = await db.transactions.add(record);
+      return id;
+    }
+    
+    async function getTransactionsByPeriod(period) {
+      if (!db) return [];
+      
+      const now = new Date();
+      let startDate = new Date();
+      
+      switch (period) {
+        case 'daily':
+          startDate.setHours(0, 0, 0, 0);
+          break;
+        case 'weekly':
+          startDate.setDate(now.getDate() - 7);
+          startDate.setHours(0, 0, 0, 0);
+          break;
+        case 'monthly':
+          startDate.setMonth(now.getMonth() - 1);
+          startDate.setHours(0, 0, 0, 0);
+          break;
+      }
+      
+      const transactions = await db.transactions
+        .where('timestamp')
+        .above(startDate.toISOString())
+        .toArray();
+      
+      return transactions.map(t => {
+        const decryptedItem = userPin && t.encrypted ? decrypt(t.item, userPin) : t.item;
+        const decryptedPrice = userPin && t.encrypted ? decrypt(t.price, userPin) : t.price;
+        
+        return {
+          ...t,
+          item: decryptedItem,
+          price: parseFloat(decryptedPrice) || 0
+        };
+      });
+    }
+    
+    async function getTodayTransactions() {
+      return await getTransactionsByPeriod('daily');
+    }
+    
+    async function getSummaryByPeriod(period) {
+      const transactions = await getTransactionsByPeriod(period);
+      
+      let sales = 0;
+      let expenses = 0;
+      let credit = 0;
+      let saleCount = 0;
+      let expenseCount = 0;
+      let creditCount = 0;
+      
+      for (const t of transactions) {
+        if (t.type === 'sale') {
+          if (t.status === 'credit') {
+            credit += t.price;
+            creditCount++;
+          } else {
+            sales += t.price;
+            saleCount++;
+          }
+        } else if (t.type === 'expense') {
+          expenses += t.price;
+          expenseCount++;
+        }
+      }
+      
+      return {
+        sales,
+        expenses,
+        credit,
+        balance: sales - expenses,
+        saleCount,
+        expenseCount,
+        creditCount,
+        transactions
+      };
+    }
+    
+    async function getHourlyData() {
+      if (!db) return [];
+      
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      const transactions = await db.transactions
+        .where('timestamp')
+        .above(today.toISOString())
+        .toArray();
+      
+      const hourlyData = Array(24).fill(0).map(() => ({ sales: 0, expenses: 0 }));
+      
+      for (const t of transactions) {
+        const hour = new Date(t.timestamp).getHours();
+        const price = userPin && t.encrypted ? parseFloat(decrypt(t.price, userPin)) : parseFloat(t.price) || 0;
+        
+        if (t.type === 'sale' && t.status !== 'credit') {
+          hourlyData[hour].sales += price;
+        } else if (t.type === 'expense') {
+          hourlyData[hour].expenses += price;
+        }
+      }
+      
+      return hourlyData;
+    }
+    
+    // ========================================
+    // UI RENDERING
+    // ========================================
+    
+    function formatCurrency(amount) {
+      return `GH₵ ${amount.toFixed(2)}`;
+    }
+    
+    function formatDate(date) {
+      return date.toLocaleDateString('en-GH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    
+    function formatTime(date) {
+      return date.toLocaleTimeString('en-GH', { hour: '2-digit', minute: '2-digit' });
+    }
+    
+    function formatShortDate(date) {
+      return date.toLocaleDateString('en-GH', { month: 'short', day: 'numeric' });
+    }
+    
+    async function updateAllDisplays() {
+      const dailySummary = await getSummaryByPeriod('daily');
+      const now = new Date();
+      
+      // Update chat header
+      document.getElementById('headerBalance').textContent = dailySummary.balance.toFixed(2);
+      document.getElementById('headerSales').textContent = formatCurrency(dailySummary.sales);
+      document.getElementById('headerExpenses').textContent = formatCurrency(dailySummary.expenses);
+      
+      // Update chat date header
+      document.getElementById('chatDateHeader').textContent = formatDate(now);
+      
+      // Update dashboard
+      document.getElementById('dashboardDate').textContent = formatDate(now);
+      document.getElementById('dashTotalSales').textContent = formatCurrency(dailySummary.sales);
+      document.getElementById('dashTotalExpenses').textContent = formatCurrency(dailySummary.expenses);
+      document.getElementById('dashTotalCredit').textContent = formatCurrency(dailySummary.credit);
+      document.getElementById('dashNetBalance').textContent = formatCurrency(dailySummary.balance);
+      document.getElementById('dashSaleCount').textContent = dailySummary.saleCount;
+      document.getElementById('dashExpenseCount').textContent = dailySummary.expenseCount;
+      document.getElementById('dashCreditCount').textContent = dailySummary.creditCount;
+      
+      await updateHourlyChart();
+      updateRecentTransactions(dailySummary.transactions.slice(0, 5));
+      await updateReports();
+    }
+    
+    async function updateHourlyChart() {
+      const hourlyData = await getHourlyData();
+      const chart = document.getElementById('hourlyChart');
+      
+      const maxVal = Math.max(1, ...hourlyData.map(h => Math.max(h.sales, h.expenses)));
+      
+      const currentHour = new Date().getHours();
+      const startHour = 6;
+      const displayHours = Math.max(currentHour - startHour + 1, 8);
+      
+      let html = '';
+      for (let i = 0; i < displayHours; i++) {
+        const hour = startHour + i;
+        if (hour > currentHour) break;
+        
+        const data = hourlyData[hour] || { sales: 0, expenses: 0 };
+        const salesHeight = Math.max(4, (data.sales / maxVal) * 100);
+        const expensesHeight = Math.max(4, (data.expenses / maxVal) * 100);
+        
+        html += `
+          <div class="flex-1 flex flex-col gap-1 items-center min-w-0">
+            <div class="w-full flex flex-col gap-1" style="height: 100%;">
+              <div class="w-full rounded-t chart-bar" style="height: ${salesHeight}%; background: rgba(16, 185, 129, 0.3);"></div>
+              <div class="w-full rounded-b chart-bar" style="height: ${expensesHeight}%; background: rgba(244, 63, 94, 0.3);"></div>
+            </div>
+          </div>
+        `;
+      }
+      
+      chart.innerHTML = html || '<p class="text-sm w-full text-center" style="color: var(--muted);">No data yet today</p>';
+    }
+    
+    function updateRecentTransactions(transactions) {
+      const container = document.getElementById('recentTransactions');
+      
+      if (transactions.length === 0) {
+        container.innerHTML = '<p class="text-sm text-center py-4" style="color: var(--muted);">No transactions yet today</p>';
+        return;
+      }
+      
+      let html = '';
+      for (const t of transactions) {
+        const time = formatTime(new Date(t.timestamp));
+        const typeColor = t.type === 'sale' ? (t.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e';
+        const typeBg = t.type === 'sale' ? (t.status === 'credit' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)') : 'rgba(244, 63, 94, 0.15)';
+        
+        html += `
+          <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid var(--border);">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: ${typeBg};">
+                <span style="color: ${typeColor};" class="text-sm font-bold">${t.qty}</span>
+              </div>
+              <div class="min-w-0">
+                <p class="text-sm truncate" style="color: var(--fg);">${t.item}</p>
+                <p class="text-xs" style="color: var(--muted);">${time}</p>
+              </div>
+            </div>
+            <span class="font-semibold text-sm shrink-0 ml-2" style="color: ${typeColor};">${formatCurrency(t.price)}</span>
+          </div>
+        `;
+      }
+      
+      container.innerHTML = html;
+    }
+    
+    async function updateReports() {
+      const summary = await getSummaryByPeriod(currentPeriod);
+      const now = new Date();
+      
+      // Update title and badge
+      const titles = {
+        daily: 'Daily Summary',
+        weekly: 'Weekly Summary',
+        monthly: 'Monthly Summary'
+      };
+      const badges = {
+        daily: 'TODAY',
+        weekly: 'THIS WEEK',
+        monthly: 'THIS MONTH'
+      };
+      
+      document.getElementById('reportTitle').textContent = titles[currentPeriod];
+      document.getElementById('reportBadge').textContent = badges[currentPeriod];
+      
+      // Update date range
+      let dateRange = '';
+      if (currentPeriod === 'daily') {
+        dateRange = formatDate(now);
+      } else if (currentPeriod === 'weekly') {
+        const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        dateRange = `${formatShortDate(weekAgo)} - ${formatShortDate(now)}`;
+      } else {
+        const monthAgo = new Date(now);
+        monthAgo.setMonth(monthAgo.getMonth() - 1);
+        dateRange = `${formatShortDate(monthAgo)} - ${formatShortDate(now)}`;
+      }
+      document.getElementById('reportDateRange').textContent = dateRange;
+      
+      // Update summary
+      document.getElementById('reportSales').textContent = formatCurrency(summary.sales);
+      document.getElementById('reportExpenses').textContent = formatCurrency(summary.expenses);
+      document.getElementById('reportCredit').textContent = formatCurrency(summary.credit);
+      document.getElementById('reportNet').textContent = formatCurrency(summary.balance);
+      
+      document.getElementById('reportSaleCount').textContent = summary.saleCount;
+      document.getElementById('reportExpenseCount').textContent = summary.expenseCount;
+      document.getElementById('reportCreditCount').textContent = summary.creditCount;
+      
+      // Update transaction list
+      const container = document.getElementById('reportTransactions');
+      
+      if (summary.transactions.length === 0) {
+        container.innerHTML = '<p class="text-sm text-center py-4" style="color: var(--muted);">No transactions in this period</p>';
+        return;
+      }
+      
+      let html = '';
+      for (const t of summary.transactions) {
+        const date = new Date(t.timestamp);
+        const timeStr = formatTime(date);
+        const dateStr = formatShortDate(date);
+        const typeColor = t.type === 'sale' ? (t.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e';
+        const typeLabel = t.type === 'sale' ? (t.status === 'credit' ? 'CREDIT' : 'SALE') : 'EXPENSE';
+        
+        html += `
+          <div class="flex items-center justify-between py-3" style="border-bottom: 1px solid var(--border);">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--card);">
+                <span class="font-semibold" style="color: var(--fg);">${t.qty}</span>
+              </div>
+              <div class="min-w-0">
+                <p class="text-sm font-medium truncate" style="color: var(--fg);">${t.item}</p>
+                <p class="text-xs" style="color: var(--muted);">${dateStr} at ${timeStr}</p>
+              </div>
+            </div>
+            <div class="text-right shrink-0 ml-2">
+              <p class="font-semibold" style="color: ${typeColor};">${formatCurrency(t.price)}</p>
+              <p class="text-xs" style="color: ${typeColor};">${typeLabel}</p>
+            </div>
+          </div>
+        `;
+      }
+      
+      container.innerHTML = html;
+    }
+    
+    // ========================================
+    // CHAT FUNCTIONS
+    // ========================================
+    
+    async function loadTodayChat() {
+      const transactions = await getTodayTransactions();
+      const container = document.getElementById('chatMessages');
+      const welcome = document.getElementById('welcomeMessage');
+      
+      if (transactions.length === 0) {
+        welcome.style.display = 'block';
+        container.innerHTML = '';
+        return;
+      }
+      
+      welcome.style.display = 'none';
+      container.innerHTML = '';
+      
+      // Sort by timestamp ascending
+      transactions.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      
+      for (const t of transactions) {
+        addChatBubbleFromHistory(t);
+      }
+    }
+    
+    function addChatBubbleFromHistory(transaction) {
+      const container = document.getElementById('chatMessages');
+      
+      let bubbleClass = 'bubble-expense';
+      let label = 'Expense';
+      
+      if (transaction.type === 'sale') {
+        if (transaction.status === 'credit') {
+          bubbleClass = 'bubble-credit';
+          label = 'Sale (Credit)';
+        } else {
+          bubbleClass = 'bubble-sale';
+          label = 'Sale';
+        }
+      }
+      
+      const time = formatTime(new Date(transaction.timestamp));
+      
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${bubbleClass} rounded-xl p-3 mb-3 ml-auto`;
+      bubble.innerHTML = `
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-medium uppercase tracking-wider" style="color: ${transaction.type === 'sale' ? (transaction.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e'};">${label}</span>
+        </div>
+        <p class="text-sm mb-2" style="color: var(--fg);">${transaction.qty}x ${transaction.item}</p>
+        <div class="flex items-center justify-between">
+          <span class="font-display font-bold text-lg" style="color: var(--fg);">${formatCurrency(transaction.price)}</span>
+          <span class="text-xs" style="color: var(--muted);">${time}</span>
+        </div>
+        <button class="receipt-btn mt-3 w-full py-2 rounded-lg text-xs transition-colors" style="background: var(--card); color: var(--muted); border: 1px solid var(--border);">
+          Generate Receipt
+        </button>
+      `;
+      
+      container.appendChild(bubble);
+      
+      bubble.querySelector('.receipt-btn').addEventListener('click', () => {
+        showReceipt(transaction);
+      });
+    }
+    
+    function addChatBubble(transaction) {
+      const container = document.getElementById('chatMessages');
+      const welcome = document.getElementById('welcomeMessage');
+      
+      if (welcome) {
+        welcome.style.display = 'none';
+      }
+      
+      let bubbleClass = 'bubble-expense';
+      let label = 'Expense';
+      
+      if (transaction.type === 'sale') {
+        if (transaction.status === 'credit') {
+          bubbleClass = 'bubble-credit';
+          label = 'Sale (Credit)';
+        } else {
+          bubbleClass = 'bubble-sale';
+          label = 'Sale';
+        }
+      }
+      
+      const time = formatTime(new Date());
+      
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${bubbleClass} rounded-xl p-3 mb-3 ml-auto`;
+      bubble.innerHTML = `
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-medium uppercase tracking-wider" style="color: ${transaction.type === 'sale' ? (transaction.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e'};">${label}</span>
+        </div>
+        <p class="text-sm mb-2" style="color: var(--fg);">${transaction.qty}x ${transaction.item}</p>
+        <div class="flex items-center justify-between">
+          <span class="font-display font-bold text-lg" style="color: var(--fg);">${formatCurrency(transaction.price)}</span>
+          <span class="text-xs" style="color: var(--muted);">${time}</span>
+        </div>
+        <button class="receipt-btn mt-3 w-full py-2 rounded-lg text-xs transition-colors" style="background: var(--card); color: var(--muted); border: 1px solid var(--border);">
+          Generate Receipt
+        </button>
+      `;
+      
+      container.appendChild(bubble);
+      
+      const chatContainer = document.getElementById('chatContainer');
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      
+      bubble.querySelector('.receipt-btn').addEventListener('click', () => {
+        showReceipt(transaction);
+      });
+    }
+    
+    function addUserMessage(text) {
+      const container = document.getElementById('chatMessages');
+      const welcome = document.getElementById('welcomeMessage');
+      
+      if (welcome) {
+        welcome.style.display = 'none';
+      }
+      
+      const time = formatTime(new Date());
+      
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble rounded-xl p-3 mb-3 mr-auto';
+      bubble.style.background = 'var(--card-solid)';
+      bubble.style.border = '1px solid var(--border)';
+      bubble.innerHTML = `
+        <p class="text-sm" style="color: var(--fg);">${text}</p>
+        <span class="text-xs mt-1 block" style="color: var(--muted);">${time}</span>
+      `;
+      
+      container.appendChild(bubble);
+      
+      const chatContainer = document.getElementById('chatContainer');
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+    
+    // ========================================
+    // RECEIPT GENERATION
+    // ========================================
+    
+    function showReceipt(transaction) {
+      const modal = document.getElementById('receiptModal');
+      const content = document.getElementById('receiptContent');
+      
+      const now = new Date();
+      const dateStr = formatDate(now);
+      const timeStr = formatTime(now);
+      const receiptId = `RCP-${Date.now().toString(36).toUpperCase()}`;
+      
+      const shopName = document.getElementById('shopName').textContent;
+      
+      content.innerHTML = `
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3" style="background: rgba(212, 175, 55, 0.15);">
+            <svg class="w-6 h-6" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg" style="color: var(--fg);">ND - Accounting Books</h3>
+          <p class="text-xs" style="color: var(--muted);">${shopName}</p>
+          <p class="text-xs mt-1" style="color: var(--muted);">Receipt #${receiptId}</p>
+        </div>
+        
+        <div class="py-4 my-4" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+          <div class="flex justify-between text-sm mb-2">
+            <span style="color: var(--muted);">Date</span>
+            <span style="color: var(--fg);">${dateStr}</span>
+          </div>
+          <div class="flex justify-between text-sm mb-2">
+            <span style="color: var(--muted);">Time</span>
+            <span style="color: var(--fg);">${timeStr}</span>
+          </div>
+          <div class="flex justify-between text-sm mb-2">
+            <span style="color: var(--muted);">Type</span>
+            <span style="color: ${transaction.type === 'sale' ? '#10b981' : '#f43f5e'};">${transaction.type.toUpperCase()}</span>
+          </div>
+          ${transaction.status === 'credit' ? `
+          <div class="flex justify-between text-sm">
+            <span style="color: var(--muted);">Status</span>
+            <span style="color: #f59e0b;">CREDIT</span>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="mb-4">
+          <div class="flex justify-between items-center py-2">
+            <div>
+              <p class="font-medium" style="color: var(--fg);">${transaction.item}</p>
+              <p class="text-xs" style="color: var(--muted);">Qty: ${transaction.qty}</p>
+            </div>
+            <span class="font-display font-bold text-xl" style="color: var(--fg);">${formatCurrency(transaction.price)}</span>
+          </div>
+        </div>
+        
+        <div class="flex gap-3">
+          <button id="closeReceipt" class="flex-1 py-3 rounded-xl font-medium transition-colors" style="background: var(--card); color: var(--muted);">
+            Close
+          </button>
+          <button id="shareReceipt" class="flex-1 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors" style="background: #d4af37; color: #1a1a24;">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+            </svg>
+            Share
+          </button>
+        </div>
+      `;
+      
+      modal.classList.remove('hidden');
+      
+      document.getElementById('closeReceipt').addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+      
+      document.getElementById('shareReceipt').addEventListener('click', () => {
+        shareReceipt(transaction, receiptId, dateStr, timeStr);
+      });
+    }
+    
+    async function shareReceipt(transaction, receiptId, dateStr, timeStr) {
+      const shopName = document.getElementById('shopName').textContent;
+      const receiptText = `
+*ND - Accounting Books*
+${shopName}
+Receipt #${receiptId}
+-------------------
+Date: ${dateStr}
+Time: ${timeStr}
+Type: ${transaction.type.toUpperCase()}
+${transaction.status === 'credit' ? 'Status: CREDIT\n' : ''}
+Item: ${transaction.item}
+Qty: ${transaction.qty}
+-------------------
+TOTAL: GH₵ ${transaction.price.toFixed(2)}
+
+_Made by Nana Kwame Dickson_
+      `.trim();
+      
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: `Receipt - ${shopName}`,
+            text: receiptText
+          });
+        } catch {
+          copyToClipboard(receiptText);
+        }
+      } else {
+        copyToClipboard(receiptText);
+      }
+    }
+    
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      });
+    }
+    
+    // ========================================
+    // PDF GENERATION
+    // ========================================
+    
+    async function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const summary = await getSummaryByPeriod(currentPeriod);
+      const shopName = document.getElementById('shopName').textContent;
+      const now = new Date();
+      
+      // Header
+      doc.setFillColor(26, 26, 36);
+      doc.rect(0, 0, 210, 45, 'F');
+      
+      doc.setTextColor(212, 175, 55);
+      doc.setFontSize(24);
+      doc.setFont('helvetica', 'bold');
+      doc.text('ND - Accounting Books', 105, 20, { align: 'center' });
+      
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text(shopName, 105, 30, { align: 'center' });
+      
+      doc.setTextColor(180, 180, 180);
+      doc.setFontSize(8);
+      const periodLabels = { daily: 'Daily Report', weekly: 'Weekly Report', monthly: 'Monthly Report' };
+      doc.text(periodLabels[currentPeriod] + ' - Generated: ' + formatDate(now), 105, 38, { align: 'center' });
+      
+      // Summary Section
+      doc.setTextColor(26, 26, 36);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Summary', 20, 60);
+      
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      let yPos = 70;
+      const summaryData = [
+        ['Total Sales', formatCurrency(summary.sales)],
+        ['Total Expenses', formatCurrency(summary.expenses)],
+        ['Credit Sales', formatCurrency(summary.credit)],
+        ['Net Balance', formatCurrency(summary.balance)]
+      ];
+      
+      summaryData.forEach(([label, value], index) => {
+        doc.setTextColor(100, 100, 100);
+        doc.text(label + ':', 20, yPos);
+        
+        if (label === 'Net Balance') {
+          doc.setTextColor(212, 175, 55);
+          doc.setFont('helvetica', 'bold');
+        } else if (label.includes('Sales') && !label.includes('Credit')) {
+          doc.setTextColor(16, 185, 129);
+        } else if (label.includes('Expenses')) {
+          doc.setTextColor(244, 63, 94);
+        } else {
+          doc.setTextColor(245, 158, 11);
+        }
+        
+        doc.text(value, 190, yPos, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
+        yPos += 8;
+      });
+      
+      // Transaction Count
+      yPos += 5;
+      doc.setTextColor(100, 100, 100);
+      doc.setFontSize(9);
+      doc.text(`Transactions: ${summary.saleCount} sales, ${summary.expenseCount} expenses, ${summary.creditCount} credits`, 20, yPos);
+      
+      // Transaction Table
+      yPos += 15;
+      doc.setTextColor(26, 26, 36);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Transaction Details', 20, yPos);
+      
+      if (summary.transactions.length > 0) {
+        const tableData = summary.transactions.map(t => {
+          const date = new Date(t.timestamp);
+          return [
+            formatShortDate(date),
+            formatTime(date),
+            t.type.toUpperCase(),
+            t.item,
+            t.qty.toString(),
+            formatCurrency(t.price)
+          ];
+        });
+        
+        doc.autoTable({
+          startY: yPos + 5,
+          head: [['Date', 'Time', 'Type', 'Item', 'Qty', 'Amount']],
+          body: tableData,
+          theme: 'striped',
+          headStyles: {
+            fillColor: [26, 26, 36],
+            textColor: [212, 175, 55],
+            fontStyle: 'bold',
+            fontSize: 9
+          },
+          bodyStyles: {
+            fontSize: 8,
+            textColor: [50, 50, 50]
+          },
+          alternateRowStyles: {
+            fillColor: [248, 248, 250]
+          },
+          columnStyles: {
+            0: { cellWidth: 25 },
+            1: { cellWidth: 20 },
+            2: { cellWidth: 20 },
+            3: { cellWidth: 60 },
+            4: { cellWidth: 15 },
+            5: { cellWidth: 30, halign: 'right' }
+          },
+          margin: { left: 20, right: 20 }
+        });
+      } else {
+        yPos += 10;
+        doc.setTextColor(150, 150, 150);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        doc.text('No transactions in this period.', 20, yPos);
+      }
+      
+      // Footer
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text('Made by Nana Kwame Dickson', 105, doc.internal.pageSize.height - 10, { align: 'center' });
+        doc.text('Page ' + i + ' of ' + pageCount, 105, doc.internal.pageSize.height - 5, { align: 'center' });
+      }
+      
+      // Save the PDF
+      const fileName = `ND_Accounting_${currentPeriod}_${now.toISOString().split('T')[0]}.pdf`;
+      doc.save(fileName);
+    }
+    
+    // ========================================
+    // VOICE INPUT (Web Speech API)
+    // ========================================
+    
+    function initVoiceRecognition() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        return false;
+      }
+      
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = 'en-GH';
+      
+      recognition.onstart = () => {
+        isRecording = true;
+        document.getElementById('micBtn').classList.add('recording');
+      };
+      
+      recognition.onend = () => {
+        isRecording = false;
+        document.getElementById('micBtn').classList.remove('recording');
+      };
+      
+      recognition.onresult = (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript;
+        document.getElementById('messageInput').value = transcript;
+        
+        if (event.results[event.results.length - 1].isFinal) {
+          processInput(transcript);
+        }
+      };
+      
+      recognition.onerror = () => {
+        isRecording = false;
+        document.getElementById('micBtn').classList.remove('recording');
+      };
+      
+      return true;
+    }
+    
+    function toggleRecording() {
+      if (!recognition) {
+        const supported = initVoiceRecognition();
+        if (!supported) {
+          alert('Voice input is not supported in your browser. Try Chrome on Android.');
+          return;
+        }
+      }
+      
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    }
+    
+    // ========================================
+    // MAIN INPUT PROCESSING
+    // ========================================
+    
+    async function processInput(text) {
+      if (!text.trim()) return;
+      
+      addUserMessage(text);
+      
+      document.getElementById('typingIndicator').classList.remove('hidden');
+      
+      const transaction = parseGhanaianTransaction(text);
+      
+      await new Promise(resolve => setTimeout(resolve, 600));
+      
+      document.getElementById('typingIndicator').classList.add('hidden');
+      
+      if (transaction.type !== 'unknown' && transaction.price > 0) {
+        await saveTransaction(transaction);
+        addChatBubble(transaction);
+        await updateAllDisplays();
+      } else {
+        const container = document.getElementById('chatMessages');
+        const errorBubble = document.createElement('div');
+        errorBubble.className = 'bubble rounded-xl p-3 mb-3';
+        errorBubble.style.background = 'var(--card)';
+        errorBubble.innerHTML = `
+          <p class="text-sm" style="color: var(--muted);">I couldn't understand that transaction. Try:</p>
+          <p class="text-xs mt-2" style="color: var(--muted);">"Sold 2 bags of sugar for 50 cedis"</p>
+        `;
+        container.appendChild(errorBubble);
+      }
+      
+      document.getElementById('messageInput').value = '';
+    }
+    
+    // ========================================
+    // TAB NAVIGATION
+    // ========================================
+    
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+      
+      document.querySelectorAll('.view').forEach(view => {
+        view.classList.toggle('active', view.id === `${tabName}View`);
+      });
+      
+      if (tabName === 'dashboard' || tabName === 'reports') {
+        updateAllDisplays();
+      }
+    }
+    
+    window.switchTab = switchTab;
+    
+    // ========================================
+    // EVENT LISTENERS
+    // ========================================
+    
+    function initEventListeners() {
+      initInstallPrompt();
+      
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', toggleTheme);
+      themeToggle.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleTheme();
+        }
+      });
+      
+      // Tab navigation
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      });
+      
+      // Period buttons
+      document.querySelectorAll('.period-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentPeriod = btn.dataset.period;
+          await updateReports();
+        });
+      });
+      
+      // Send button
+      document.getElementById('sendBtn').addEventListener('click', () => {
+        const input = document.getElementById('messageInput');
+        processInput(input.value);
+      });
+      
+      // Enter key
+      document.getElementById('messageInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          processInput(e.target.value);
+        }
+      });
+      
+      // Mic button
+      document.getElementById('micBtn').addEventListener('click', toggleRecording);
+      
+      // Quick entry buttons
+      document.querySelectorAll('.quick-entry').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const text = btn.textContent.trim().replace(/"/g, '');
+          document.getElementById('messageInput').value = text;
+          processInput(text);
+        });
+      });
+      
+      // Modal overlay click
+      document.getElementById('modalOverlay').addEventListener('click', () => {
+        document.getElementById('receiptModal').classList.add('hidden');
+      });
+      
+      // Settings button
+      document.getElementById('settingsBtn').addEventListener('click', () => {
+        document.getElementById('pinModal').classList.remove('hidden');
+        document.querySelector('.pin-input').focus();
+      });
+      
+      // PIN inputs
+      document.querySelectorAll('.pin-input').forEach((input, index, inputs) => {
+        input.addEventListener('input', (e) => {
+          if (e.target.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+        
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !e.target.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+      
+      // Save PIN
+      document.getElementById('savePinBtn').addEventListener('click', () => {
+        const inputs = document.querySelectorAll('.pin-input');
+        const pin = Array.from(inputs).map(i => i.value).join('');
+        
+        if (pin.length === 4) {
+          userPin = pin;
+          localStorage.setItem('ndShopPin', pin);
+          document.getElementById('pinModal').classList.add('hidden');
+          inputs.forEach(i => i.value = '');
+        }
+      });
+      
+      // Click outside PIN modal
+      document.querySelector('#pinModal .modal-overlay').addEventListener('click', () => {
+        document.getElementById('pinModal').classList.add('hidden');
+      });
+      
+      // Export PDF button
+      document.getElementById('exportPdfBtn').addEventListener('click', generatePDF);
+      
+      // Share report button
+      document.getElementById('shareReportBtn').addEventListener('click', async () => {
+        const summary = await getSummaryByPeriod(currentPeriod);
+        const shopName = document.getElementById('shopName').textContent;
+        const now = new Date();
+        
+        let reportText = `
+*ND - Accounting Books*
+${shopName}
+${currentPeriod.toUpperCase()} REPORT
+Date: ${formatDate(now)}
+===================
+
+SUMMARY
+-------
+Total Sales: GH₵ ${summary.sales.toFixed(2)}
+Total Expenses: GH₵ ${summary.expenses.toFixed(2)}
+Credit Sales: GH₵ ${summary.credit.toFixed(2)}
+-------------------
+NET BALANCE: GH₵ ${summary.balance.toFixed(2)}
+
+TRANSACTIONS: ${summary.saleCount} sales, ${summary.expenseCount} expenses, ${summary.creditCount} credits
+
+===================
+_Made by Nana Kwame Dickson_
+        `.trim();
+        
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: `${currentPeriod} Report - ${shopName}`,
+              text: reportText
+            });
+          } catch {
+            copyToClipboard(reportText);
+          }
+        } else {
+          copyToClipboard(reportText);
+        }
+      });
+    }
+    
+    // ========================================
+    // INITIALIZATION
+    // ========================================
+    
+    async function initApp() {
+      initTheme();
+      initDatabase();
+      initEventListeners();
+      initVoiceRecognition();
+      
+      const savedPin = localStorage.getItem('ndShopPin');
+      if (savedPin) {
+        userPin = savedPin;
+      }
+      
+      const savedShopName = localStorage.getItem('ndShopName');
+      if (savedShopName) {
+        document.getElementById('shopName').textContent = savedShopName;
+      }
+      
+      await updateAllDisplays();
+      await loadTodayChat();
+    }
+    
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
