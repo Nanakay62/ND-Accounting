@@ -6,2166 +6,1631 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="ND Accounting">
-  <meta name="application-name" content="ND Accounting Books">
   <meta name="theme-color" content="#0d0d0f" id="themeColorMeta">
-  <meta name="msapplication-TileColor" content="#d4af37">
-  <meta name="msapplication-tap-highlight" content="no">
   <title>ND - Accounting Books</title>
   
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/json;charset=utf-8;base64,ewogICJuYW1lIjogIk5EIC0gQWNjb3VudGluZyBCb29rcyIsCiAgInNob3J0X25hbWUiOiAiTkQgQWNjb3VudGluZyIsCiAgImRlc2NyaXB0aW9uIjogIkNvbnZlcnNhdGlvbmFsIEFjY291bnRpbmcgZm9yIEdoYW5haWFuIEJ1c2luZXNzZXMiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBkMGQwZiIsCiAgInRoZW1lX2NvbG9yIjogIiNkNGFmMzciLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgInNjb3BlIjogWyIvIl0sCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEyOCAxMjgnPjxyZWN0IHdpZHRoPScxMjgnIGhlaWdodD0nMTI4JyBmaWxsPSclMjMxYTFhMjQnIHJ4PScyNCcvPjxnPjxyZWN0IHg9JzI0JyB5PScyNCcgd2lkdGg9JzgwJyBoZWlnaHQ9JzgwJyByeD0nMTInIGZpbGw9JyUyM2Q0YWYzNycvPjx0ZXh0IHg9JzY0JyB5PSc4MCcgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nNTYnIGZvbnQtd2VpZ2h0PSc3MDAnIGZpbGw9JyUyMzFhMWEyNCcgdGV4dC1hbmNob3I9J21pZGRsZSc+TkQ8L3RleHQ+PC9nPjwvc3ZnPiIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXSwKICAiY2F0ZWdvcmllcyI6IFsiZmluYW5jZSIsICJidXNpbmVzcyIsICJwcm9kdWN0aXZpdHkiXQp9">
-  
-  <!-- iOS Splash Screens -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%231a1a24' rx='36'/><g><rect x='34' y='34' width='112' height='112' rx='17' fill='%23d4af37'/><text x='90' y='115' font-family='sans-serif' font-size='78' font-weight='700' fill='%231a1a24' text-anchor='middle'>ND</text></g></svg>">
-  
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Dexie.js for IndexedDB -->
   <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.min.js"></script>
-  
-  <!-- jsPDF for PDF Generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
   
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Space Grotesk', 'sans-serif'],
-            body: ['DM Sans', 'sans-serif'],
-          },
-          colors: {
-            base: {
-              900: '#0d0d0f',
-              800: '#13131a',
-              700: '#1a1a24',
-              600: '#24242f',
-              500: '#2e2e3a',
-            },
-            gold: {
-              DEFAULT: '#d4af37',
-              light: '#e8c84a',
-              dark: '#b8942d',
-              glow: 'rgba(212, 175, 55, 0.15)',
-            },
-            sale: '#10b981',
-            expense: '#f43f5e',
-            credit: '#f59e0b',
-          }
-        }
-      }
-    }
-  </script>
-  
   <style>
     :root {
-      --bg: #0d0d0f;
-      --fg: #f5f5f5;
-      --muted: #71717a;
-      --accent: #d4af37;
-      --card: rgba(26, 26, 36, 0.9);
-      --card-solid: #1a1a24;
-      --border: rgba(212, 175, 55, 0.1);
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --bg: #0a0a0c;
+      --bg2: #111118;
+      --card: #16161f;
+      --card2: #1e1e2a;
+      --border: rgba(212,175,55,0.12);
+      --border2: rgba(255,255,255,0.06);
+      --fg: #f0f0f0;
+      --muted: #6b6b80;
+      --gold: #d4af37;
+      --gold-l: #e8c84a;
+      --gold-d: #9a7d1a;
+      --sale: #22c55e;
+      --expense: #f43f5e;
+      --credit: #f59e0b;
     }
-    
-    .light-mode {
-      --bg: #f8f8fa;
-      --fg: #1a1a24;
-      --muted: #71717a;
-      --card: rgba(255, 255, 255, 0.95);
-      --card-solid: #ffffff;
-      --border: rgba(212, 175, 55, 0.2);
+    .light {
+      --bg: #f5f5f7;
+      --bg2: #eeeef2;
+      --card: #ffffff;
+      --card2: #f0f0f4;
+      --border: rgba(212,175,55,0.2);
+      --border2: rgba(0,0,0,0.06);
+      --fg: #111118;
+      --muted: #8888a0;
     }
-    
-    * {
-      -webkit-tap-highlight-color: transparent;
-      box-sizing: border-box;
+    *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; margin:0; padding:0; }
+    html,body{ height:100%; overflow:hidden; }
+    body{
+      font-family:'Instrument Sans',sans-serif;
+      background:var(--bg); color:var(--fg);
+      padding-top:env(safe-area-inset-top,0px);
+      padding-bottom:env(safe-area-inset-bottom,0px);
+      transition:background .3s,color .3s;
     }
-    
-    html, body {
-      height: 100%;
-      overflow: hidden;
+    .font-display{ font-family:'Syne',sans-serif; }
+
+    /* Layout */
+    #app{ display:flex; flex-direction:column; height:100%; position:relative; }
+    .view{ display:none; flex:1; flex-direction:column; overflow:hidden; }
+    .view.active{ display:flex; }
+
+    /* Background */
+    .orb{
+      position:fixed; border-radius:50%; filter:blur(90px);
+      pointer-events:none; z-index:0; opacity:.18;
+      transition:opacity .3s;
     }
-    
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      padding-top: var(--safe-top);
-      padding-bottom: var(--safe-bottom);
-      transition: background-color 0.3s ease, color 0.3s ease;
+    .light .orb{ opacity:.08; }
+    .orb1{
+      width:500px; height:500px;
+      background:radial-gradient(circle,rgba(212,175,55,.5) 0%,transparent 70%);
+      top:-200px; right:-150px;
     }
-    
-    .font-display {
-      font-family: 'Space Grotesk', sans-serif;
+    .orb2{
+      width:400px; height:400px;
+      background:radial-gradient(circle,rgba(34,197,94,.2) 0%,transparent 70%);
+      bottom:10%; left:-150px;
     }
-    
-    /* Background Effects */
-    .bg-noise {
-      position: fixed;
-      inset: 0;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
+    .grain{
+      position:fixed; inset:0; pointer-events:none; z-index:0;
+      opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-    
-    .light-mode .bg-noise {
-      opacity: 0.015;
+
+    /* Cards */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border2);
+      border-radius:16px;
+      transition:all .2s;
     }
-    
-    .gradient-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: 0;
-      transition: opacity 0.3s ease;
+    .card-gold{ border-color:var(--border); }
+
+    /* Logo */
+    .logo-box{
+      width:42px; height:42px; border-radius:11px;
+      background:linear-gradient(135deg,#d4af37 0%,#e8c84a 50%,#b8942d 100%);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 2px 10px rgba(212,175,55,.35);
+      position:relative; overflow:hidden;
+      flex-shrink:0;
     }
-    
-    .light-mode .gradient-orb {
-      opacity: 0.1;
+    .logo-box::before{
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:55%;
+      background:linear-gradient(180deg,rgba(255,255,255,.22) 0%,transparent 100%);
     }
-    
-    .orb-1 {
-      width: min(400px, 100vw);
-      height: min(400px, 100vw);
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
-      top: min(-150px, -30vw);
-      right: min(-100px, -20vw);
+    .logo-txt{ font-family:'Syne',sans-serif; font-weight:800; font-size:15px; color:#1a1a24; letter-spacing:-.5px; }
+
+    /* Tab Nav */
+    .tab-bar{
+      display:flex; gap:4px;
+      background:var(--card); border:1px solid var(--border2);
+      border-radius:14px; padding:4px;
     }
-    
-    .orb-2 {
-      width: min(500px, 120vw);
-      height: min(500px, 120vw);
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
-      bottom: 15%;
-      left: min(-200px, -40vw);
+    .tab{
+      flex:1; padding:10px 8px; border-radius:10px;
+      font-family:'Syne',sans-serif; font-size:13px; font-weight:600;
+      color:var(--muted); background:transparent;
+      border:none; cursor:pointer;
+      transition:all .2s;
+      display:flex; align-items:center; justify-content:center; gap:5px;
     }
-    
-    /* Glass Card */
-    .glass-card {
-      background: var(--card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
+    .tab.active{ background:var(--gold); color:#111; }
+    .tab:not(.active):hover{ background:var(--card2); }
+
+    /* Chat bubbles */
+    .bubble{
+      max-width:86%; border-radius:14px;
+      padding:12px 14px; margin-bottom:10px;
+      animation:popIn .3s cubic-bezier(.34,1.56,.64,1) forwards;
     }
-    
-    .light-mode .glass-card {
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    @keyframes popIn{
+      from{ opacity:0; transform:translateY(8px) scale(.96); }
+      to{ opacity:1; transform:translateY(0) scale(1); }
     }
-    
-    /* Chart bars */
-    .chart-bar {
-      transition: height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .b-sale{ background:linear-gradient(135deg,rgba(34,197,94,.14),rgba(34,197,94,.06)); border-left:3px solid var(--sale); margin-left:auto; }
+    .b-expense{ background:linear-gradient(135deg,rgba(244,63,94,.14),rgba(244,63,94,.06)); border-left:3px solid var(--expense); margin-left:auto; }
+    .b-credit{ background:linear-gradient(135deg,rgba(245,158,11,.14),rgba(245,158,11,.06)); border-left:3px solid var(--credit); margin-left:auto; }
+    .b-user{ background:var(--card2); border:1px solid var(--border2); margin-right:auto; }
+    .b-error{ background:var(--card); border:1px solid var(--border2); }
+
+    /* Input */
+    .inp{
+      background:var(--card); border:1px solid var(--border2);
+      color:var(--fg); border-radius:14px;
+      padding:12px 50px 12px 16px;
+      font-family:'Instrument Sans',sans-serif; font-size:15px;
+      width:100%; transition:border-color .2s, box-shadow .2s;
     }
-    
-    /* Tab Navigation */
-    .tab-btn {
-      transition: all 0.2s ease;
+    .inp::placeholder{ color:var(--muted); }
+    .inp:focus{ outline:none; border-color:rgba(212,175,55,.4); box-shadow:0 0 0 3px rgba(212,175,55,.08); }
+
+    /* Mic */
+    .mic-btn{ transition:all .2s; }
+    .mic-btn:hover{ transform:scale(1.05); }
+    .mic-btn:active{ transform:scale(.95); }
+    .mic-btn.recording{ animation:pulseGold 1.5s infinite; }
+    @keyframes pulseGold{
+      0%,100%{ box-shadow:0 0 0 0 rgba(212,175,55,.4); }
+      50%{ box-shadow:0 0 0 12px rgba(212,175,55,0); }
     }
-    
-    .tab-btn.active {
-      color: #d4af37;
-      background: rgba(212, 175, 55, 0.1);
+
+    /* Typing */
+    .t-dot{ animation:bounce 1.4s infinite ease-in-out both; }
+    .t-dot:nth-child(1){ animation-delay:-.32s; }
+    .t-dot:nth-child(2){ animation-delay:-.16s; }
+    @keyframes bounce{
+      0%,80%,100%{ transform:scale(.6); opacity:.4; }
+      40%{ transform:scale(1); opacity:1; }
     }
-    
-    .tab-btn:not(.active):hover {
-      background: rgba(255, 255, 255, 0.03);
-    }
-    
-    /* Chat Bubbles */
-    .bubble {
-      max-width: 85%;
-      animation: bubbleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    @keyframes bubbleIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    
-    .bubble-sale {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%);
-      border-left: 3px solid #10b981;
-    }
-    
-    .light-mode .bubble-sale {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
-    }
-    
-    .bubble-expense {
-      background: linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(244, 63, 94, 0.08) 100%);
-      border-left: 3px solid #f43f5e;
-    }
-    
-    .light-mode .bubble-expense {
-      background: linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(244, 63, 94, 0.05) 100%);
-    }
-    
-    .bubble-credit {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%);
-      border-left: 3px solid #f59e0b;
-    }
-    
-    .light-mode .bubble-credit {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
-    }
-    
-    /* Input Area */
-    .input-wrapper {
-      background: linear-gradient(180deg, transparent 0%, var(--bg) 30%);
-    }
-    
-    .input-field {
-      background: var(--card-solid);
-      border: 1px solid var(--border);
-      transition: all 0.2s ease;
-      color: var(--fg);
-    }
-    
-    .input-field::placeholder {
-      color: var(--muted);
-    }
-    
-    .input-field:focus {
-      border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-      outline: none;
-    }
-    
-    /* Mic Button */
-    .mic-btn {
-      position: relative;
-      transition: all 0.2s ease;
-    }
-    
-    .mic-btn:hover {
-      transform: scale(1.05);
-    }
-    
-    .mic-btn:active {
-      transform: scale(0.95);
-    }
-    
-    .mic-btn.recording {
-      animation: pulse 1.5s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
-      }
-    }
-    
+
     /* Scrollbar */
-    .custom-scroll::-webkit-scrollbar {
-      width: 4px;
-    }
-    
-    .custom-scroll::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: rgba(212, 175, 55, 0.2);
-      border-radius: 4px;
-    }
-    
-    /* Stagger Animation */
-    .stagger-item {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    
-    .stagger-item.visible {
-      animation: staggerIn 0.5s ease forwards;
-    }
-    
-    @keyframes staggerIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
+    .scroll::-webkit-scrollbar{ width:3px; }
+    .scroll::-webkit-scrollbar-track{ background:transparent; }
+    .scroll::-webkit-scrollbar-thumb{ background:rgba(212,175,55,.15); border-radius:4px; }
+
     /* Modal */
-    .modal-overlay {
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    .modal-bg{ background:rgba(0,0,0,.85); backdrop-filter:blur(10px); }
+    .modal-sheet{
+      background:var(--card);
+      border-radius:20px;
+      border:1px solid var(--border);
     }
-    
-    /* Typing indicator */
-    .typing-dot {
-      animation: typingBounce 1.4s infinite ease-in-out both;
+
+    /* Toggle */
+    .toggle{
+      width:46px; height:25px; border-radius:13px;
+      background:var(--card2); border:1px solid var(--border2);
+      cursor:pointer; position:relative; transition:all .3s;
     }
-    
-    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-    
-    @keyframes typingBounce {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-      40% { transform: scale(1); opacity: 1; }
+    .toggle::after{
+      content:''; position:absolute;
+      top:2px; left:2px; width:19px; height:19px;
+      border-radius:50%; background:var(--gold);
+      transition:all .3s; box-shadow:0 1px 3px rgba(0,0,0,.3);
     }
-    
-    /* Stat Card Hover */
-    .stat-card {
-      transition: all 0.2s ease;
+    .toggle.on::after{ transform:translateX(21px); }
+
+    /* Stat card */
+    .stat{ transition:all .2s; }
+    .stat:hover{ transform:translateY(-2px); border-color:var(--border) !important; }
+
+    /* Period */
+    .period{ transition:all .2s; }
+    .period.active{ background:rgba(212,175,55,.12); color:var(--gold); border-color:rgba(212,175,55,.25) !important; }
+
+    /* Bar chart */
+    .bar{ transition:height .5s cubic-bezier(.34,1.56,.64,1); border-radius:4px 4px 0 0; }
+
+    /* Pie chart */
+    .pie-ring{
+      width:160px; height:160px;
+      border-radius:50%;
+      position:relative;
+      display:flex; align-items:center; justify-content:center;
     }
-    
-    .stat-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(212, 175, 55, 0.2);
+
+    /* Quick entry */
+    .quick{
+      background:var(--card); border:1px solid var(--border2);
+      color:var(--fg); border-radius:10px;
+      padding:10px 12px; font-size:13px;
+      text-align:left; cursor:pointer;
+      transition:all .15s; width:100%;
     }
-    
-    /* Report Period Buttons */
-    .period-btn {
-      transition: all 0.2s ease;
+    .quick:hover{ border-color:var(--border); background:var(--card2); }
+
+    /* Receipt */
+    .receipt-btn{
+      background:var(--card2); color:var(--muted);
+      border:1px solid var(--border2);
+      border-radius:8px; padding:6px 10px;
+      font-size:11px; cursor:pointer;
+      transition:all .15s; width:100%; margin-top:8px;
     }
-    
-    .period-btn.active {
-      background: rgba(212, 175, 55, 0.15);
-      color: #d4af37;
-      border-color: rgba(212, 175, 55, 0.3);
+    .receipt-btn:hover{ border-color:var(--border); color:var(--fg); }
+
+    /* Onboarding overlay */
+    #onboarding{
+      position:fixed; inset:0; z-index:100;
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
     }
-    
-    /* View transitions */
-    .view {
-      display: none;
+    .onb-bg{ 
+      position:absolute; inset:0;
+      background:rgba(5,5,10,.92);
+      backdrop-filter:blur(12px);
     }
-    
-    .view.active {
-      display: flex;
+    .onb-card{
+      position:relative; z-index:1;
+      background:linear-gradient(145deg,#16161f 0%,#1a1a28 100%);
+      border:1px solid rgba(212,175,55,.25);
+      border-radius:24px;
+      max-width:380px; width:100%;
+      overflow:hidden;
+      box-shadow:0 0 80px rgba(212,175,55,.12), 0 0 0 1px rgba(212,175,55,.08);
     }
-    
-    /* Professional Logo */
-    .logo-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .onb-header{
+      padding:28px 28px 20px;
+      border-bottom:1px solid rgba(212,175,55,.1);
+      background:linear-gradient(135deg,rgba(212,175,55,.08) 0%,transparent 60%);
+      position:relative; overflow:hidden;
     }
-    
-    .logo-box {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #d4af37 0%, #e8c84a 50%, #b8942d 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
-      position: relative;
-      overflow: hidden;
+    .onb-floating{
+      position:absolute; pointer-events:none;
+      font-family:'Syne',sans-serif; font-weight:800;
+      opacity:.05; animation:floatNum 4s ease-in-out infinite;
+      user-select:none;
     }
-    
-    .logo-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    @keyframes floatNum{
+      0%,100%{ transform:translateY(0) rotate(-5deg); }
+      50%{ transform:translateY(-10px) rotate(3deg); }
     }
-    
-    .logo-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: #1a1a24;
-      letter-spacing: -0.5px;
+    .onb-step{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px 28px;
+      border-bottom:1px solid rgba(255,255,255,.04);
     }
-    
-    /* Toggle Switch */
-    .toggle-switch {
-      position: relative;
-      width: 48px;
-      height: 26px;
-      background: var(--card-solid);
-      border-radius: 13px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .onb-step:last-child{ border:none; }
+    .onb-icon{
+      width:34px; height:34px; border-radius:9px;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; font-size:16px;
     }
-    
-    .toggle-switch::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 20px;
-      height: 20px;
-      background: #d4af37;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    .onb-close{
+      margin:16px 28px 28px;
+      background:var(--gold); color:#111;
+      border:none; border-radius:12px; padding:14px;
+      font-family:'Syne',sans-serif; font-weight:700; font-size:15px;
+      cursor:pointer; width:calc(100% - 56px);
+      transition:all .2s;
     }
-    
-    .toggle-switch.active::after {
-      transform: translateX(22px);
+    .onb-close:hover{ background:var(--gold-l); transform:translateY(-1px); }
+
+    /* Animated tickers in onboarding */
+    .ticker{ display:inline-flex; align-items:center; gap:4px; }
+    .ticker-up{ color:var(--sale); }
+    .ticker-down{ color:var(--expense); }
+    .arrow-up::before{ content:'↑'; }
+    .arrow-down::before{ content:'↓'; }
+
+    /* Shop name modal */
+    #shopModal{
+      position:fixed; inset:0; z-index:90;
+      display:none; align-items:center; justify-content:center;
+      padding:20px;
     }
-    
-    /* Desktop responsive */
-    @media (min-width: 768px) {
-      .mobile-container {
-        max-width: 100%;
-        margin: 0 auto;
-        height: 100%;
+
+    /* Input fade gradient */
+    .input-wrapper{
+      background:linear-gradient(180deg,transparent 0%,var(--bg) 25%);
+      padding:8px 16px 12px;
+    }
+
+    /* Report transaction row */
+    .tx-row{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0;
+      border-bottom:1px solid var(--border2);
+    }
+    .tx-row:last-child{ border:none; }
+
+    /* Gradient border card */
+    .grad-border{
+      position:relative; border-radius:16px;
+      background:var(--card);
+      border:1px solid var(--border2);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{
+        animation-duration:.01ms !important;
+        transition-duration:.01ms !important;
       }
-    }
-    
-    @media (min-width: 1024px) {
-      .desktop-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        padding: 1rem;
-        height: calc(100% - 120px);
-      }
-      
-      .desktop-layout > div {
-        height: 100%;
-        overflow-y: auto;
-      }
-      
-      .mobile-container {
-        max-width: 100%;
-      }
-    }
-    
-    /* Landscape phone adjustments */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .glass-card {
-        padding: 0.75rem;
-      }
-      
-      .stat-card {
-        padding: 0.75rem;
-      }
-    }
-    
-    /* Report Card Styling */
-    .report-card {
-      background: var(--card-solid);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-    }
-    
-    .report-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid rgba(212, 175, 55, 0.2);
-    }
-    
-    .report-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--fg);
-    }
-    
-    .report-badge {
-      background: rgba(212, 175, 55, 0.15);
-      color: #d4af37;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
-  <div class="mobile-container flex flex-col h-full relative">
-    <!-- Background Effects -->
-    <div class="bg-noise"></div>
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    
-    <!-- Main Container -->
-    <div class="flex-1 flex flex-col relative z-10 overflow-hidden">
-      
-      <!-- Header -->
-      <header class="px-4 pt-3 pb-2 shrink-0">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <!-- Professional Logo -->
-            <div class="logo-container">
-              <div class="logo-box">
-                <span class="logo-text">ND</span>
-              </div>
-            </div>
-            <div>
-              <h1 class="font-display font-bold text-lg leading-tight" style="color: var(--fg);">ND - Accounting Books</h1>
-              <p class="text-xs" style="color: var(--muted);" id="shopName">JEA Store</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <!-- Theme Toggle -->
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4" style="color: var(--muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-              </svg>
-              <div class="toggle-switch" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme"></div>
-              <svg class="w-4 h-4" style="color: var(--muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-              </svg>
-            </div>
-            <button id="settingsBtn" class="w-10 h-10 rounded-full glass-card flex items-center justify-center" style="border-color: var(--border);" aria-label="Settings">
-              <svg class="w-5 h-5" style="color: var(--muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </button>
-          </div>
+
+<!-- Onboarding Overlay -->
+<div id="onboarding">
+  <div class="onb-bg"></div>
+  <div class="onb-card">
+    <div class="onb-header">
+      <!-- Floating decorative numbers -->
+      <span class="onb-floating" style="top:8px;right:20px;font-size:48px;animation-delay:0s">₵</span>
+      <span class="onb-floating" style="top:20px;right:80px;font-size:28px;animation-delay:.8s">GHC</span>
+      <span class="onb-floating" style="bottom:10px;right:30px;font-size:22px;animation-delay:1.2s">+45</span>
+      <span class="onb-floating" style="top:10px;left:10px;font-size:18px;animation-delay:1.8s">↑</span>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div class="logo-box"><span class="logo-txt">ND</span></div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#f0f0f0;">ND Accounting Books</div>
+          <div style="font-size:12px;color:var(--muted);">Your pocket business ledger</div>
         </div>
-      </header>
-      
-      <!-- Tab Navigation -->
-      <nav class="px-4 mb-2 shrink-0">
-        <div class="flex gap-1 p-1 rounded-xl glass-card">
-          <button class="tab-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium active" data-tab="chat" style="color: var(--muted);">
-            <span class="flex items-center justify-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-              </svg>
-              <span class="hidden sm:inline">Entry</span>
-            </span>
-          </button>
-          <button class="tab-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" data-tab="dashboard" style="color: var(--muted);">
-            <span class="flex items-center justify-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
-              <span class="hidden sm:inline">Dashboard</span>
-            </span>
-          </button>
-          <button class="tab-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" data-tab="reports" style="color: var(--muted);">
-            <span class="flex items-center justify-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-              <span class="hidden sm:inline">Reports</span>
-            </span>
-          </button>
-        </div>
-      </nav>
-      
-      <!-- Content Area -->
-      <div class="flex-1 overflow-hidden flex flex-col">
-        
-        <!-- Chat View -->
-        <div id="chatView" class="view active flex-1 flex flex-col overflow-hidden">
-          <!-- Balance Mini Card -->
-          <div class="px-4 mb-3 shrink-0">
-            <div class="glass-card rounded-xl p-3">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background: rgba(212, 175, 55, 0.15);">
-                    <svg class="w-5 h-5" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="text-xs" style="color: var(--muted);">Today's Balance</p>
-                    <p class="font-display font-bold text-xl" style="color: var(--fg);">GH₵ <span id="headerBalance">0.00</span></p>
-                  </div>
-                </div>
-                <div class="flex gap-3 text-right">
-                  <div>
-                    <p class="text-xs" style="color: var(--muted);">Sales</p>
-                    <p class="font-semibold text-sm" style="color: #10b981;" id="headerSales">GH₵ 0</p>
-                  </div>
-                  <div>
-                    <p class="text-xs" style="color: var(--muted);">Expenses</p>
-                    <p class="font-semibold text-sm" style="color: #f43f5e;" id="headerExpenses">GH₵ 0</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Date Header -->
-          <div class="px-4 mb-2">
-            <div class="flex items-center justify-center">
-              <span class="text-xs font-medium px-3 py-1 rounded-full" style="background: var(--card-solid); color: var(--muted); border: 1px solid var(--border);" id="chatDateHeader">Today</span>
-            </div>
-          </div>
-          
-          <!-- Chat Area -->
-          <div class="flex-1 overflow-y-auto custom-scroll px-4" id="chatContainer">
-            <!-- Welcome message -->
-            <div class="text-center py-6" id="welcomeMessage">
-              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mb-3" style="background: rgba(212, 175, 55, 0.1);">
-                <svg class="w-7 h-7" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                </svg>
-              </div>
-              <h2 class="font-display font-bold text-lg mb-1" style="color: var(--fg);">Welcome to ND Accounting Books</h2>
-              <p class="text-sm max-w-xs mx-auto mb-4" style="color: var(--muted);">Record transactions by typing or speaking naturally.</p>
-              
-              <div class="space-y-2 text-left max-w-xs mx-auto">
-                <p class="text-xs uppercase tracking-wider mb-1" style="color: var(--muted);">Try saying:</p>
-                <button class="quick-entry w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors" style="background: var(--card-solid); color: var(--fg); border: 1px solid var(--border);">
-                  "Sold 2 bags of sugar for 50 cedis"
-                </button>
-                <button class="quick-entry w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors" style="background: var(--card-solid); color: var(--fg); border: 1px solid var(--border);">
-                  "Paid 20ghs for light bill"
-                </button>
-                <button class="quick-entry w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors" style="background: var(--card-solid); color: var(--fg); border: 1px solid var(--border);">
-                  "Kofi took 3 bread on credit, 45gh"
-                </button>
-              </div>
-            </div>
-            
-            <!-- Chat messages -->
-            <div id="chatMessages"></div>
-            
-            <!-- Typing indicator -->
-            <div id="typingIndicator" class="hidden flex items-center gap-2 py-2">
-              <div class="w-7 h-7 rounded-full flex items-center justify-center" style="background: rgba(212, 175, 55, 0.2);">
-                <svg class="w-3.5 h-3.5" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <div class="flex gap-1">
-                <div class="w-1.5 h-1.5 rounded-full typing-dot" style="background: #d4af37;"></div>
-                <div class="w-1.5 h-1.5 rounded-full typing-dot" style="background: #d4af37;"></div>
-                <div class="w-1.5 h-1.5 rounded-full typing-dot" style="background: #d4af37;"></div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Input Area -->
-          <div class="input-wrapper px-4 pt-2 pb-2 shrink-0">
-            <div class="flex items-end gap-2">
-              <div class="flex-1 relative">
-                <input 
-                  type="text" 
-                  id="messageInput"
-                  class="input-field w-full rounded-2xl px-4 py-3 pr-12 font-body"
-                  placeholder="Type your transaction..."
-                  autocomplete="off"
-                >
-                <button 
-                  id="sendBtn"
-                  class="absolute right-2 bottom-1.5 w-9 h-9 rounded-xl flex items-center justify-center transition-colors"
-                  style="background: #d4af37;"
-                  aria-label="Send"
-                >
-                  <svg class="w-4 h-4" style="color: #1a1a24;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                  </svg>
-                </button>
-              </div>
-              <button 
-                id="micBtn"
-                class="mic-btn w-12 h-12 rounded-2xl glass-card flex items-center justify-center shrink-0"
-                style="border-color: var(--border);"
-                aria-label="Voice input"
-              >
-                <svg class="w-5 h-5" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Dashboard View - Standalone -->
-        <div id="dashboardView" class="view flex-1 overflow-y-auto custom-scroll">
-          <div class="p-4 space-y-4">
-            
-            <!-- Dashboard Header -->
-            <div class="flex items-center justify-between mb-2">
-              <div>
-                <h2 class="font-display font-bold text-xl" style="color: var(--fg);">Dashboard</h2>
-                <p class="text-sm" style="color: var(--muted);" id="dashboardDate">Loading...</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs px-3 py-1 rounded-full" style="background: rgba(212, 175, 55, 0.15); color: #d4af37;" id="dashboardPeriod">Today</span>
-              </div>
-            </div>
-            
-            <!-- Main Stats Grid -->
-            <div class="grid grid-cols-2 gap-3">
-              <div class="stat-card glass-card rounded-xl p-4">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(16, 185, 129, 0.15);">
-                    <svg class="w-4 h-4" style="color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                    </svg>
-                  </div>
-                  <span class="text-xs" style="color: var(--muted);">Total Sales</span>
-                </div>
-                <p class="font-display font-bold text-2xl" style="color: #10b981;" id="dashTotalSales">GH₵ 0</p>
-                <p class="text-xs mt-1" style="color: var(--muted);"><span id="dashSaleCount">0</span> transactions</p>
-              </div>
-              
-              <div class="stat-card glass-card rounded-xl p-4">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(244, 63, 94, 0.15);">
-                    <svg class="w-4 h-4" style="color: #f43f5e;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
-                    </svg>
-                  </div>
-                  <span class="text-xs" style="color: var(--muted);">Total Expenses</span>
-                </div>
-                <p class="font-display font-bold text-2xl" style="color: #f43f5e;" id="dashTotalExpenses">GH₵ 0</p>
-                <p class="text-xs mt-1" style="color: var(--muted);"><span id="dashExpenseCount">0</span> transactions</p>
-              </div>
-              
-              <div class="stat-card glass-card rounded-xl p-4">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(245, 158, 11, 0.15);">
-                    <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <span class="text-xs" style="color: var(--muted);">Credit Sales</span>
-                </div>
-                <p class="font-display font-bold text-2xl" style="color: #f59e0b;" id="dashTotalCredit">GH₵ 0</p>
-                <p class="text-xs mt-1" style="color: var(--muted);"><span id="dashCreditCount">0</span> pending</p>
-              </div>
-              
-              <div class="stat-card glass-card rounded-xl p-4" style="border-color: rgba(212, 175, 55, 0.2);">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(212, 175, 55, 0.15);">
-                    <svg class="w-4 h-4" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <span class="text-xs" style="color: var(--muted);">Net Balance</span>
-                </div>
-                <p class="font-display font-bold text-2xl" style="color: #d4af37;" id="dashNetBalance">GH₵ 0</p>
-                <p class="text-xs mt-1" style="color: var(--muted);">Today's profit</p>
-              </div>
-            </div>
-            
-            <!-- Daily Chart -->
-            <div class="glass-card rounded-xl p-4">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="font-display font-bold" style="color: var(--fg);">Hourly Activity</h3>
-                <div class="flex items-center gap-3 text-xs">
-                  <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background: #10b981;"></span> Sales</span>
-                  <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background: #f43f5e;"></span> Expenses</span>
-                </div>
-              </div>
-              
-              <!-- Hourly Chart -->
-              <div class="h-28 sm:h-32 flex items-end justify-between gap-1" id="hourlyChart">
-                <!-- Chart bars will be generated -->
-              </div>
-              <div class="flex justify-between mt-2 text-xs" style="color: var(--muted);">
-                <span>6am</span>
-                <span>12pm</span>
-                <span>6pm</span>
-                <span>Now</span>
-              </div>
-            </div>
-            
-            <!-- Recent Transactions -->
-            <div class="glass-card rounded-xl p-4">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="font-display font-bold" style="color: var(--fg);">Recent Transactions</h3>
-                <button class="text-xs font-medium hover:opacity-80 transition-opacity" style="color: #d4af37;" onclick="switchTab('reports')">View All</button>
-              </div>
-              <div class="space-y-2" id="recentTransactions">
-                <p class="text-sm text-center py-4" style="color: var(--muted);">No transactions yet today</p>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        
-        <!-- Reports View - Standalone -->
-        <div id="reportsView" class="view flex-1 overflow-y-auto custom-scroll">
-          <div class="p-4 space-y-4">
-            
-            <!-- Reports Header -->
-            <div class="flex items-center justify-between mb-2">
-              <div>
-                <h2 class="font-display font-bold text-xl" style="color: var(--fg);">Reports</h2>
-                <p class="text-sm" style="color: var(--muted);">Transaction summaries and exports</p>
-              </div>
-            </div>
-            
-            <!-- Period Selector -->
-            <div class="flex gap-2">
-              <button class="period-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium active" style="background: transparent; color: var(--muted); border: 1px solid var(--border);" data-period="daily">Daily</button>
-              <button class="period-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" style="background: transparent; color: var(--muted); border: 1px solid var(--border);" data-period="weekly">Weekly</button>
-              <button class="period-btn flex-1 py-2.5 px-3 rounded-lg text-sm font-medium" style="background: transparent; color: var(--muted); border: 1px solid var(--border);" data-period="monthly">Monthly</button>
-            </div>
-            
-            <!-- Summary Report Card -->
-            <div class="report-card">
-              <div class="report-header">
-                <div>
-                  <h3 class="report-title" id="reportTitle">Daily Summary</h3>
-                  <p class="text-xs mt-1" style="color: var(--muted);" id="reportDateRange">Today's transactions</p>
-                </div>
-                <span class="report-badge" id="reportBadge">TODAY</span>
-              </div>
-              
-              <!-- Summary Grid -->
-              <div class="grid grid-cols-2 gap-3 mb-4">
-                <div class="p-3 rounded-lg" style="background: rgba(16, 185, 129, 0.08);">
-                  <p class="text-xs mb-1" style="color: var(--muted);">Total Sales</p>
-                  <p class="font-display font-bold text-lg" style="color: #10b981;" id="reportSales">GH₵ 0.00</p>
-                </div>
-                <div class="p-3 rounded-lg" style="background: rgba(244, 63, 94, 0.08);">
-                  <p class="text-xs mb-1" style="color: var(--muted);">Total Expenses</p>
-                  <p class="font-display font-bold text-lg" style="color: #f43f5e;" id="reportExpenses">GH₵ 0.00</p>
-                </div>
-                <div class="p-3 rounded-lg" style="background: rgba(245, 158, 11, 0.08);">
-                  <p class="text-xs mb-1" style="color: var(--muted);">Credit Sales</p>
-                  <p class="font-display font-bold text-lg" style="color: #f59e0b;" id="reportCredit">GH₵ 0.00</p>
-                </div>
-                <div class="p-3 rounded-lg" style="background: rgba(212, 175, 55, 0.08);">
-                  <p class="text-xs mb-1" style="color: var(--muted);">Net Balance</p>
-                  <p class="font-display font-bold text-lg" style="color: #d4af37;" id="reportNet">GH₵ 0.00</p>
-                </div>
-              </div>
-              
-              <!-- Transaction Count -->
-              <div class="grid grid-cols-3 gap-2 p-3 rounded-lg" style="background: var(--card-solid); border: 1px solid var(--border);">
-                <div class="text-center">
-                  <p class="text-2xl font-display font-bold" style="color: #10b981;" id="reportSaleCount">0</p>
-                  <p class="text-xs" style="color: var(--muted);">Sales</p>
-                </div>
-                <div class="text-center border-x" style="border-color: var(--border);">
-                  <p class="text-2xl font-display font-bold" style="color: #f43f5e;" id="reportExpenseCount">0</p>
-                  <p class="text-xs" style="color: var(--muted);">Expenses</p>
-                </div>
-                <div class="text-center">
-                  <p class="text-2xl font-display font-bold" style="color: #f59e0b;" id="reportCreditCount">0</p>
-                  <p class="text-xs" style="color: var(--muted);">Credits</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Transaction Details -->
-            <div class="report-card">
-              <h3 class="font-display font-bold mb-3" style="color: var(--fg);">Transaction Details</h3>
-              <div class="space-y-2" id="reportTransactions">
-                <p class="text-sm text-center py-4" style="color: var(--muted);">No transactions in this period</p>
-              </div>
-            </div>
-            
-            <!-- Export Options -->
-            <div class="flex gap-3">
-              <button id="exportPdfBtn" class="flex-1 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors" style="background: #d4af37; color: #1a1a24;">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-                Export PDF
-              </button>
-              <button id="shareReportBtn" class="py-3 px-4 rounded-xl glass-card font-semibold flex items-center justify-center gap-2 transition-colors" style="color: var(--fg); border-color: var(--border);">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-                </svg>
-              </button>
-            </div>
-            
-          </div>
-        </div>
-        
       </div>
-      
-      <!-- Footer -->
-      <footer class="shrink-0 px-4 py-2.5 text-center border-t backdrop-blur-sm" style="background: rgba(13, 13, 15, 0.8); border-color: var(--border);">
-        <p class="text-xs" style="color: var(--muted);">Made by <span style="color: #d4af37;" class="font-medium">Nana Kwame Dickson</span></p>
-      </footer>
-      
-    </div>
-  </div>
-  
-  <!-- Receipt Modal -->
-  <div id="receiptModal" class="fixed inset-0 z-50 hidden">
-    <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
-    <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-md mx-auto">
-      <div class="glass-card rounded-2xl p-6" id="receiptContent" style="background: var(--card-solid);"></div>
-    </div>
-  </div>
-  
-  <!-- PIN Setup Modal -->
-  <div id="pinModal" class="fixed inset-0 z-50 hidden">
-    <div class="modal-overlay absolute inset-0"></div>
-    <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-sm mx-auto">
-      <div class="glass-card rounded-2xl p-6 text-center" style="background: var(--card-solid);">
-        <h3 class="font-display font-bold text-lg mb-2" style="color: var(--fg);">Set Your PIN</h3>
-        <p class="text-sm mb-6" style="color: var(--muted);">This 4-digit PIN will encrypt your data locally.</p>
-        <div class="flex justify-center gap-3 mb-6">
-          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="0">
-          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="1">
-          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="2">
-          <input type="password" maxlength="1" inputmode="numeric" class="pin-input w-12 h-12 rounded-xl text-center text-xl border focus:border-gold focus:outline-none" style="background: var(--card); color: var(--fg); border-color: var(--border);" data-index="3">
+
+      <div style="display:flex;gap:16px;margin-top:8px;">
+        <div style="text-align:center;">
+          <div class="ticker ticker-up" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;">
+            <span class="arrow-up"></span>GHC 450
+          </div>
+          <div style="font-size:10px;color:var(--muted);">Avg Sales/Day</div>
         </div>
-        <button id="savePinBtn" class="w-full py-3 rounded-xl font-semibold transition-colors" style="background: #d4af37; color: #1a1a24;">
-          Save PIN
+        <div style="width:1px;background:rgba(255,255,255,.08);"></div>
+        <div style="text-align:center;">
+          <div class="ticker ticker-down" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;">
+            <span class="arrow-down"></span>GHC 120
+          </div>
+          <div style="font-size:10px;color:var(--muted);">Avg Expenses/Day</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.08);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--gold);">GHC 330</div>
+          <div style="font-size:10px;color:var(--muted);">Net Profit</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:0;">
+      <div class="onb-step">
+        <div class="onb-icon" style="background:rgba(34,197,94,.15);">💬</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Talk or Type Naturally</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5;">Say <em style="color:var(--gold);">"Sold 3 bags of rice for 90 cedis"</em> or use the mic button to speak.</div>
+        </div>
+      </div>
+      <div class="onb-step">
+        <div class="onb-icon" style="background:rgba(245,158,11,.15);">📊</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Dashboard & Reports</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5;">View charts, track spending vs. income, and export PDF reports to share.</div>
+        </div>
+      </div>
+      <div class="onb-step">
+        <div class="onb-icon" style="background:rgba(212,175,55,.15);">🔒</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Set Your Store Name & PIN</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5;">Tap ⚙️ in the header to personalise with your shop name and secure your data.</div>
+        </div>
+      </div>
+      <div class="onb-step">
+        <div class="onb-icon" style="background:rgba(244,63,94,.15);">🧾</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Instant Receipts</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5;">Every entry generates a shareable receipt. Tap <em>"Generate Receipt"</em> on any transaction.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="onb-close" id="onbClose">Got it — Let's Start!</button>
+  </div>
+</div>
+
+<!-- Main App -->
+<div id="app" style="z-index:1;">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="grain"></div>
+
+  <!-- Header -->
+  <header style="padding:10px 16px 8px;flex-shrink:0;position:relative;z-index:2;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="logo-box"><span class="logo-txt">ND</span></div>
+        <div>
+          <div class="font-display" style="font-weight:800;font-size:16px;line-height:1.1;">ND Accounting Books</div>
+          <button id="shopNameBtn" style="font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;padding:0;font-family:'Instrument Sans',sans-serif;" title="Click to change store name">
+            <span id="shopNameDisplay">My Store</span> ✏️
+          </button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <div class="toggle" id="themeToggle"></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </div>
+        <button id="settingsBtn" style="width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;" title="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--muted)"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
         </button>
       </div>
     </div>
-  </div>
-  
-  <!-- Install PWA Prompt -->
-  <div id="installPrompt" class="fixed bottom-20 left-4 right-4 max-w-md mx-auto z-40 hidden">
-    <div class="glass-card rounded-xl p-4" style="border-color: rgba(212, 175, 55, 0.2);">
-      <div class="flex items-center gap-3">
-        <div class="logo-box shrink-0">
-          <span class="logo-text">ND</span>
-        </div>
-        <div class="flex-1">
-          <p class="font-medium text-sm" style="color: var(--fg);">Install ND Accounting Books</p>
-          <p class="text-xs" style="color: var(--muted);">Add to home screen for quick access</p>
-        </div>
-        <button id="installBtn" class="px-4 py-2 rounded-lg text-sm font-semibold transition-colors" style="background: #d4af37; color: #1a1a24;">
-          Install
-        </button>
-      </div>
-      <button id="dismissInstall" class="absolute top-2 right-2" style="color: var(--muted);">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
+  </header>
+
+  <!-- Tab Bar -->
+  <nav style="padding:0 16px 8px;flex-shrink:0;position:relative;z-index:2;">
+    <div class="tab-bar">
+      <button class="tab active" data-tab="chat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Entry
+      </button>
+      <button class="tab" data-tab="dashboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <button class="tab" data-tab="reports">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Reports
       </button>
     </div>
+  </nav>
+
+  <!-- ==================== ENTRY/CHAT VIEW ==================== -->
+  <div id="chatView" class="view active" style="position:relative;z-index:1;">
+    <!-- Balance strip -->
+    <div style="padding:0 16px 10px;flex-shrink:0;">
+      <div class="card card-gold" style="padding:12px 14px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,175,55,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--muted);margin-bottom:2px;">Today's Balance</div>
+              <div class="font-display" style="font-weight:700;font-size:22px;color:var(--gold);">GHC <span id="hdrBalance">0.00</span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;text-align:right;">
+            <div>
+              <div style="font-size:10px;color:var(--muted);">Sales</div>
+              <div style="font-weight:600;font-size:13px;color:var(--sale);" id="hdrSales">GHC 0</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--muted);">Expenses</div>
+              <div style="font-weight:600;font-size:13px;color:var(--expense);" id="hdrExpenses">GHC 0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Date label -->
+    <div style="padding:0 16px 6px;text-align:center;flex-shrink:0;">
+      <span id="chatDate" style="font-size:11px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border2);border-radius:999px;padding:4px 12px;"></span>
+    </div>
+
+    <!-- Chat scroll -->
+    <div class="scroll" id="chatContainer" style="flex:1;overflow-y:auto;padding:0 16px 6px;">
+      <div id="welcomeMsg" style="text-align:center;padding:24px 0;">
+        <div style="width:56px;height:56px;border-radius:50%;background:rgba(212,175,55,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="font-display" style="font-weight:700;font-size:17px;margin-bottom:6px;">Ready to Record</div>
+        <div style="font-size:13px;color:var(--muted);max-width:260px;margin:0 auto 16px;line-height:1.5;">Type or speak your transactions naturally in Ghanaian English.</div>
+        <div style="display:flex;flex-direction:column;gap:7px;max-width:280px;margin:0 auto;">
+          <button class="quick">"Sold 6 cans of honey for 89 cedis"</button>
+          <button class="quick">"Paid 20 cedis for light bill"</button>
+          <button class="quick">"Kofi took 3 bread on credit, 45 cedis"</button>
+          <button class="quick">"Sold 4 bags of rice for 120 cedis. Paid 30 cedis for water."</button>
+        </div>
+      </div>
+      <div id="chatMessages"></div>
+      <div id="typingDots" style="display:none;align-items:center;gap:6px;padding:6px 0;">
+        <div style="width:28px;height:28px;border-radius:50%;background:rgba(212,175,55,.15);display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div style="display:flex;gap:4px;">
+          <div class="t-dot" style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
+          <div class="t-dot" style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
+          <div class="t-dot" style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-wrapper" style="flex-shrink:0;">
+      <div style="display:flex;gap:8px;align-items:flex-end;">
+        <div style="flex:1;position:relative;">
+          <input class="inp" id="msgInput" type="text" placeholder="Type your transaction..." autocomplete="off">
+          <button id="sendBtn" style="position:absolute;right:6px;bottom:6px;width:34px;height:34px;border-radius:9px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <button class="mic-btn" id="micBtn" style="width:46px;height:46px;border-radius:13px;background:var(--card);border:1px solid var(--border2);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <script>
-    // ========================================
-    // INITIALIZATION & STATE
-    // ========================================
-    
-    let userPin = null;
-    let isRecording = false;
-    let recognition = null;
-    let db = null;
-    let currentPeriod = 'daily';
-    let deferredPrompt = null;
-    let isLightMode = false;
-    
-    // ========================================
-    // THEME TOGGLE
-    // ========================================
-    
-    function initTheme() {
-      const savedTheme = localStorage.getItem('ndTheme');
-      if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-        isLightMode = true;
-        document.getElementById('themeToggle').classList.add('active');
-        document.getElementById('themeColorMeta').setAttribute('content', '#f8f8fa');
-      }
+  <!-- ==================== DASHBOARD VIEW ==================== -->
+  <div id="dashboardView" class="view" style="overflow-y:auto;" class="scroll">
+    <div style="padding:16px;display:flex;flex-direction:column;gap:14px;">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div class="font-display" style="font-weight:800;font-size:22px;">Dashboard</div>
+          <div id="dashDate" style="font-size:12px;color:var(--muted);"></div>
+        </div>
+        <span style="font-size:11px;font-weight:600;background:rgba(212,175,55,.12);color:var(--gold);border:1px solid rgba(212,175,55,.2);border-radius:999px;padding:4px 10px;">TODAY</span>
+      </div>
+
+      <!-- Stats 2x2 grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="card stat" style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <span style="font-size:11px;color:var(--muted);">Total Sales</span>
+          </div>
+          <div class="font-display" style="font-weight:700;font-size:20px;color:var(--sale);" id="dSales">GHC 0</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;"><span id="dSaleCount">0</span> transactions</div>
+        </div>
+
+        <div class="card stat" style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(244,63,94,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+            </div>
+            <span style="font-size:11px;color:var(--muted);">Total Expenses</span>
+          </div>
+          <div class="font-display" style="font-weight:700;font-size:20px;color:var(--expense);" id="dExpenses">GHC 0</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;"><span id="dExpenseCount">0</span> transactions</div>
+        </div>
+
+        <div class="card stat" style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(245,158,11,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span style="font-size:11px;color:var(--muted);">Credit Sales</span>
+          </div>
+          <div class="font-display" style="font-weight:700;font-size:20px;color:var(--credit);" id="dCredit">GHC 0</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;"><span id="dCreditCount">0</span> pending</div>
+        </div>
+
+        <div class="card stat card-gold" style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(212,175,55,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <span style="font-size:11px;color:var(--muted);">Net Balance</span>
+          </div>
+          <div class="font-display" style="font-weight:700;font-size:20px;color:var(--gold);" id="dBalance">GHC 0</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;">Today's profit</div>
+        </div>
+      </div>
+
+      <!-- Bar Chart: Sales vs Expenses -->
+      <div class="card" style="padding:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div class="font-display" style="font-weight:700;font-size:15px;">Hourly Overview</div>
+          <div style="display:flex;gap:10px;font-size:11px;">
+            <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:var(--sale);display:inline-block;"></span>Sales</span>
+            <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:2px;background:var(--expense);display:inline-block;"></span>Expenses</span>
+          </div>
+        </div>
+        <div id="barChart" style="height:110px;display:flex;align-items:flex-end;gap:3px;"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--muted);">
+          <span>6am</span><span>9am</span><span>12pm</span><span>3pm</span><span>6pm</span><span>Now</span>
+        </div>
+      </div>
+
+      <!-- Pie / Donut Chart -->
+      <div class="card" style="padding:16px;">
+        <div class="font-display" style="font-weight:700;font-size:15px;margin-bottom:14px;">Spending Breakdown</div>
+        <div style="display:flex;align-items:center;gap:20px;">
+          <div style="position:relative;flex-shrink:0;">
+            <svg id="donutSvg" width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--card2)" stroke-width="18"/>
+              <circle id="donutSale" cx="60" cy="60" r="46" fill="none" stroke="var(--sale)" stroke-width="18"
+                stroke-dasharray="0 289" stroke-linecap="round" transform="rotate(-90 60 60)"
+                style="transition:stroke-dasharray .6s ease;"/>
+              <circle id="donutExpense" cx="60" cy="60" r="46" fill="none" stroke="var(--expense)" stroke-width="18"
+                stroke-dasharray="0 289" stroke-linecap="round" transform="rotate(-90 60 60)"
+                style="transition:stroke-dasharray .6s ease;"/>
+              <circle id="donutCredit" cx="60" cy="60" r="46" fill="none" stroke="var(--credit)" stroke-width="18"
+                stroke-dasharray="0 289" stroke-linecap="round" transform="rotate(-90 60 60)"
+                style="transition:stroke-dasharray .6s ease;"/>
+            </svg>
+            <div id="donutCenter" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <div class="font-display" style="font-weight:700;font-size:14px;color:var(--gold);" id="donutTotal">GHC 0</div>
+              <div style="font-size:9px;color:var(--muted);">Total</div>
+            </div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:3px;background:var(--sale);display:inline-block;"></span>Sales</span>
+              <span id="pieSalePct" style="font-weight:600;font-size:13px;color:var(--sale);">0%</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:3px;background:var(--expense);display:inline-block;"></span>Expenses</span>
+              <span id="pieExpPct" style="font-weight:600;font-size:13px;color:var(--expense);">0%</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:10px;height:10px;border-radius:3px;background:var(--credit);display:inline-block;"></span>Credit</span>
+              <span id="pieCredPct" style="font-weight:600;font-size:13px;color:var(--credit);">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="card" style="padding:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div class="font-display" style="font-weight:700;font-size:15px;">Recent Transactions</div>
+          <button onclick="switchTab('reports')" style="font-size:11px;font-weight:600;color:var(--gold);background:none;border:none;cursor:pointer;">View All</button>
+        </div>
+        <div id="recentTx">
+          <div style="font-size:13px;text-align:center;padding:16px 0;color:var(--muted);">No transactions yet today</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== REPORTS VIEW ==================== -->
+  <div id="reportsView" class="view scroll" style="overflow-y:auto;">
+    <div style="padding:16px;display:flex;flex-direction:column;gap:14px;">
+
+      <div>
+        <div class="font-display" style="font-weight:800;font-size:22px;">Reports</div>
+        <div style="font-size:12px;color:var(--muted);">Transaction summaries & exports</div>
+      </div>
+
+      <!-- Period toggle -->
+      <div style="display:flex;gap:6px;">
+        <button class="period active" data-period="daily" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Daily</button>
+        <button class="period" data-period="weekly" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Weekly</button>
+        <button class="period" data-period="monthly" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Monthly</button>
+      </div>
+
+      <!-- Summary card -->
+      <div class="card" style="padding:18px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border2);">
+          <div>
+            <div class="font-display" style="font-weight:700;font-size:17px;" id="rptTitle">Daily Summary</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px;" id="rptRange">Today</div>
+          </div>
+          <span id="rptBadge" style="font-size:10px;font-weight:700;letter-spacing:.5px;background:rgba(212,175,55,.12);color:var(--gold);border:1px solid rgba(212,175,55,.2);border-radius:999px;padding:4px 10px;">TODAY</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+          <div style="padding:12px;border-radius:10px;background:rgba(34,197,94,.07);">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Total Sales</div>
+            <div class="font-display" style="font-weight:700;font-size:16px;color:var(--sale);" id="rptSales">GHC 0.00</div>
+          </div>
+          <div style="padding:12px;border-radius:10px;background:rgba(244,63,94,.07);">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Total Expenses</div>
+            <div class="font-display" style="font-weight:700;font-size:16px;color:var(--expense);" id="rptExpenses">GHC 0.00</div>
+          </div>
+          <div style="padding:12px;border-radius:10px;background:rgba(245,158,11,.07);">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Credit Sales</div>
+            <div class="font-display" style="font-weight:700;font-size:16px;color:var(--credit);" id="rptCredit">GHC 0.00</div>
+          </div>
+          <div style="padding:12px;border-radius:10px;background:rgba(212,175,55,.07);">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Net Balance</div>
+            <div class="font-display" style="font-weight:700;font-size:16px;color:var(--gold);" id="rptNet">GHC 0.00</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:12px;border-radius:10px;background:var(--card2);">
+          <div style="text-align:center;">
+            <div class="font-display" style="font-weight:800;font-size:22px;color:var(--sale);" id="rptSaleCount">0</div>
+            <div style="font-size:10px;color:var(--muted);">Sales</div>
+          </div>
+          <div style="text-align:center;border-left:1px solid var(--border2);border-right:1px solid var(--border2);">
+            <div class="font-display" style="font-weight:800;font-size:22px;color:var(--expense);" id="rptExpCount">0</div>
+            <div style="font-size:10px;color:var(--muted);">Expenses</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="font-display" style="font-weight:800;font-size:22px;color:var(--credit);" id="rptCredCount">0</div>
+            <div style="font-size:10px;color:var(--muted);">Credits</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction list -->
+      <div class="card" style="padding:16px;">
+        <div class="font-display" style="font-weight:700;font-size:15px;margin-bottom:12px;">Transaction Details</div>
+        <div id="rptTxList">
+          <div style="font-size:13px;text-align:center;padding:16px 0;color:var(--muted);">No transactions in this period</div>
+        </div>
+      </div>
+
+      <!-- Export -->
+      <div style="display:flex;gap:10px;padding-bottom:16px;">
+        <button id="exportPdf" style="flex:1;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Export PDF
+        </button>
+        <button id="shareRpt" style="padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--border2);color:var(--fg);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="flex-shrink:0;padding:8px 16px;text-align:center;border-top:1px solid var(--border2);background:var(--bg);position:relative;z-index:2;">
+    <div style="font-size:11px;color:var(--muted);">Made by <span style="color:var(--gold);font-weight:600;">Nana Kwame Dickson</span></div>
+  </footer>
+</div>
+
+<!-- Receipt Modal -->
+<div id="receiptModal" style="display:none;position:fixed;inset:0;z-index:80;">
+  <div class="modal-bg" id="rcptBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:400px;margin:0 auto;">
+    <div class="modal-sheet" style="padding:24px;" id="rcptContent"></div>
+  </div>
+</div>
+
+<!-- PIN Modal -->
+<div id="pinModal" style="display:none;position:fixed;inset:0;z-index:80;">
+  <div class="modal-bg" id="pinBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:360px;margin:0 auto;">
+    <div class="modal-sheet" style="padding:24px;text-align:center;">
+      <div class="font-display" style="font-weight:700;font-size:18px;margin-bottom:6px;">Set Your PIN</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:20px;">4-digit PIN to encrypt your data locally.</div>
+      <div style="display:flex;justify-content:center;gap:10px;margin-bottom:20px;">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+      </div>
+      <button id="savePinBtn" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;">Save PIN</button>
+    </div>
+  </div>
+</div>
+
+<!-- Shop Name Modal -->
+<div id="shopModal" style="display:none;position:fixed;inset:0;z-index:80;">
+  <div class="modal-bg" id="shopBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:380px;margin:0 auto;">
+    <div class="modal-sheet" style="padding:24px;">
+      <div class="font-display" style="font-weight:700;font-size:18px;margin-bottom:6px;">Your Store Name</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">This will appear on your receipts and reports.</div>
+      <input id="shopNameInput" type="text" maxlength="50"
+        style="width:100%;padding:14px;border-radius:12px;background:var(--card2);border:1px solid var(--border2);color:var(--fg);font-family:'Instrument Sans',sans-serif;font-size:15px;margin-bottom:14px;"
+        placeholder="e.g. Adwoa's Provision Store">
+      <button id="saveShopBtn" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ======= STATE =======
+let db, userPin = null, currentPeriod = 'daily', isRecording = false, recognition = null, isLight = false;
+
+// ======= CEDI CORRECTIONS =======
+function correctCedisMishearings(text) {
+  return text
+    .replace(/\b(cities|city|seeds|studies|series|siddis|sedis|seedies|cedies|seadies|seadis|ceadis|cds|cedes|seedees|setis|ceadies|cedees|settees|settle|settles|seedy|ceedy|cedas|cedos|cedus|cedar|cedars|bodies|duties|ladies|babies|teddies|readies|headies|steadies|readys|seatees|seatees|seedys|ceedis|ceidis|cedees|sedi|ceedi|ghsedis|ghseedis|sandy|cadiz)\b/gi, 'cedis')
+    .replace(/\bgh[sc]\b/gi, 'cedis')
+    .replace(/\bghana cedi[s]?\b/gi, 'cedis');
+}
+
+// ======= WORD-TO-NUMBER =======
+function wordsToNum(str) {
+  if (!str) return null;
+  str = str.trim().toLowerCase()
+    .replace(/\ba dozen\b/g,'12').replace(/\ba half dozen\b|\bhalf a dozen\b/g,'6')
+    .replace(/\bdozen\b/g,'12').replace(/-/g,' ');
+
+  if (/^\d+(\.\d+)?$/.test(str.trim())) return parseFloat(str.trim());
+
+  const ones = {zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,
+    ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,
+    seventeen:17,eighteen:18,nineteen:19,a:1,an:1};
+  const tens = {twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+
+  const words = str.split(/\s+/);
+  let total = 0, current = 0;
+  for (const w of words) {
+    if (ones[w] !== undefined)      current += ones[w];
+    else if (tens[w] !== undefined) current += tens[w];
+    else if (w === 'hundred')       current = (current || 1) * 100;
+    else if (w === 'thousand')      { total += (current || 1) * 1000; current = 0; }
+    else if (/^\d+(\.\d+)?$/.test(w)) current += parseFloat(w);
+  }
+  total += current;
+  return total > 0 ? total : null;
+}
+
+// All written number words (for regex alternation)
+const NUM_WORD_PAT = '(?:a\\s+dozen|half\\s+a\\s+dozen|dozen|zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty(?:[\\s-](?:one|two|three|four|five|six|seven|eight|nine))?|thirty(?:[\\s-]\\w+)?|forty(?:[\\s-]\\w+)?|fifty(?:[\\s-]\\w+)?|sixty(?:[\\s-]\\w+)?|seventy(?:[\\s-]\\w+)?|eighty(?:[\\s-]\\w+)?|ninety(?:[\\s-]\\w+)?|a\\b|an\\b)';
+
+// Unit words for quantities
+const UNIT_PAT = '(?:bags?|pieces?|pcs?|items?|loaves?|loaf|bottles?|boxes?|box|cartons?|cans?|can|tins?|tin|packets?|packs?|sachets?|bundles?|bunches?|trays?|cups?|bowls?|plates?|units?|pairs?|dozens?|rolls?|sheets?|crates?|kegs?|gallons?|litres?|liters?|kilograms?|kg|kilos?|grams?|g\\b|yards?|metres?|meters?)';
+
+// ======= QUANTITY EXTRACTOR =======
+// Returns { qty, qtyStr } where qtyStr is the matched text to help item extraction
+function extractQty(n) {
+  // Pattern 1: digit + optional unit  e.g. "6 cans", "6", "3 bags of"
+  const p1 = new RegExp(`(\\d+(?:[.,]\\d+)?)\\s*${UNIT_PAT}(?:\\s+of)?`, 'i');
+  let m = n.match(p1);
+  if (m) return { qty: parseFloat(m[1].replace(',','.')), qtyStr: m[0] };
+
+  // Pattern 2: word-number + unit  e.g. "six cans", "three bags of"
+  const p2 = new RegExp(`(${NUM_WORD_PAT})\\s+${UNIT_PAT}(?:\\s+of)?`, 'i');
+  m = n.match(p2);
+  if (m) {
+    const q = wordsToNum(m[1]);
+    if (q) return { qty: q, qtyStr: m[0] };
+  }
+
+  // Pattern 3: verb immediately followed by digit  e.g. "sold 6 honey", "bought 3"
+  const p3 = /(?:sold|sell|bought|buy|collected|received|took|borrowed|got)\s+(\d+)\b/i;
+  m = n.match(p3);
+  if (m) {
+    const next = n.slice(m.index + m[0].length).trim();
+    // Make sure the digit isn't a price (not followed directly by currency)
+    if (!/^(?:ghc|ghs|cedis?|gh[₵¢])/i.test(next)) {
+      return { qty: parseInt(m[1]), qtyStr: m[0] };
     }
-    
-    function toggleTheme() {
-      isLightMode = !isLightMode;
-      document.body.classList.toggle('light-mode', isLightMode);
-      document.getElementById('themeToggle').classList.toggle('active', isLightMode);
-      localStorage.setItem('ndTheme', isLightMode ? 'light' : 'dark');
-      document.getElementById('themeColorMeta').setAttribute('content', isLightMode ? '#f8f8fa' : '#0d0d0f');
+  }
+
+  // Pattern 4: verb + word-number  e.g. "sold six honey"
+  const p4 = new RegExp(`(?:sold|sell|bought|buy|collected|received|took|borrowed|got)\\s+(${NUM_WORD_PAT})\\b`, 'i');
+  m = n.match(p4);
+  if (m) {
+    const q = wordsToNum(m[1]);
+    if (q && q <= 10000) return { qty: q, qtyStr: m[0] };
+  }
+
+  // Pattern 5: digit right after "of" and before item  e.g. "sold 2 of something"
+  const p5 = /\b(\d+)\s+of\s+/i;
+  m = n.match(p5);
+  if (m) return { qty: parseInt(m[1]), qtyStr: m[0] };
+
+  return { qty: 1, qtyStr: null };
+}
+
+// ======= PRICE EXTRACTOR =======
+function extractPrice(n) {
+  // Highest priority: number + currency word/symbol (any order)
+  const patterns = [
+    /(\d+(?:[.,]\d+)?)\s*(?:ghc|ghs|cedis?|gh[₵¢]|ghana\s+cedi[s]?)\b/i,
+    /(?:ghc|ghs|gh[₵¢])\s*(\d+(?:[.,]\d+)?)/i,
+    /\b(?:for|at|costs?|totalling?|worth|amounting\s+to)\s+(\d+(?:[.,]\d+)?)\b/i,
+    // word-price: "for eighty nine cedis"
+    new RegExp(`\\bfor\\s+(${NUM_WORD_PAT}(?:\\s+(?:and\\s+)?${NUM_WORD_PAT})*)\\s*(?:cedis?|ghc|ghs)?\\b`, 'i'),
+  ];
+  for (const pat of patterns) {
+    const m = n.match(pat);
+    if (m && m[1]) {
+      const v = /\d/.test(m[1]) ? parseFloat(m[1].replace(',','.')) : wordsToNum(m[1]);
+      if (v && v > 0) return v;
     }
-    
-    // ========================================
-    // PWA INSTALLATION
-    // ========================================
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('installPrompt').classList.remove('hidden');
+  }
+  return 0;
+}
+
+// ======= ITEM EXTRACTOR =======
+function extractItem(n, qtyStr) {
+  let s = n;
+
+  // Strip leading verb
+  s = s.replace(/^(?:i\s+)?(?:sold|sell|received|got\s+paid|collected|paid\s+for|paid|bought|buy|spent|used\s+for|purchased|took|borrowed|got)\s+/i, '');
+
+  // Strip qty string if found
+  if (qtyStr) {
+    // Escape for regex
+    const escaped = qtyStr.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    s = s.replace(new RegExp(escaped,'i'),' ').trim();
+  } else {
+    // Strip leading digit
+    s = s.replace(/^\d+\s*/,'');
+  }
+
+  // Strip price patterns
+  s = s
+    .replace(/\d+(?:[.,]\d+)?\s*(?:ghc|ghs|cedis?|gh[₵¢]|ghana\s+cedi[s]?)\b/ig,'')
+    .replace(/(?:ghc|ghs|gh[₵¢])\s*\d+(?:[.,]\d+)?/ig,'')
+    .replace(/\b(?:for|at|costs?|totalling?|worth)\s+\d+(?:[.,]\d+)?\b/ig,'')
+    .replace(new RegExp(`\\bfor\\s+${NUM_WORD_PAT}(?:\\s+(?:and\\s+)?${NUM_WORD_PAT})*\\s*(?:cedis?|ghc|ghs)?\\b`,'ig'),'')
+    // Strip credit/status phrases
+    .replace(/\b(?:on credit|took on credit|on a credit|on account)\b/ig,'')
+    // Strip person names before "took" / "owe"  — keep the item not the name
+    // Strip trailing noise
+    .replace(/\b(?:for|at|of|and|then|to|the|a|an)\s*$/i,'')
+    .replace(/\s{2,}/g,' ').trim();
+
+  if (s.length < 2) return 'Item';
+  return s.replace(/\b\w/g, c=>c.toUpperCase()).trim();
+}
+
+// ======= CORE SINGLE-TRANSACTION PARSER =======
+function parseOneTx(seg) {
+  const raw = seg.trim();
+  const n = raw.toLowerCase();
+
+  // ---- Type detection ----
+  const credKw = ['on credit','took on credit','credit sale','on account','owe','owing','borrowed'];
+  const saleKw = ['sold','sell','sale','received','got paid','collected'];
+  const expKw  = ['paid for','paid','bought','buy','spent','expense','cost','used for','purchased'];
+
+  let type = 'unknown', status = 'completed';
+  if (credKw.some(k => n.includes(k)))      { type = 'sale';    status = 'credit'; }
+  else if (saleKw.some(k => n.includes(k))) { type = 'sale'; }
+  else if (expKw.some(k => n.includes(k)))  { type = 'expense'; }
+
+  // ---- Extract qty, price, item ----
+  const { qty, qtyStr } = extractQty(n);
+  const price = extractPrice(n);
+  const item  = extractItem(n, qtyStr);
+
+  return { type, status, qty: Math.max(1, Math.round(qty)), item, price: Math.max(0, price), raw };
+}
+
+// ======= SPLIT INTO TRANSACTION SEGMENTS =======
+function splitIntoSegments(raw) {
+  const text = correctCedisMishearings(raw);
+
+  // The trigger verbs that always start a new transaction clause
+  const TX_VERBS = '(?:i\\s+)?(?:sold|sell|received|got\\s+paid|collected|paid\\s+for|paid|bought|buy|spent|used\\s+for|purchased|borrowed|took\\s+on\\s+credit)';
+
+  // 1. Full sentence splits on punctuation
+  const bySentence = text.split(/(?<=[.!?])\s+/);
+  if (bySentence.length > 1) {
+    const expanded = bySentence.flatMap(s => splitSingle(s));
+    if (expanded.length > 1) return expanded.map(s=>s.trim()).filter(Boolean);
+  }
+
+  return splitSingle(text).map(s=>s.trim()).filter(Boolean);
+}
+
+function splitSingle(text) {
+  const TX_VERBS = '(?:i\\s+)?(?:sold|sell|received|got\\s+paid|collected|paid\\s+for|paid|bought|buy|spent|used\\s+for|purchased|borrowed)';
+
+  // Split on: semicolon, "and also", "also", "then", "plus", or comma followed by a tx verb
+  const pat = new RegExp(
+    `(?:;|,\\s*(?=${TX_VERBS})|\\s+and\\s+(?=(?:also\\s+)?(?:${TX_VERBS}))|\\s+(?:also|then|plus|additionally)\\s+(?=${TX_VERBS}))`,
+    'i'
+  );
+  const parts = text.split(pat);
+  if (parts.length > 1) return parts;
+
+  // Fallback: look for multiple price mentions suggesting multiple items run together
+  // e.g. "sold 6 cans of honey 89 cedis 3 bags of rice 50 cedis"
+  // Split on: digit/word-number followed by units, preceded by a price
+  return [text];
+}
+
+// ======= MULTI-TRANSACTION PARSER (main entry point) =======
+function parseTransactions(rawText) {
+  const segments = splitIntoSegments(rawText);
+  const results = [];
+  for (const seg of segments) {
+    if (!seg.trim()) continue;
+    const tx = parseOneTx(seg);
+    if (tx.type !== 'unknown') results.push(tx);
+  }
+  return results;
+}
+
+// ======= DB =======
+function initDB() {
+  db = new Dexie('NDShopData');
+  db.version(1).stores({
+    transactions: '++id, type, item, qty, price, status, timestamp, encrypted'
+  });
+}
+
+function enc(text, pin) {
+  if (!pin || !text) return text;
+  const p = String(pin).repeat(Math.ceil(text.length / 4));
+  let r = '';
+  for (let i = 0; i < text.length; i++) r += String.fromCharCode(text.charCodeAt(i) ^ p.charCodeAt(i));
+  return btoa(r);
+}
+function dec(encoded, pin) {
+  if (!pin || !encoded) return encoded;
+  try {
+    const text = atob(encoded);
+    const p = String(pin).repeat(Math.ceil(text.length / 4));
+    let r = '';
+    for (let i = 0; i < text.length; i++) r += String.fromCharCode(text.charCodeAt(i) ^ p.charCodeAt(i));
+    return r;
+  } catch { return encoded; }
+}
+
+// ======= DB OPS =======
+async function saveTx(tx) {
+  if (!db) return null;
+  return await db.transactions.add({
+    ...tx,
+    item: userPin ? enc(tx.item, userPin) : tx.item,
+    price: userPin ? enc(String(tx.price), userPin) : String(tx.price),
+    encrypted: !!userPin,
+    timestamp: new Date().toISOString()
+  });
+}
+
+async function getTxByPeriod(period) {
+  if (!db) return [];
+  const now = new Date(), start = new Date();
+  if (period === 'daily') start.setHours(0,0,0,0);
+  else if (period === 'weekly') { start.setDate(now.getDate()-7); start.setHours(0,0,0,0); }
+  else { start.setMonth(now.getMonth()-1); start.setHours(0,0,0,0); }
+
+  const rows = await db.transactions.where('timestamp').above(start.toISOString()).toArray();
+  return rows.map(t => ({
+    ...t,
+    item: userPin && t.encrypted ? dec(t.item, userPin) : t.item,
+    price: parseFloat(userPin && t.encrypted ? dec(t.price, userPin) : t.price) || 0
+  }));
+}
+
+async function getSummary(period) {
+  const txs = await getTxByPeriod(period);
+  let sales=0,expenses=0,credit=0,sc=0,ec=0,cc=0;
+  for (const t of txs) {
+    if (t.type==='sale') {
+      if (t.status==='credit') { credit+=t.price; cc++; }
+      else { sales+=t.price; sc++; }
+    } else if (t.type==='expense') { expenses+=t.price; ec++; }
+  }
+  return { sales,expenses,credit,balance:sales-expenses,saleCount:sc,expenseCount:ec,creditCount:cc,transactions:txs };
+}
+
+async function getHourly() {
+  if (!db) return [];
+  const today = new Date(); today.setHours(0,0,0,0);
+  const rows = await db.transactions.where('timestamp').above(today.toISOString()).toArray();
+  const h = Array(24).fill(0).map(()=>({sales:0,expenses:0}));
+  for (const t of rows) {
+    const hr = new Date(t.timestamp).getHours();
+    const p = parseFloat(userPin && t.encrypted ? dec(t.price,userPin) : t.price)||0;
+    if (t.type==='sale' && t.status!=='credit') h[hr].sales+=p;
+    else if (t.type==='expense') h[hr].expenses+=p;
+  }
+  return h;
+}
+
+// ======= FORMAT =======
+const fCur = a => `GHC ${a.toFixed(2)}`;
+const fDate = d => d.toLocaleDateString('en-GH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+const fTime = d => d.toLocaleTimeString('en-GH',{hour:'2-digit',minute:'2-digit'});
+const fShort = d => d.toLocaleDateString('en-GH',{month:'short',day:'numeric'});
+
+// ======= UPDATE ALL =======
+async function updateAll() {
+  const s = await getSummary('daily');
+  const now = new Date();
+
+  // Header
+  document.getElementById('hdrBalance').textContent = s.balance.toFixed(2);
+  document.getElementById('hdrSales').textContent = fCur(s.sales);
+  document.getElementById('hdrExpenses').textContent = fCur(s.expenses);
+  document.getElementById('chatDate').textContent = fDate(now);
+
+  // Dashboard
+  document.getElementById('dashDate').textContent = fDate(now);
+  document.getElementById('dSales').textContent = fCur(s.sales);
+  document.getElementById('dExpenses').textContent = fCur(s.expenses);
+  document.getElementById('dCredit').textContent = fCur(s.credit);
+  document.getElementById('dBalance').textContent = fCur(s.balance);
+  document.getElementById('dSaleCount').textContent = s.saleCount;
+  document.getElementById('dExpenseCount').textContent = s.expenseCount;
+  document.getElementById('dCreditCount').textContent = s.creditCount;
+
+  await drawBarChart();
+  drawDonut(s);
+  drawRecentTx(s.transactions.slice(-5).reverse());
+  await updateReports();
+}
+
+async function drawBarChart() {
+  const hourly = await getHourly();
+  const now = new Date().getHours();
+  const startH = 6;
+  const chart = document.getElementById('barChart');
+
+  const sliceHours = [];
+  for (let h = startH; h <= Math.min(now, 22); h++) sliceHours.push(h);
+  if (sliceHours.length === 0) sliceHours.push(startH);
+
+  const maxV = Math.max(1, ...sliceHours.map(h => Math.max(hourly[h].sales, hourly[h].expenses)));
+
+  let html = '';
+  for (const h of sliceHours) {
+    const sh = Math.max(4, (hourly[h].sales / maxV) * 90);
+    const eh = Math.max(4, (hourly[h].expenses / maxV) * 90);
+    html += `
+      <div style="flex:1;display:flex;gap:2px;align-items:flex-end;min-width:0;">
+        <div class="bar" style="flex:1;height:${sh}px;background:rgba(34,197,94,.5);"></div>
+        <div class="bar" style="flex:1;height:${eh}px;background:rgba(244,63,94,.5);"></div>
+      </div>`;
+  }
+  chart.innerHTML = html || `<div style="font-size:12px;color:var(--muted);width:100%;text-align:center;align-self:center;">No activity yet</div>`;
+}
+
+function drawDonut(s) {
+  const total = s.sales + s.expenses + s.credit;
+  const circ = 2 * Math.PI * 46;
+
+  document.getElementById('donutTotal').textContent = fCur(total);
+
+  if (total === 0) {
+    document.getElementById('donutSale').setAttribute('stroke-dasharray', `0 ${circ}`);
+    document.getElementById('donutExpense').setAttribute('stroke-dasharray', `0 ${circ}`);
+    document.getElementById('donutCredit').setAttribute('stroke-dasharray', `0 ${circ}`);
+    document.getElementById('pieSalePct').textContent = '0%';
+    document.getElementById('pieExpPct').textContent = '0%';
+    document.getElementById('pieCredPct').textContent = '0%';
+    return;
+  }
+
+  const salePct = s.sales / total;
+  const expPct  = s.expenses / total;
+  const credPct = s.credit / total;
+
+  const saleLen  = salePct * circ;
+  const expLen   = expPct * circ;
+  const credLen  = credPct * circ;
+
+  // Stagger via rotation
+  document.getElementById('donutSale').setAttribute('stroke-dasharray', `${saleLen} ${circ - saleLen}`);
+  document.getElementById('donutSale').setAttribute('transform', `rotate(-90 60 60)`);
+
+  const expOffset = saleLen;
+  document.getElementById('donutExpense').setAttribute('stroke-dasharray', `${expLen} ${circ - expLen}`);
+  document.getElementById('donutExpense').setAttribute('transform', `rotate(${-90 + (expOffset / circ) * 360} 60 60)`);
+
+  const credOffset = saleLen + expLen;
+  document.getElementById('donutCredit').setAttribute('stroke-dasharray', `${credLen} ${circ - credLen}`);
+  document.getElementById('donutCredit').setAttribute('transform', `rotate(${-90 + (credOffset / circ) * 360} 60 60)`);
+
+  document.getElementById('pieSalePct').textContent = `${Math.round(salePct*100)}%`;
+  document.getElementById('pieExpPct').textContent  = `${Math.round(expPct*100)}%`;
+  document.getElementById('pieCredPct').textContent = `${Math.round(credPct*100)}%`;
+}
+
+function drawRecentTx(txs) {
+  const el = document.getElementById('recentTx');
+  if (!txs.length) { el.innerHTML = '<div style="font-size:13px;text-align:center;padding:16px 0;color:var(--muted);">No transactions yet today</div>'; return; }
+  el.innerHTML = txs.map(t => {
+    const c = t.type==='sale' ? (t.status==='credit' ? 'var(--credit)' : 'var(--sale)') : 'var(--expense)';
+    const bg = t.type==='sale' ? (t.status==='credit' ? 'rgba(245,158,11,.12)' : 'rgba(34,197,94,.12)') : 'rgba(244,63,94,.12)';
+    return `<div class="tx-row">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+        <div style="width:34px;height:34px;border-radius:9px;background:${bg};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span style="color:${c};font-weight:700;font-size:13px;">${t.qty}</span>
+        </div>
+        <div style="min-width:0;">
+          <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.item}</div>
+          <div style="font-size:10px;color:var(--muted);">${fTime(new Date(t.timestamp))}</div>
+        </div>
+      </div>
+      <span style="color:${c};font-weight:600;font-size:13px;flex-shrink:0;margin-left:8px;">${fCur(t.price)}</span>
+    </div>`;
+  }).join('');
+}
+
+async function updateReports() {
+  const s = await getSummary(currentPeriod);
+  const now = new Date();
+
+  const titles = {daily:'Daily Summary',weekly:'Weekly Summary',monthly:'Monthly Summary'};
+  const badges = {daily:'TODAY',weekly:'THIS WEEK',monthly:'THIS MONTH'};
+  document.getElementById('rptTitle').textContent = titles[currentPeriod];
+  document.getElementById('rptBadge').textContent = badges[currentPeriod];
+
+  let range = '';
+  if (currentPeriod==='daily') range = fDate(now);
+  else if (currentPeriod==='weekly') { const w=new Date(now.getTime()-7*86400000); range=`${fShort(w)} – ${fShort(now)}`; }
+  else { const m=new Date(now); m.setMonth(m.getMonth()-1); range=`${fShort(m)} – ${fShort(now)}`; }
+  document.getElementById('rptRange').textContent = range;
+
+  document.getElementById('rptSales').textContent    = fCur(s.sales);
+  document.getElementById('rptExpenses').textContent = fCur(s.expenses);
+  document.getElementById('rptCredit').textContent   = fCur(s.credit);
+  document.getElementById('rptNet').textContent      = fCur(s.balance);
+  document.getElementById('rptSaleCount').textContent = s.saleCount;
+  document.getElementById('rptExpCount').textContent  = s.expenseCount;
+  document.getElementById('rptCredCount').textContent = s.creditCount;
+
+  const el = document.getElementById('rptTxList');
+  if (!s.transactions.length) { el.innerHTML='<div style="font-size:13px;text-align:center;padding:16px 0;color:var(--muted);">No transactions in this period</div>'; return; }
+
+  el.innerHTML = [...s.transactions].reverse().map(t => {
+    const c = t.type==='sale'?(t.status==='credit'?'var(--credit)':'var(--sale)'):'var(--expense)';
+    const lbl = t.type==='sale'?(t.status==='credit'?'CREDIT':'SALE'):'EXPENSE';
+    const d = new Date(t.timestamp);
+    return `<div class="tx-row">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-size:13px;">${t.qty}</div>
+        <div style="min-width:0;">
+          <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.item}</div>
+          <div style="font-size:10px;color:var(--muted);">${fShort(d)} at ${fTime(d)}</div>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;margin-left:8px;">
+        <div style="color:${c};font-weight:600;font-size:13px;">${fCur(t.price)}</div>
+        <div style="font-size:10px;color:${c};">${lbl}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ======= CHAT =======
+async function loadChat() {
+  const txs = await getTxByPeriod('daily');
+  const msgs = document.getElementById('chatMessages');
+  const welcome = document.getElementById('welcomeMsg');
+  msgs.innerHTML = '';
+  if (!txs.length) { welcome.style.display='block'; return; }
+  welcome.style.display='none';
+  txs.sort((a,b)=>new Date(a.timestamp)-new Date(b.timestamp));
+  txs.forEach(t => renderBubble(t, false));
+}
+
+function renderBubble(tx, isNew=true) {
+  const msgs = document.getElementById('chatMessages');
+  document.getElementById('welcomeMsg').style.display = 'none';
+
+  const cls  = tx.type==='sale'?(tx.status==='credit'?'b-credit':'b-sale'):'b-expense';
+  const color= tx.type==='sale'?(tx.status==='credit'?'var(--credit)':'var(--sale)'):'var(--expense)';
+  const lbl  = tx.type==='sale'?(tx.status==='credit'?'Sale – Credit':'Sale'):'Expense';
+  const time = isNew ? fTime(new Date()) : fTime(new Date(tx.timestamp));
+
+  const el = document.createElement('div');
+  el.className = `bubble ${cls}`;
+  el.innerHTML = `
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:${color};margin-bottom:6px;">${lbl}</div>
+    <div style="font-size:13px;margin-bottom:6px;">${tx.qty}× ${tx.item}</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="font-display" style="font-weight:700;font-size:18px;">${fCur(tx.price)}</span>
+      <span style="font-size:10px;color:var(--muted);">${time}</span>
+    </div>
+    <button class="receipt-btn" data-id="${tx.id||''}">Generate Receipt</button>
+  `;
+  msgs.appendChild(el);
+  if (isNew) document.getElementById('chatContainer').scrollTop = 99999;
+  el.querySelector('.receipt-btn').addEventListener('click', () => showReceipt(tx));
+}
+
+function addUserMsg(text) {
+  const msgs = document.getElementById('chatMessages');
+  document.getElementById('welcomeMsg').style.display='none';
+  const el = document.createElement('div');
+  el.className = 'bubble b-user';
+  el.innerHTML = `
+    <div style="font-size:13px;">${text}</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:4px;">${fTime(new Date())}</div>
+  `;
+  msgs.appendChild(el);
+  document.getElementById('chatContainer').scrollTop = 99999;
+}
+
+// ======= PROCESS INPUT =======
+async function processInput(text) {
+  if (!text.trim()) return;
+  addUserMsg(text);
+  document.getElementById('msgInput').value = '';
+
+  const dots = document.getElementById('typingDots');
+  dots.style.display = 'flex';
+  document.getElementById('chatContainer').scrollTop = 99999;
+
+  const txs = parseTransactions(text);
+
+  await new Promise(r => setTimeout(r, 550));
+  dots.style.display = 'none';
+
+  if (txs.length > 0) {
+    for (const tx of txs) {
+      await saveTx(tx);
+      renderBubble(tx, true);
+      // Small stagger for multiple entries
+      if (txs.length > 1) await new Promise(r => setTimeout(r, 120));
+    }
+    // If multiple transactions, show a summary note
+    if (txs.length > 1) {
+      const msgs = document.getElementById('chatMessages');
+      const el = document.createElement('div');
+      el.className = 'bubble b-error';
+      el.style.background = 'rgba(212,175,55,0.08)';
+      el.style.borderLeft = '3px solid var(--gold)';
+      el.innerHTML = `<div style="font-size:12px;color:var(--gold);font-weight:600;">✓ ${txs.length} transactions recorded at once</div>`;
+      msgs.appendChild(el);
+      document.getElementById('chatContainer').scrollTop = 99999;
+    }
+    await updateAll();
+  } else {
+    const msgs = document.getElementById('chatMessages');
+    const el = document.createElement('div');
+    el.className = 'bubble b-error';
+    el.innerHTML = `
+      <div style="font-size:13px;color:var(--muted);">Couldn't understand that. Try:</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;font-style:italic;">"Sold 6 cans of honey for 89 cedis"</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px;font-style:italic;">"Paid 50 cedis for electricity. Sold 3 loaves of bread for 15 cedis."</div>
+    `;
+    msgs.appendChild(el);
+    document.getElementById('chatContainer').scrollTop = 99999;
+  }
+}
+
+// ======= RECEIPT =======
+function showReceipt(tx) {
+  const modal = document.getElementById('receiptModal');
+  const content = document.getElementById('rcptContent');
+  const rid = `RCP-${Date.now().toString(36).toUpperCase()}`;
+  const shop = document.getElementById('shopNameDisplay').textContent;
+  const now = new Date();
+
+  content.innerHTML = `
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="width:48px;height:48px;border-radius:50%;background:rgba(212,175,55,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="font-display" style="font-weight:800;font-size:17px;">ND Accounting Books</div>
+      <div style="font-size:12px;color:var(--muted);">${shop}</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px;">Receipt #${rid}</div>
+    </div>
+    <div style="border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:14px 0;margin-bottom:14px;">
+      ${[['Date',fDate(now)],['Time',fTime(now)],['Type',tx.type.toUpperCase()],tx.status==='credit'?['Status','CREDIT']:null]
+        .filter(Boolean).map(([k,v])=>`
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;">
+          <span style="color:var(--muted);">${k}</span>
+          <span style="font-weight:500;">${v}</span>
+        </div>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <div style="font-weight:600;">${tx.item}</div>
+        <div style="font-size:11px;color:var(--muted);">Qty: ${tx.qty}</div>
+      </div>
+      <div class="font-display" style="font-weight:800;font-size:22px;">${fCur(tx.price)}</div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button id="closeRcpt" style="flex:1;padding:12px;border-radius:10px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;">Close</button>
+      <button id="shareRcpt" style="flex:1;padding:12px;border-radius:10px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
+  `;
+  modal.style.display = 'block';
+  document.getElementById('closeRcpt').onclick = () => modal.style.display='none';
+  document.getElementById('shareRcpt').onclick = () => shareReceipt(tx,rid,fDate(now),fTime(now));
+}
+
+async function shareReceipt(tx, rid, dateStr, timeStr) {
+  const shop = document.getElementById('shopNameDisplay').textContent;
+  const txt = `*ND - Accounting Books*\n${shop}\nReceipt #${rid}\n---\nDate: ${dateStr}\nTime: ${timeStr}\nType: ${tx.type.toUpperCase()}${tx.status==='credit'?'\nStatus: CREDIT':''}\n\nItem: ${tx.item}\nQty: ${tx.qty}\n---\nTOTAL: GHC ${tx.price.toFixed(2)}\n\n_Made by Nana Kwame Dickson_`;
+  if (navigator.share) { try { await navigator.share({title:`Receipt – ${shop}`,text:txt}); } catch { copyClip(txt); } }
+  else copyClip(txt);
+}
+
+function copyClip(t) { navigator.clipboard.writeText(t).then(()=>alert('Copied!')); }
+
+// ======= PDF =======
+async function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const s = await getSummary(currentPeriod);
+  const shop = document.getElementById('shopNameDisplay').textContent;
+  const now = new Date();
+
+  doc.setFillColor(26,26,36); doc.rect(0,0,210,45,'F');
+  doc.setTextColor(212,175,55); doc.setFontSize(22); doc.setFont('helvetica','bold');
+  doc.text('ND - Accounting Books',105,18,{align:'center'});
+  doc.setTextColor(255,255,255); doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text(shop,105,28,{align:'center'});
+  doc.setTextColor(160,160,160); doc.setFontSize(8);
+  const pLabels = {daily:'Daily Report',weekly:'Weekly Report',monthly:'Monthly Report'};
+  doc.text(`${pLabels[currentPeriod]} – Generated: ${fDate(now)}`,105,37,{align:'center'});
+
+  let y = 58;
+  doc.setTextColor(30,30,30); doc.setFontSize(13); doc.setFont('helvetica','bold');
+  doc.text('Summary',20,y); y+=10;
+
+  const rows = [
+    ['Total Sales','GHC '+s.sales.toFixed(2),[34,197,94]],
+    ['Total Expenses','GHC '+s.expenses.toFixed(2),[244,63,94]],
+    ['Credit Sales','GHC '+s.credit.toFixed(2),[245,158,11]],
+    ['Net Balance','GHC '+s.balance.toFixed(2),[212,175,55]],
+  ];
+  rows.forEach(([lbl,val,rgb])=>{
+    doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(100,100,100);
+    doc.text(lbl+':',20,y);
+    doc.setTextColor(...rgb); doc.setFont('helvetica','bold');
+    doc.text(val,190,y,{align:'right'});
+    doc.setFont('helvetica','normal'); y+=8;
+  });
+
+  y+=8;
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(100,100,100);
+  doc.text(`Transactions: ${s.saleCount} sales, ${s.expenseCount} expenses, ${s.creditCount} credits`,20,y);
+
+  y+=12;
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(30,30,30);
+  doc.text('Transaction Details',20,y);
+
+  if (s.transactions.length) {
+    doc.autoTable({
+      startY: y+5,
+      head:[['Date','Time','Type','Item','Qty','Amount']],
+      body: s.transactions.map(t=>{
+        const d=new Date(t.timestamp);
+        return [fShort(d),fTime(d),t.type.toUpperCase(),t.item,t.qty,'GHC '+t.price.toFixed(2)];
+      }),
+      theme:'striped',
+      headStyles:{fillColor:[26,26,36],textColor:[212,175,55],fontStyle:'bold',fontSize:9},
+      bodyStyles:{fontSize:8,textColor:[50,50,50]},
+      alternateRowStyles:{fillColor:[248,248,250]},
+      columnStyles:{0:{cellWidth:25},1:{cellWidth:20},2:{cellWidth:20},3:{cellWidth:60},4:{cellWidth:15},5:{cellWidth:30,halign:'right'}},
+      margin:{left:20,right:20}
     });
-    
-    function initInstallPrompt() {
-      const installBtn = document.getElementById('installBtn');
-      const dismissBtn = document.getElementById('dismissInstall');
-      const installPrompt = document.getElementById('installPrompt');
-      
-      if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-          if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const result = await deferredPrompt.userChoice;
-            deferredPrompt = null;
-            installPrompt.classList.add('hidden');
-          }
-        });
-      }
-      
-      if (dismissBtn) {
-        dismissBtn.addEventListener('click', () => {
-          installPrompt.classList.add('hidden');
-        });
-      }
-    }
-    
-    // ========================================
-    // DATABASE SETUP (Dexie.js)
-    // ========================================
-    
-    function initDatabase() {
-      db = new Dexie('NDShopData');
-      db.version(1).stores({
-        transactions: '++id, type, item, qty, price, status, timestamp, encrypted',
-        inventory: '++id, name, qty, price, updated'
-      });
-    }
-    
-    function encrypt(text, pin) {
-      if (!pin || !text) return text;
-      const pinStr = String(pin).repeat(Math.ceil(text.length / 4));
-      let result = '';
-      for (let i = 0; i < text.length; i++) {
-        result += String.fromCharCode(text.charCodeAt(i) ^ pinStr.charCodeAt(i));
-      }
-      return btoa(result);
-    }
-    
-    function decrypt(encoded, pin) {
-      if (!pin || !encoded) return encoded;
-      try {
-        const text = atob(encoded);
-        const pinStr = String(pin).repeat(Math.ceil(text.length / 4));
-        let result = '';
-        for (let i = 0; i < text.length; i++) {
-          result += String.fromCharCode(text.charCodeAt(i) ^ pinStr.charCodeAt(i));
-        }
-        return result;
-      } catch {
-        return encoded;
-      }
-    }
-    
-    // ========================================
-    // TRANSACTION PARSER
-    // ========================================
-    
-    function parseGhanaianTransaction(text) {
-      const normalized = text.toLowerCase().trim();
-      
-      const saleKeywords = ['sold', 'sell', 'sale', 'received', 'got'];
-      const expenseKeywords = ['paid', 'bought', 'buy', 'spent', 'expense', 'cost'];
-      const creditKeywords = ['credit', 'owe', 'owing', 'borrowed', 'took on credit', 'on credit'];
-      
-      let type = 'unknown';
-      let status = 'completed';
-      
-      if (creditKeywords.some(k => normalized.includes(k))) {
-        type = 'sale';
-        status = 'credit';
-      } else if (saleKeywords.some(k => normalized.includes(k))) {
-        type = 'sale';
-      } else if (expenseKeywords.some(k => normalized.includes(k))) {
-        type = 'expense';
-      }
-      
-      let price = 0;
-      const pricePatterns = [
-        /(\d+(?:\.\d+)?)\s*(?:ghs|cedis?|gh|gh¢|¢)/gi,
-        /(?:for|at|cost)\s*(\d+(?:\.\d+)?)/gi,
-        /(\d+(?:\.\d+)?)\s*(?:cedis?|ghs)/gi
-      ];
-      
-      for (const pattern of pricePatterns) {
-        const match = normalized.match(pattern);
-        if (match) {
-          const numMatch = match[0].match(/(\d+(?:\.\d+)?)/);
-          if (numMatch) {
-            price = parseFloat(numMatch[1]);
-            break;
-          }
-        }
-      }
-      
-      let qty = 1;
-      const qtyMatch = normalized.match(/(\d+)\s*(?:bags?|pieces?|pcs?|items?|loaves?|bottles?|boxes?|cartons?|units?)?/i);
-      if (qtyMatch) {
-        qty = parseInt(qtyMatch[1]);
-      }
-      
-      let item = 'item';
-      const itemPatterns = [
-        /(?:sold|sell|sale)\s+(?:\d+\s+)?(?:bags?\s+of\s+)?([a-zA-Z\s]+?)(?:\s+for|\s+at)/i,
-        /(?:bought|buy|paid)\s+(?:\d+\s+)?([a-zA-Z\s]+?)(?:\s+for|\s+at|\s+\d)/i,
-        /(?:took|borrowed)\s+(?:\d+\s+)?([a-zA-Z\s]+?)(?:\s+on\s+credit|\s+for)/i,
-        /(\d+\s+(?:bags?\s+of\s+)?[a-zA-Z\s]+?)(?:\s+for|\s+at)/i
-      ];
-      
-      for (const pattern of itemPatterns) {
-        const match = normalized.match(pattern);
-        if (match && match[1]) {
-          item = match[1].trim();
-          item = item.replace(/^\d+\s+/, '').replace(/\s+(for|at)\s*$/i, '').trim();
-          if (item.length > 2) break;
-        }
-      }
-      
-      const expenseItemMatch = normalized.match(/(?:paid|spent)\s+(?:\d+\s*(?:ghs|cedis?|gh)?\s+)?for\s+([a-zA-Z\s]+)/i);
-      if (expenseItemMatch && type === 'expense') {
-        item = expenseItemMatch[1].trim();
-      }
-      
-      return {
-        type,
-        qty: Math.max(1, qty),
-        item: item.charAt(0).toUpperCase() + item.slice(1),
-        price: Math.max(0, price),
-        status,
-        raw: text
-      };
-    }
-    
-    // ========================================
-    // DATABASE OPERATIONS
-    // ========================================
-    
-    async function saveTransaction(transaction) {
-      if (!db) return null;
-      
-      const encryptedItem = userPin ? encrypt(transaction.item, userPin) : transaction.item;
-      const encryptedPrice = userPin ? encrypt(String(transaction.price), userPin) : String(transaction.price);
-      
-      const record = {
-        ...transaction,
-        item: encryptedItem,
-        price: encryptedPrice,
-        encrypted: !!userPin,
-        timestamp: new Date().toISOString()
-      };
-      
-      const id = await db.transactions.add(record);
-      return id;
-    }
-    
-    async function getTransactionsByPeriod(period) {
-      if (!db) return [];
-      
-      const now = new Date();
-      let startDate = new Date();
-      
-      switch (period) {
-        case 'daily':
-          startDate.setHours(0, 0, 0, 0);
-          break;
-        case 'weekly':
-          startDate.setDate(now.getDate() - 7);
-          startDate.setHours(0, 0, 0, 0);
-          break;
-        case 'monthly':
-          startDate.setMonth(now.getMonth() - 1);
-          startDate.setHours(0, 0, 0, 0);
-          break;
-      }
-      
-      const transactions = await db.transactions
-        .where('timestamp')
-        .above(startDate.toISOString())
-        .toArray();
-      
-      return transactions.map(t => {
-        const decryptedItem = userPin && t.encrypted ? decrypt(t.item, userPin) : t.item;
-        const decryptedPrice = userPin && t.encrypted ? decrypt(t.price, userPin) : t.price;
-        
-        return {
-          ...t,
-          item: decryptedItem,
-          price: parseFloat(decryptedPrice) || 0
-        };
-      });
-    }
-    
-    async function getTodayTransactions() {
-      return await getTransactionsByPeriod('daily');
-    }
-    
-    async function getSummaryByPeriod(period) {
-      const transactions = await getTransactionsByPeriod(period);
-      
-      let sales = 0;
-      let expenses = 0;
-      let credit = 0;
-      let saleCount = 0;
-      let expenseCount = 0;
-      let creditCount = 0;
-      
-      for (const t of transactions) {
-        if (t.type === 'sale') {
-          if (t.status === 'credit') {
-            credit += t.price;
-            creditCount++;
-          } else {
-            sales += t.price;
-            saleCount++;
-          }
-        } else if (t.type === 'expense') {
-          expenses += t.price;
-          expenseCount++;
-        }
-      }
-      
-      return {
-        sales,
-        expenses,
-        credit,
-        balance: sales - expenses,
-        saleCount,
-        expenseCount,
-        creditCount,
-        transactions
-      };
-    }
-    
-    async function getHourlyData() {
-      if (!db) return [];
-      
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
-      const transactions = await db.transactions
-        .where('timestamp')
-        .above(today.toISOString())
-        .toArray();
-      
-      const hourlyData = Array(24).fill(0).map(() => ({ sales: 0, expenses: 0 }));
-      
-      for (const t of transactions) {
-        const hour = new Date(t.timestamp).getHours();
-        const price = userPin && t.encrypted ? parseFloat(decrypt(t.price, userPin)) : parseFloat(t.price) || 0;
-        
-        if (t.type === 'sale' && t.status !== 'credit') {
-          hourlyData[hour].sales += price;
-        } else if (t.type === 'expense') {
-          hourlyData[hour].expenses += price;
-        }
-      }
-      
-      return hourlyData;
-    }
-    
-    // ========================================
-    // UI RENDERING
-    // ========================================
-    
-    function formatCurrency(amount) {
-      return `GH₵ ${amount.toFixed(2)}`;
-    }
-    
-    function formatDate(date) {
-      return date.toLocaleDateString('en-GH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    }
-    
-    function formatTime(date) {
-      return date.toLocaleTimeString('en-GH', { hour: '2-digit', minute: '2-digit' });
-    }
-    
-    function formatShortDate(date) {
-      return date.toLocaleDateString('en-GH', { month: 'short', day: 'numeric' });
-    }
-    
-    async function updateAllDisplays() {
-      const dailySummary = await getSummaryByPeriod('daily');
-      const now = new Date();
-      
-      // Update chat header
-      document.getElementById('headerBalance').textContent = dailySummary.balance.toFixed(2);
-      document.getElementById('headerSales').textContent = formatCurrency(dailySummary.sales);
-      document.getElementById('headerExpenses').textContent = formatCurrency(dailySummary.expenses);
-      
-      // Update chat date header
-      document.getElementById('chatDateHeader').textContent = formatDate(now);
-      
-      // Update dashboard
-      document.getElementById('dashboardDate').textContent = formatDate(now);
-      document.getElementById('dashTotalSales').textContent = formatCurrency(dailySummary.sales);
-      document.getElementById('dashTotalExpenses').textContent = formatCurrency(dailySummary.expenses);
-      document.getElementById('dashTotalCredit').textContent = formatCurrency(dailySummary.credit);
-      document.getElementById('dashNetBalance').textContent = formatCurrency(dailySummary.balance);
-      document.getElementById('dashSaleCount').textContent = dailySummary.saleCount;
-      document.getElementById('dashExpenseCount').textContent = dailySummary.expenseCount;
-      document.getElementById('dashCreditCount').textContent = dailySummary.creditCount;
-      
-      await updateHourlyChart();
-      updateRecentTransactions(dailySummary.transactions.slice(0, 5));
+  }
+
+  const pc = doc.internal.getNumberOfPages();
+  for (let i=1;i<=pc;i++) {
+    doc.setPage(i);
+    doc.setFontSize(8); doc.setTextColor(150,150,150);
+    doc.text('Made by Nana Kwame Dickson',105,doc.internal.pageSize.height-10,{align:'center'});
+    doc.text(`Page ${i} of ${pc}`,105,doc.internal.pageSize.height-5,{align:'center'});
+  }
+  doc.save(`ND_Accounting_${currentPeriod}_${now.toISOString().split('T')[0]}.pdf`);
+}
+
+// ======= VOICE =======
+function initVoice() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) return false;
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-GH';
+  recognition.onstart = () => { isRecording=true; document.getElementById('micBtn').classList.add('recording'); };
+  recognition.onend   = () => { isRecording=false; document.getElementById('micBtn').classList.remove('recording'); };
+  recognition.onresult = e => {
+    const t = e.results[e.results.length-1][0].transcript;
+    document.getElementById('msgInput').value = t;
+    if (e.results[e.results.length-1].isFinal) processInput(t);
+  };
+  recognition.onerror = () => { isRecording=false; document.getElementById('micBtn').classList.remove('recording'); };
+  return true;
+}
+
+// ======= TABS =======
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab===name));
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.toggle('active', v.id===`${name}View`);
+  });
+  if (name==='dashboard'||name==='reports') updateAll();
+}
+window.switchTab = switchTab;
+
+// ======= THEME =======
+function initTheme() {
+  if (localStorage.getItem('ndTheme')==='light') {
+    isLight=true; document.body.classList.add('light');
+    document.getElementById('themeToggle').classList.add('on');
+    document.getElementById('themeColorMeta').setAttribute('content','#f5f5f7');
+  }
+}
+function toggleTheme() {
+  isLight=!isLight;
+  document.body.classList.toggle('light',isLight);
+  document.getElementById('themeToggle').classList.toggle('on',isLight);
+  localStorage.setItem('ndTheme',isLight?'light':'dark');
+  document.getElementById('themeColorMeta').setAttribute('content',isLight?'#f5f5f7':'#0a0a0c');
+}
+
+// ======= INIT =======
+async function init() {
+  initTheme();
+  initDB();
+  initVoice();
+
+  userPin = localStorage.getItem('ndPin') || null;
+  const savedName = localStorage.getItem('ndShopName');
+  if (savedName) document.getElementById('shopNameDisplay').textContent = savedName;
+
+  // Onboarding
+  const onbDone = localStorage.getItem('ndOnbDone');
+  if (onbDone) document.getElementById('onboarding').style.display='none';
+  document.getElementById('onbClose').addEventListener('click',()=>{
+    document.getElementById('onboarding').style.display='none';
+    localStorage.setItem('ndOnbDone','1');
+  });
+
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+  // Tabs
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+
+  // Period
+  document.querySelectorAll('.period').forEach(b => {
+    b.addEventListener('click',async ()=>{
+      document.querySelectorAll('.period').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      currentPeriod = b.dataset.period;
       await updateReports();
-    }
-    
-    async function updateHourlyChart() {
-      const hourlyData = await getHourlyData();
-      const chart = document.getElementById('hourlyChart');
-      
-      const maxVal = Math.max(1, ...hourlyData.map(h => Math.max(h.sales, h.expenses)));
-      
-      const currentHour = new Date().getHours();
-      const startHour = 6;
-      const displayHours = Math.max(currentHour - startHour + 1, 8);
-      
-      let html = '';
-      for (let i = 0; i < displayHours; i++) {
-        const hour = startHour + i;
-        if (hour > currentHour) break;
-        
-        const data = hourlyData[hour] || { sales: 0, expenses: 0 };
-        const salesHeight = Math.max(4, (data.sales / maxVal) * 100);
-        const expensesHeight = Math.max(4, (data.expenses / maxVal) * 100);
-        
-        html += `
-          <div class="flex-1 flex flex-col gap-1 items-center min-w-0">
-            <div class="w-full flex flex-col gap-1" style="height: 100%;">
-              <div class="w-full rounded-t chart-bar" style="height: ${salesHeight}%; background: rgba(16, 185, 129, 0.3);"></div>
-              <div class="w-full rounded-b chart-bar" style="height: ${expensesHeight}%; background: rgba(244, 63, 94, 0.3);"></div>
-            </div>
-          </div>
-        `;
-      }
-      
-      chart.innerHTML = html || '<p class="text-sm w-full text-center" style="color: var(--muted);">No data yet today</p>';
-    }
-    
-    function updateRecentTransactions(transactions) {
-      const container = document.getElementById('recentTransactions');
-      
-      if (transactions.length === 0) {
-        container.innerHTML = '<p class="text-sm text-center py-4" style="color: var(--muted);">No transactions yet today</p>';
-        return;
-      }
-      
-      let html = '';
-      for (const t of transactions) {
-        const time = formatTime(new Date(t.timestamp));
-        const typeColor = t.type === 'sale' ? (t.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e';
-        const typeBg = t.type === 'sale' ? (t.status === 'credit' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)') : 'rgba(244, 63, 94, 0.15)';
-        
-        html += `
-          <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid var(--border);">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: ${typeBg};">
-                <span style="color: ${typeColor};" class="text-sm font-bold">${t.qty}</span>
-              </div>
-              <div class="min-w-0">
-                <p class="text-sm truncate" style="color: var(--fg);">${t.item}</p>
-                <p class="text-xs" style="color: var(--muted);">${time}</p>
-              </div>
-            </div>
-            <span class="font-semibold text-sm shrink-0 ml-2" style="color: ${typeColor};">${formatCurrency(t.price)}</span>
-          </div>
-        `;
-      }
-      
-      container.innerHTML = html;
-    }
-    
-    async function updateReports() {
-      const summary = await getSummaryByPeriod(currentPeriod);
-      const now = new Date();
-      
-      // Update title and badge
-      const titles = {
-        daily: 'Daily Summary',
-        weekly: 'Weekly Summary',
-        monthly: 'Monthly Summary'
-      };
-      const badges = {
-        daily: 'TODAY',
-        weekly: 'THIS WEEK',
-        monthly: 'THIS MONTH'
-      };
-      
-      document.getElementById('reportTitle').textContent = titles[currentPeriod];
-      document.getElementById('reportBadge').textContent = badges[currentPeriod];
-      
-      // Update date range
-      let dateRange = '';
-      if (currentPeriod === 'daily') {
-        dateRange = formatDate(now);
-      } else if (currentPeriod === 'weekly') {
-        const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-        dateRange = `${formatShortDate(weekAgo)} - ${formatShortDate(now)}`;
-      } else {
-        const monthAgo = new Date(now);
-        monthAgo.setMonth(monthAgo.getMonth() - 1);
-        dateRange = `${formatShortDate(monthAgo)} - ${formatShortDate(now)}`;
-      }
-      document.getElementById('reportDateRange').textContent = dateRange;
-      
-      // Update summary
-      document.getElementById('reportSales').textContent = formatCurrency(summary.sales);
-      document.getElementById('reportExpenses').textContent = formatCurrency(summary.expenses);
-      document.getElementById('reportCredit').textContent = formatCurrency(summary.credit);
-      document.getElementById('reportNet').textContent = formatCurrency(summary.balance);
-      
-      document.getElementById('reportSaleCount').textContent = summary.saleCount;
-      document.getElementById('reportExpenseCount').textContent = summary.expenseCount;
-      document.getElementById('reportCreditCount').textContent = summary.creditCount;
-      
-      // Update transaction list
-      const container = document.getElementById('reportTransactions');
-      
-      if (summary.transactions.length === 0) {
-        container.innerHTML = '<p class="text-sm text-center py-4" style="color: var(--muted);">No transactions in this period</p>';
-        return;
-      }
-      
-      let html = '';
-      for (const t of summary.transactions) {
-        const date = new Date(t.timestamp);
-        const timeStr = formatTime(date);
-        const dateStr = formatShortDate(date);
-        const typeColor = t.type === 'sale' ? (t.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e';
-        const typeLabel = t.type === 'sale' ? (t.status === 'credit' ? 'CREDIT' : 'SALE') : 'EXPENSE';
-        
-        html += `
-          <div class="flex items-center justify-between py-3" style="border-bottom: 1px solid var(--border);">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--card);">
-                <span class="font-semibold" style="color: var(--fg);">${t.qty}</span>
-              </div>
-              <div class="min-w-0">
-                <p class="text-sm font-medium truncate" style="color: var(--fg);">${t.item}</p>
-                <p class="text-xs" style="color: var(--muted);">${dateStr} at ${timeStr}</p>
-              </div>
-            </div>
-            <div class="text-right shrink-0 ml-2">
-              <p class="font-semibold" style="color: ${typeColor};">${formatCurrency(t.price)}</p>
-              <p class="text-xs" style="color: ${typeColor};">${typeLabel}</p>
-            </div>
-          </div>
-        `;
-      }
-      
-      container.innerHTML = html;
-    }
-    
-    // ========================================
-    // CHAT FUNCTIONS
-    // ========================================
-    
-    async function loadTodayChat() {
-      const transactions = await getTodayTransactions();
-      const container = document.getElementById('chatMessages');
-      const welcome = document.getElementById('welcomeMessage');
-      
-      if (transactions.length === 0) {
-        welcome.style.display = 'block';
-        container.innerHTML = '';
-        return;
-      }
-      
-      welcome.style.display = 'none';
-      container.innerHTML = '';
-      
-      // Sort by timestamp ascending
-      transactions.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-      
-      for (const t of transactions) {
-        addChatBubbleFromHistory(t);
-      }
-    }
-    
-    function addChatBubbleFromHistory(transaction) {
-      const container = document.getElementById('chatMessages');
-      
-      let bubbleClass = 'bubble-expense';
-      let label = 'Expense';
-      
-      if (transaction.type === 'sale') {
-        if (transaction.status === 'credit') {
-          bubbleClass = 'bubble-credit';
-          label = 'Sale (Credit)';
-        } else {
-          bubbleClass = 'bubble-sale';
-          label = 'Sale';
-        }
-      }
-      
-      const time = formatTime(new Date(transaction.timestamp));
-      
-      const bubble = document.createElement('div');
-      bubble.className = `bubble ${bubbleClass} rounded-xl p-3 mb-3 ml-auto`;
-      bubble.innerHTML = `
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-xs font-medium uppercase tracking-wider" style="color: ${transaction.type === 'sale' ? (transaction.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e'};">${label}</span>
-        </div>
-        <p class="text-sm mb-2" style="color: var(--fg);">${transaction.qty}x ${transaction.item}</p>
-        <div class="flex items-center justify-between">
-          <span class="font-display font-bold text-lg" style="color: var(--fg);">${formatCurrency(transaction.price)}</span>
-          <span class="text-xs" style="color: var(--muted);">${time}</span>
-        </div>
-        <button class="receipt-btn mt-3 w-full py-2 rounded-lg text-xs transition-colors" style="background: var(--card); color: var(--muted); border: 1px solid var(--border);">
-          Generate Receipt
-        </button>
-      `;
-      
-      container.appendChild(bubble);
-      
-      bubble.querySelector('.receipt-btn').addEventListener('click', () => {
-        showReceipt(transaction);
-      });
-    }
-    
-    function addChatBubble(transaction) {
-      const container = document.getElementById('chatMessages');
-      const welcome = document.getElementById('welcomeMessage');
-      
-      if (welcome) {
-        welcome.style.display = 'none';
-      }
-      
-      let bubbleClass = 'bubble-expense';
-      let label = 'Expense';
-      
-      if (transaction.type === 'sale') {
-        if (transaction.status === 'credit') {
-          bubbleClass = 'bubble-credit';
-          label = 'Sale (Credit)';
-        } else {
-          bubbleClass = 'bubble-sale';
-          label = 'Sale';
-        }
-      }
-      
-      const time = formatTime(new Date());
-      
-      const bubble = document.createElement('div');
-      bubble.className = `bubble ${bubbleClass} rounded-xl p-3 mb-3 ml-auto`;
-      bubble.innerHTML = `
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-xs font-medium uppercase tracking-wider" style="color: ${transaction.type === 'sale' ? (transaction.status === 'credit' ? '#f59e0b' : '#10b981') : '#f43f5e'};">${label}</span>
-        </div>
-        <p class="text-sm mb-2" style="color: var(--fg);">${transaction.qty}x ${transaction.item}</p>
-        <div class="flex items-center justify-between">
-          <span class="font-display font-bold text-lg" style="color: var(--fg);">${formatCurrency(transaction.price)}</span>
-          <span class="text-xs" style="color: var(--muted);">${time}</span>
-        </div>
-        <button class="receipt-btn mt-3 w-full py-2 rounded-lg text-xs transition-colors" style="background: var(--card); color: var(--muted); border: 1px solid var(--border);">
-          Generate Receipt
-        </button>
-      `;
-      
-      container.appendChild(bubble);
-      
-      const chatContainer = document.getElementById('chatContainer');
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-      
-      bubble.querySelector('.receipt-btn').addEventListener('click', () => {
-        showReceipt(transaction);
-      });
-    }
-    
-    function addUserMessage(text) {
-      const container = document.getElementById('chatMessages');
-      const welcome = document.getElementById('welcomeMessage');
-      
-      if (welcome) {
-        welcome.style.display = 'none';
-      }
-      
-      const time = formatTime(new Date());
-      
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble rounded-xl p-3 mb-3 mr-auto';
-      bubble.style.background = 'var(--card-solid)';
-      bubble.style.border = '1px solid var(--border)';
-      bubble.innerHTML = `
-        <p class="text-sm" style="color: var(--fg);">${text}</p>
-        <span class="text-xs mt-1 block" style="color: var(--muted);">${time}</span>
-      `;
-      
-      container.appendChild(bubble);
-      
-      const chatContainer = document.getElementById('chatContainer');
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-    
-    // ========================================
-    // RECEIPT GENERATION
-    // ========================================
-    
-    function showReceipt(transaction) {
-      const modal = document.getElementById('receiptModal');
-      const content = document.getElementById('receiptContent');
-      
-      const now = new Date();
-      const dateStr = formatDate(now);
-      const timeStr = formatTime(now);
-      const receiptId = `RCP-${Date.now().toString(36).toUpperCase()}`;
-      
-      const shopName = document.getElementById('shopName').textContent;
-      
-      content.innerHTML = `
-        <div class="text-center mb-6">
-          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3" style="background: rgba(212, 175, 55, 0.15);">
-            <svg class="w-6 h-6" style="color: #d4af37;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <h3 class="font-display font-bold text-lg" style="color: var(--fg);">ND - Accounting Books</h3>
-          <p class="text-xs" style="color: var(--muted);">${shopName}</p>
-          <p class="text-xs mt-1" style="color: var(--muted);">Receipt #${receiptId}</p>
-        </div>
-        
-        <div class="py-4 my-4" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-          <div class="flex justify-between text-sm mb-2">
-            <span style="color: var(--muted);">Date</span>
-            <span style="color: var(--fg);">${dateStr}</span>
-          </div>
-          <div class="flex justify-between text-sm mb-2">
-            <span style="color: var(--muted);">Time</span>
-            <span style="color: var(--fg);">${timeStr}</span>
-          </div>
-          <div class="flex justify-between text-sm mb-2">
-            <span style="color: var(--muted);">Type</span>
-            <span style="color: ${transaction.type === 'sale' ? '#10b981' : '#f43f5e'};">${transaction.type.toUpperCase()}</span>
-          </div>
-          ${transaction.status === 'credit' ? `
-          <div class="flex justify-between text-sm">
-            <span style="color: var(--muted);">Status</span>
-            <span style="color: #f59e0b;">CREDIT</span>
-          </div>
-          ` : ''}
-        </div>
-        
-        <div class="mb-4">
-          <div class="flex justify-between items-center py-2">
-            <div>
-              <p class="font-medium" style="color: var(--fg);">${transaction.item}</p>
-              <p class="text-xs" style="color: var(--muted);">Qty: ${transaction.qty}</p>
-            </div>
-            <span class="font-display font-bold text-xl" style="color: var(--fg);">${formatCurrency(transaction.price)}</span>
-          </div>
-        </div>
-        
-        <div class="flex gap-3">
-          <button id="closeReceipt" class="flex-1 py-3 rounded-xl font-medium transition-colors" style="background: var(--card); color: var(--muted);">
-            Close
-          </button>
-          <button id="shareReceipt" class="flex-1 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors" style="background: #d4af37; color: #1a1a24;">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-            </svg>
-            Share
-          </button>
-        </div>
-      `;
-      
-      modal.classList.remove('hidden');
-      
-      document.getElementById('closeReceipt').addEventListener('click', () => {
-        modal.classList.add('hidden');
-      });
-      
-      document.getElementById('shareReceipt').addEventListener('click', () => {
-        shareReceipt(transaction, receiptId, dateStr, timeStr);
-      });
-    }
-    
-    async function shareReceipt(transaction, receiptId, dateStr, timeStr) {
-      const shopName = document.getElementById('shopName').textContent;
-      const receiptText = `
-*ND - Accounting Books*
-${shopName}
-Receipt #${receiptId}
--------------------
-Date: ${dateStr}
-Time: ${timeStr}
-Type: ${transaction.type.toUpperCase()}
-${transaction.status === 'credit' ? 'Status: CREDIT\n' : ''}
-Item: ${transaction.item}
-Qty: ${transaction.qty}
--------------------
-TOTAL: GH₵ ${transaction.price.toFixed(2)}
+    });
+  });
 
-_Made by Nana Kwame Dickson_
-      `.trim();
-      
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: `Receipt - ${shopName}`,
-            text: receiptText
-          });
-        } catch {
-          copyToClipboard(receiptText);
-        }
-      } else {
-        copyToClipboard(receiptText);
-      }
-    }
-    
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      });
-    }
-    
-    // ========================================
-    // PDF GENERATION
-    // ========================================
-    
-    async function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      const summary = await getSummaryByPeriod(currentPeriod);
-      const shopName = document.getElementById('shopName').textContent;
-      const now = new Date();
-      
-      // Header
-      doc.setFillColor(26, 26, 36);
-      doc.rect(0, 0, 210, 45, 'F');
-      
-      doc.setTextColor(212, 175, 55);
-      doc.setFontSize(24);
-      doc.setFont('helvetica', 'bold');
-      doc.text('ND - Accounting Books', 105, 20, { align: 'center' });
-      
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.text(shopName, 105, 30, { align: 'center' });
-      
-      doc.setTextColor(180, 180, 180);
-      doc.setFontSize(8);
-      const periodLabels = { daily: 'Daily Report', weekly: 'Weekly Report', monthly: 'Monthly Report' };
-      doc.text(periodLabels[currentPeriod] + ' - Generated: ' + formatDate(now), 105, 38, { align: 'center' });
-      
-      // Summary Section
-      doc.setTextColor(26, 26, 36);
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Summary', 20, 60);
-      
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      
-      let yPos = 70;
-      const summaryData = [
-        ['Total Sales', formatCurrency(summary.sales)],
-        ['Total Expenses', formatCurrency(summary.expenses)],
-        ['Credit Sales', formatCurrency(summary.credit)],
-        ['Net Balance', formatCurrency(summary.balance)]
-      ];
-      
-      summaryData.forEach(([label, value], index) => {
-        doc.setTextColor(100, 100, 100);
-        doc.text(label + ':', 20, yPos);
-        
-        if (label === 'Net Balance') {
-          doc.setTextColor(212, 175, 55);
-          doc.setFont('helvetica', 'bold');
-        } else if (label.includes('Sales') && !label.includes('Credit')) {
-          doc.setTextColor(16, 185, 129);
-        } else if (label.includes('Expenses')) {
-          doc.setTextColor(244, 63, 94);
-        } else {
-          doc.setTextColor(245, 158, 11);
-        }
-        
-        doc.text(value, 190, yPos, { align: 'right' });
-        doc.setFont('helvetica', 'normal');
-        yPos += 8;
-      });
-      
-      // Transaction Count
-      yPos += 5;
-      doc.setTextColor(100, 100, 100);
-      doc.setFontSize(9);
-      doc.text(`Transactions: ${summary.saleCount} sales, ${summary.expenseCount} expenses, ${summary.creditCount} credits`, 20, yPos);
-      
-      // Transaction Table
-      yPos += 15;
-      doc.setTextColor(26, 26, 36);
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Transaction Details', 20, yPos);
-      
-      if (summary.transactions.length > 0) {
-        const tableData = summary.transactions.map(t => {
-          const date = new Date(t.timestamp);
-          return [
-            formatShortDate(date),
-            formatTime(date),
-            t.type.toUpperCase(),
-            t.item,
-            t.qty.toString(),
-            formatCurrency(t.price)
-          ];
-        });
-        
-        doc.autoTable({
-          startY: yPos + 5,
-          head: [['Date', 'Time', 'Type', 'Item', 'Qty', 'Amount']],
-          body: tableData,
-          theme: 'striped',
-          headStyles: {
-            fillColor: [26, 26, 36],
-            textColor: [212, 175, 55],
-            fontStyle: 'bold',
-            fontSize: 9
-          },
-          bodyStyles: {
-            fontSize: 8,
-            textColor: [50, 50, 50]
-          },
-          alternateRowStyles: {
-            fillColor: [248, 248, 250]
-          },
-          columnStyles: {
-            0: { cellWidth: 25 },
-            1: { cellWidth: 20 },
-            2: { cellWidth: 20 },
-            3: { cellWidth: 60 },
-            4: { cellWidth: 15 },
-            5: { cellWidth: 30, halign: 'right' }
-          },
-          margin: { left: 20, right: 20 }
-        });
-      } else {
-        yPos += 10;
-        doc.setTextColor(150, 150, 150);
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        doc.text('No transactions in this period.', 20, yPos);
-      }
-      
-      // Footer
-      const pageCount = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= pageCount; i++) {
-        doc.setPage(i);
-        doc.setFontSize(8);
-        doc.setTextColor(150, 150, 150);
-        doc.text('Made by Nana Kwame Dickson', 105, doc.internal.pageSize.height - 10, { align: 'center' });
-        doc.text('Page ' + i + ' of ' + pageCount, 105, doc.internal.pageSize.height - 5, { align: 'center' });
-      }
-      
-      // Save the PDF
-      const fileName = `ND_Accounting_${currentPeriod}_${now.toISOString().split('T')[0]}.pdf`;
-      doc.save(fileName);
-    }
-    
-    // ========================================
-    // VOICE INPUT (Web Speech API)
-    // ========================================
-    
-    function initVoiceRecognition() {
-      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-        return false;
-      }
-      
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = true;
-      recognition.lang = 'en-GH';
-      
-      recognition.onstart = () => {
-        isRecording = true;
-        document.getElementById('micBtn').classList.add('recording');
-      };
-      
-      recognition.onend = () => {
-        isRecording = false;
-        document.getElementById('micBtn').classList.remove('recording');
-      };
-      
-      recognition.onresult = (event) => {
-        const transcript = event.results[event.results.length - 1][0].transcript;
-        document.getElementById('messageInput').value = transcript;
-        
-        if (event.results[event.results.length - 1].isFinal) {
-          processInput(transcript);
-        }
-      };
-      
-      recognition.onerror = () => {
-        isRecording = false;
-        document.getElementById('micBtn').classList.remove('recording');
-      };
-      
-      return true;
-    }
-    
-    function toggleRecording() {
-      if (!recognition) {
-        const supported = initVoiceRecognition();
-        if (!supported) {
-          alert('Voice input is not supported in your browser. Try Chrome on Android.');
-          return;
-        }
-      }
-      
-      if (isRecording) {
-        recognition.stop();
-      } else {
-        recognition.start();
-      }
-    }
-    
-    // ========================================
-    // MAIN INPUT PROCESSING
-    // ========================================
-    
-    async function processInput(text) {
-      if (!text.trim()) return;
-      
-      addUserMessage(text);
-      
-      document.getElementById('typingIndicator').classList.remove('hidden');
-      
-      const transaction = parseGhanaianTransaction(text);
-      
-      await new Promise(resolve => setTimeout(resolve, 600));
-      
-      document.getElementById('typingIndicator').classList.add('hidden');
-      
-      if (transaction.type !== 'unknown' && transaction.price > 0) {
-        await saveTransaction(transaction);
-        addChatBubble(transaction);
-        await updateAllDisplays();
-      } else {
-        const container = document.getElementById('chatMessages');
-        const errorBubble = document.createElement('div');
-        errorBubble.className = 'bubble rounded-xl p-3 mb-3';
-        errorBubble.style.background = 'var(--card)';
-        errorBubble.innerHTML = `
-          <p class="text-sm" style="color: var(--muted);">I couldn't understand that transaction. Try:</p>
-          <p class="text-xs mt-2" style="color: var(--muted);">"Sold 2 bags of sugar for 50 cedis"</p>
-        `;
-        container.appendChild(errorBubble);
-      }
-      
-      document.getElementById('messageInput').value = '';
-    }
-    
-    // ========================================
-    // TAB NAVIGATION
-    // ========================================
-    
-    function switchTab(tabName) {
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.tab === tabName);
-      });
-      
-      document.querySelectorAll('.view').forEach(view => {
-        view.classList.toggle('active', view.id === `${tabName}View`);
-      });
-      
-      if (tabName === 'dashboard' || tabName === 'reports') {
-        updateAllDisplays();
-      }
-    }
-    
-    window.switchTab = switchTab;
-    
-    // ========================================
-    // EVENT LISTENERS
-    // ========================================
-    
-    function initEventListeners() {
-      initInstallPrompt();
-      
-      // Theme toggle
-      const themeToggle = document.getElementById('themeToggle');
-      themeToggle.addEventListener('click', toggleTheme);
-      themeToggle.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleTheme();
-        }
-      });
-      
-      // Tab navigation
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-      });
-      
-      // Period buttons
-      document.querySelectorAll('.period-btn').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentPeriod = btn.dataset.period;
-          await updateReports();
-        });
-      });
-      
-      // Send button
-      document.getElementById('sendBtn').addEventListener('click', () => {
-        const input = document.getElementById('messageInput');
-        processInput(input.value);
-      });
-      
-      // Enter key
-      document.getElementById('messageInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          processInput(e.target.value);
-        }
-      });
-      
-      // Mic button
-      document.getElementById('micBtn').addEventListener('click', toggleRecording);
-      
-      // Quick entry buttons
-      document.querySelectorAll('.quick-entry').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const text = btn.textContent.trim().replace(/"/g, '');
-          document.getElementById('messageInput').value = text;
-          processInput(text);
-        });
-      });
-      
-      // Modal overlay click
-      document.getElementById('modalOverlay').addEventListener('click', () => {
-        document.getElementById('receiptModal').classList.add('hidden');
-      });
-      
-      // Settings button
-      document.getElementById('settingsBtn').addEventListener('click', () => {
-        document.getElementById('pinModal').classList.remove('hidden');
-        document.querySelector('.pin-input').focus();
-      });
-      
-      // PIN inputs
-      document.querySelectorAll('.pin-input').forEach((input, index, inputs) => {
-        input.addEventListener('input', (e) => {
-          if (e.target.value && index < inputs.length - 1) {
-            inputs[index + 1].focus();
-          }
-        });
-        
-        input.addEventListener('keydown', (e) => {
-          if (e.key === 'Backspace' && !e.target.value && index > 0) {
-            inputs[index - 1].focus();
-          }
-        });
-      });
-      
-      // Save PIN
-      document.getElementById('savePinBtn').addEventListener('click', () => {
-        const inputs = document.querySelectorAll('.pin-input');
-        const pin = Array.from(inputs).map(i => i.value).join('');
-        
-        if (pin.length === 4) {
-          userPin = pin;
-          localStorage.setItem('ndShopPin', pin);
-          document.getElementById('pinModal').classList.add('hidden');
-          inputs.forEach(i => i.value = '');
-        }
-      });
-      
-      // Click outside PIN modal
-      document.querySelector('#pinModal .modal-overlay').addEventListener('click', () => {
-        document.getElementById('pinModal').classList.add('hidden');
-      });
-      
-      // Export PDF button
-      document.getElementById('exportPdfBtn').addEventListener('click', generatePDF);
-      
-      // Share report button
-      document.getElementById('shareReportBtn').addEventListener('click', async () => {
-        const summary = await getSummaryByPeriod(currentPeriod);
-        const shopName = document.getElementById('shopName').textContent;
-        const now = new Date();
-        
-        let reportText = `
-*ND - Accounting Books*
-${shopName}
-${currentPeriod.toUpperCase()} REPORT
-Date: ${formatDate(now)}
-===================
+  // Send
+  document.getElementById('sendBtn').addEventListener('click',()=>processInput(document.getElementById('msgInput').value));
+  document.getElementById('msgInput').addEventListener('keypress',e=>{ if(e.key==='Enter') processInput(e.target.value); });
+  document.getElementById('micBtn').addEventListener('click',()=>{
+    if (!recognition) { const ok=initVoice(); if(!ok){alert('Voice not supported. Try Chrome on Android.');return;} }
+    isRecording ? recognition.stop() : recognition.start();
+  });
 
-SUMMARY
--------
-Total Sales: GH₵ ${summary.sales.toFixed(2)}
-Total Expenses: GH₵ ${summary.expenses.toFixed(2)}
-Credit Sales: GH₵ ${summary.credit.toFixed(2)}
--------------------
-NET BALANCE: GH₵ ${summary.balance.toFixed(2)}
+  // Quick entries
+  document.querySelectorAll('.quick').forEach(b => {
+    b.addEventListener('click',()=>{
+      const t = b.textContent.trim().replace(/"/g,'');
+      document.getElementById('msgInput').value = t;
+      processInput(t);
+    });
+  });
 
-TRANSACTIONS: ${summary.saleCount} sales, ${summary.expenseCount} expenses, ${summary.creditCount} credits
+  // Modal closes
+  document.getElementById('rcptBg').addEventListener('click',()=>document.getElementById('receiptModal').style.display='none');
+  document.getElementById('pinBg').addEventListener('click',()=>document.getElementById('pinModal').style.display='none');
+  document.getElementById('shopBg').addEventListener('click',()=>document.getElementById('shopModal').style.display='none');
 
-===================
-_Made by Nana Kwame Dickson_
-        `.trim();
-        
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: `${currentPeriod} Report - ${shopName}`,
-              text: reportText
-            });
-          } catch {
-            copyToClipboard(reportText);
-          }
-        } else {
-          copyToClipboard(reportText);
-        }
-      });
+  // Settings opens PIN
+  document.getElementById('settingsBtn').addEventListener('click',()=>{
+    document.getElementById('pinModal').style.display='flex';
+    document.querySelector('.pin-inp').focus();
+  });
+
+  // Shop name
+  document.getElementById('shopNameBtn').addEventListener('click',()=>{
+    document.getElementById('shopNameInput').value = document.getElementById('shopNameDisplay').textContent;
+    document.getElementById('shopModal').style.display='flex';
+  });
+  document.getElementById('saveShopBtn').addEventListener('click',()=>{
+    const v = document.getElementById('shopNameInput').value.trim();
+    if (v) {
+      document.getElementById('shopNameDisplay').textContent = v;
+      localStorage.setItem('ndShopName',v);
     }
-    
-    // ========================================
-    // INITIALIZATION
-    // ========================================
-    
-    async function initApp() {
-      initTheme();
-      initDatabase();
-      initEventListeners();
-      initVoiceRecognition();
-      
-      const savedPin = localStorage.getItem('ndShopPin');
-      if (savedPin) {
-        userPin = savedPin;
-      }
-      
-      const savedShopName = localStorage.getItem('ndShopName');
-      if (savedShopName) {
-        document.getElementById('shopName').textContent = savedShopName;
-      }
-      
-      await updateAllDisplays();
-      await loadTodayChat();
+    document.getElementById('shopModal').style.display='none';
+  });
+
+  // PIN inputs
+  const pinInps = document.querySelectorAll('.pin-inp');
+  pinInps.forEach((inp,i)=>{
+    inp.addEventListener('input',e=>{ if(e.target.value && i<pinInps.length-1) pinInps[i+1].focus(); });
+    inp.addEventListener('keydown',e=>{ if(e.key==='Backspace'&&!e.target.value&&i>0) pinInps[i-1].focus(); });
+  });
+  document.getElementById('savePinBtn').addEventListener('click',()=>{
+    const pin = Array.from(pinInps).map(x=>x.value).join('');
+    if (pin.length===4) {
+      userPin=pin; localStorage.setItem('ndPin',pin);
+      document.getElementById('pinModal').style.display='none';
+      pinInps.forEach(x=>x.value='');
     }
-    
-    document.addEventListener('DOMContentLoaded', initApp);
-  </script>
+  });
+
+  // Export PDF
+  document.getElementById('exportPdf').addEventListener('click', exportPDF);
+
+  // Share report
+  document.getElementById('shareRpt').addEventListener('click', async ()=>{
+    const s = await getSummary(currentPeriod);
+    const shop = document.getElementById('shopNameDisplay').textContent;
+    const txt = `*ND - Accounting Books*\n${shop}\n${currentPeriod.toUpperCase()} REPORT\n${fDate(new Date())}\n=====\nSales: GHC ${s.sales.toFixed(2)}\nExpenses: GHC ${s.expenses.toFixed(2)}\nCredit: GHC ${s.credit.toFixed(2)}\n-----\nNET BALANCE: GHC ${s.balance.toFixed(2)}\n\nTransactions: ${s.saleCount} sales, ${s.expenseCount} expenses, ${s.creditCount} credits\n\n_Made by Nana Kwame Dickson_`;
+    if (navigator.share) { try { await navigator.share({title:`${currentPeriod} Report`,text:txt}); } catch { copyClip(txt); } }
+    else copyClip(txt);
+  });
+
+  await updateAll();
+  await loadChat();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>
-
