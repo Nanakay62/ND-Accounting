@@ -9,9 +9,13 @@
   <meta name="theme-color" content="#0d0d0f" id="themeColorMeta">
   <title>ND - Accounting Books</title>
   
+  <!-- PWA manifest (inline via data URI) -->
+  <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22ND%20Accounting%20Books%22%2C%22short_name%22%3A%22ND%20Books%22%2C%22description%22%3A%22Pocket%20business%20ledger%20for%20Ghanaian%20small%20businesses%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0a0c%22%2C%22theme_color%22%3A%22%23d4af37%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2Cdata%3Aimage%2Fsvg%2Bxml%3B%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20192%20192'%3E%3Crect%20width%3D'192'%20height%3D'192'%20rx%3D'38'%20fill%3D'%23d4af37'%2F%3E%3Ctext%20x%3D'96'%20y%3D'130'%20font-family%3D'serif'%20font-size%3D'90'%20text-anchor%3D'middle'%20fill%3D'%231a1a24'%3END%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <meta name="apple-mobile-web-app-title" content="ND Books">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.min.js"></script>
@@ -48,13 +52,13 @@
     *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; margin:0; padding:0; }
     html,body{ height:100%; overflow:hidden; }
     body{
-      font-family:'Instrument Sans',sans-serif;
+      font-family:'Plus Jakarta Sans',sans-serif;
       background:var(--bg); color:var(--fg);
       padding-top:env(safe-area-inset-top,0px);
       padding-bottom:env(safe-area-inset-bottom,0px);
       transition:background .3s,color .3s;
     }
-    .font-display{ font-family:'Syne',sans-serif; }
+    .font-display{ font-family:'DM Serif Display',serif; font-weight:400; letter-spacing:-.5px; }
 
     /* Layout */
     #app{ display:flex; flex-direction:column; height:100%; position:relative; }
@@ -107,7 +111,7 @@
       top:0; left:0; right:0; height:55%;
       background:linear-gradient(180deg,rgba(255,255,255,.22) 0%,transparent 100%);
     }
-    .logo-txt{ font-family:'Syne',sans-serif; font-weight:800; font-size:15px; color:#1a1a24; letter-spacing:-.5px; }
+    .logo-txt{ font-family:'DM Serif Display',serif; font-weight:400; font-size:16px; color:#1a1a24; letter-spacing:-.5px; }
 
     /* Tab Nav */
     .tab-bar{
@@ -117,7 +121,7 @@
     }
     .tab{
       flex:1; padding:10px 8px; border-radius:10px;
-      font-family:'Syne',sans-serif; font-size:13px; font-weight:600;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700;
       color:var(--muted); background:transparent;
       border:none; cursor:pointer;
       transition:all .2s;
@@ -147,7 +151,7 @@
       background:var(--card); border:1px solid var(--border2);
       color:var(--fg); border-radius:14px;
       padding:12px 50px 12px 16px;
-      font-family:'Instrument Sans',sans-serif; font-size:15px;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:15px;
       width:100%; transition:border-color .2s, box-shadow .2s;
     }
     .inp::placeholder{ color:var(--muted); }
@@ -266,7 +270,7 @@
     }
     .onb-floating{
       position:absolute; pointer-events:none;
-      font-family:'Syne',sans-serif; font-weight:800;
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:800;
       opacity:.05; animation:floatNum 4s ease-in-out infinite;
       user-select:none;
     }
@@ -289,7 +293,7 @@
       margin:16px 28px 28px;
       background:var(--gold); color:#111;
       border:none; border-radius:12px; padding:14px;
-      font-family:'Syne',sans-serif; font-weight:700; font-size:15px;
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:15px;
       cursor:pointer; width:calc(100% - 56px);
       transition:all .2s;
     }
@@ -354,28 +358,28 @@
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
         <div class="logo-box"><span class="logo-txt">ND</span></div>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#f0f0f0;">ND Accounting Books</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;color:#f0f0f0;">ND Accounting Books</div>
           <div style="font-size:12px;color:var(--muted);">Your pocket business ledger</div>
         </div>
       </div>
 
       <div style="display:flex;gap:16px;margin-top:8px;">
         <div style="text-align:center;">
-          <div class="ticker ticker-up" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;">
+          <div class="ticker ticker-up" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;">
             <span class="arrow-up"></span>GHC 450
           </div>
           <div style="font-size:10px;color:var(--muted);">Avg Sales/Day</div>
         </div>
         <div style="width:1px;background:rgba(255,255,255,.08);"></div>
         <div style="text-align:center;">
-          <div class="ticker ticker-down" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;">
+          <div class="ticker ticker-down" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;">
             <span class="arrow-down"></span>GHC 120
           </div>
           <div style="font-size:10px;color:var(--muted);">Avg Expenses/Day</div>
         </div>
         <div style="width:1px;background:rgba(255,255,255,.08);"></div>
         <div style="text-align:center;">
-          <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--gold);">GHC 330</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;color:var(--gold);">GHC 330</div>
           <div style="font-size:10px;color:var(--muted);">Net Profit</div>
         </div>
       </div>
@@ -385,28 +389,28 @@
       <div class="onb-step">
         <div class="onb-icon" style="background:rgba(34,197,94,.15);">💬</div>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Talk or Type Naturally</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Talk or Type Naturally</div>
           <div style="font-size:12px;color:var(--muted);line-height:1.5;">Say <em style="color:var(--gold);">"Sold 3 bags of rice for 90 cedis"</em> or use the mic button to speak.</div>
         </div>
       </div>
       <div class="onb-step">
         <div class="onb-icon" style="background:rgba(245,158,11,.15);">📊</div>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Dashboard & Reports</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Dashboard & Reports</div>
           <div style="font-size:12px;color:var(--muted);line-height:1.5;">View charts, track spending vs. income, and export PDF reports to share.</div>
         </div>
       </div>
       <div class="onb-step">
         <div class="onb-icon" style="background:rgba(212,175,55,.15);">🔒</div>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Set Your Store Name & PIN</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Set Your Store Name & PIN</div>
           <div style="font-size:12px;color:var(--muted);line-height:1.5;">Tap ⚙️ in the header to personalise with your shop name and secure your data.</div>
         </div>
       </div>
       <div class="onb-step">
         <div class="onb-icon" style="background:rgba(244,63,94,.15);">🧾</div>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Instant Receipts</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;">Instant Receipts</div>
           <div style="font-size:12px;color:var(--muted);line-height:1.5;">Every entry generates a shareable receipt. Tap <em>"Generate Receipt"</em> on any transaction.</div>
         </div>
       </div>
@@ -429,7 +433,7 @@
         <div class="logo-box"><span class="logo-txt">ND</span></div>
         <div>
           <div class="font-display" style="font-weight:800;font-size:16px;line-height:1.1;">ND Accounting Books</div>
-          <button id="shopNameBtn" style="font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;padding:0;font-family:'Instrument Sans',sans-serif;" title="Click to change store name">
+          <button id="shopNameBtn" style="font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;padding:0;font-family:'Plus Jakarta Sans',sans-serif;" title="Click to change store name">
             <span id="shopNameDisplay">My Store</span> ✏️
           </button>
         </div>
@@ -443,6 +447,15 @@
         <button id="settingsBtn" style="width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;" title="Settings">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--muted)"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
         </button>
+        <!-- Install button — shown only when PWA install is available -->
+        <button id="installBtn" onclick="triggerInstall()" style="display:none;height:38px;padding:0 10px;border-radius:10px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.3);color:var(--gold);cursor:pointer;align-items:center;gap:5px;font-size:11px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;" title="Install app">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Install
+        </button>
+        <!-- Data info button -->
+        <button id="dataInfoBtn" style="width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;" title="Data storage info">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -451,15 +464,19 @@
   <nav style="padding:0 16px 8px;flex-shrink:0;position:relative;z-index:2;">
     <div class="tab-bar">
       <button class="tab active" data-tab="chat">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Entry
       </button>
+      <button class="tab" data-tab="stock">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        Stock
+      </button>
       <button class="tab" data-tab="dashboard">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Dashboard
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dash
       </button>
       <button class="tab" data-tab="reports">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         Reports
       </button>
     </div>
@@ -681,9 +698,9 @@
 
       <!-- Period toggle -->
       <div style="display:flex;gap:6px;">
-        <button class="period active" data-period="daily" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Daily</button>
-        <button class="period" data-period="weekly" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Weekly</button>
-        <button class="period" data-period="monthly" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Monthly</button>
+        <button class="period active" data-period="daily" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Daily</button>
+        <button class="period" data-period="weekly" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Weekly</button>
+        <button class="period" data-period="monthly" style="flex:1;padding:10px 8px;border-radius:10px;background:transparent;border:1px solid var(--border2);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Monthly</button>
       </div>
 
       <!-- Summary card -->
@@ -715,6 +732,20 @@
           </div>
         </div>
 
+        <!-- Stock profit row -->
+        <div id="rptProfitRow" style="display:none;padding:12px;border-radius:10px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.15);margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:var(--sale);">Stock Profit (from tracked products)</div>
+                <div style="font-size:10px;color:var(--muted);">Based on sell price minus cost price</div>
+              </div>
+            </div>
+            <div class="font-display" style="font-size:18px;color:var(--sale);font-weight:700;" id="rptProfit">GHC 0.00</div>
+          </div>
+        </div>
+
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:12px;border-radius:10px;background:var(--card2);">
           <div style="text-align:center;">
             <div class="font-display" style="font-weight:800;font-size:22px;color:var(--sale);" id="rptSaleCount">0</div>
@@ -741,13 +772,93 @@
 
       <!-- Export -->
       <div style="display:flex;gap:10px;padding-bottom:16px;">
-        <button id="exportPdf" style="flex:1;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;">
+        <button id="exportPdf" style="flex:1;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           Export PDF
         </button>
         <button id="shareRpt" style="padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--border2);color:var(--fg);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== STOCK VIEW ==================== -->
+  <div id="stockView" class="view scroll" style="overflow-y:auto;">
+    <div style="padding:16px;display:flex;flex-direction:column;gap:14px;">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div class="font-display" style="font-weight:800;font-size:22px;">Stock Manager</div>
+          <div style="font-size:12px;color:var(--muted);">Add stock, record sales, manage inventory</div>
+        </div>
+        <button id="stockHelpBtn" style="width:34px;height:34px;border-radius:10px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;" title="NLP Help">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
+      </div>
+
+      <!-- NLP Stock Input -->
+      <div class="card card-gold" style="padding:14px;">
+        <div style="font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Natural Language Stock Entry</div>
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <div style="flex:1;position:relative;">
+            <input id="stockInput" class="inp" type="text" placeholder="e.g. Add 50 bottles of Coke at 5 cedis, selling at 8 cedis" autocomplete="off" style="padding-right:44px;">
+            <button id="stockSendBtn" style="position:absolute;right:6px;bottom:6px;width:34px;height:34px;border-radius:9px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+          <button class="mic-btn" id="stockMicBtn" style="width:46px;height:46px;border-radius:13px;background:var(--card);border:1px solid var(--border2);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;" id="stockQuickExamples">
+          <button class="stock-quick" style="font-size:10px;padding:4px 8px;border-radius:6px;background:var(--card2);border:1px solid var(--border2);color:var(--muted);cursor:pointer;white-space:nowrap;">Add 50 Coke at 5 sell 8</button>
+          <button class="stock-quick" style="font-size:10px;padding:4px 8px;border-radius:6px;background:var(--card2);border:1px solid var(--border2);color:var(--muted);cursor:pointer;white-space:nowrap;">Sold 3 Coke</button>
+          <button class="stock-quick" style="font-size:10px;padding:4px 8px;border-radius:6px;background:var(--card2);border:1px solid var(--border2);color:var(--muted);cursor:pointer;white-space:nowrap;">Restock 20 rice cost 120 sell 150</button>
+          <button class="stock-quick" style="font-size:10px;padding:4px 8px;border-radius:6px;background:var(--card2);border:1px solid var(--border2);color:var(--muted);cursor:pointer;white-space:nowrap;">Delete Coke</button>
+        </div>
+      </div>
+
+      <!-- Stock feedback bubble -->
+      <div id="stockFeedback" style="display:none;"></div>
+
+      <!-- Stock Stats Strip -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div class="card" style="padding:12px;text-align:center;">
+          <div class="font-display" style="font-weight:800;font-size:20px;color:var(--sale);" id="stockTotalProducts">0</div>
+          <div style="font-size:10px;color:var(--muted);">Products</div>
+        </div>
+        <div class="card" style="padding:12px;text-align:center;">
+          <div class="font-display" style="font-weight:800;font-size:20px;color:var(--gold);" id="stockTotalValue">GHC 0</div>
+          <div style="font-size:10px;color:var(--muted);">Stock Value</div>
+        </div>
+        <div class="card" style="padding:12px;text-align:center;">
+          <div class="font-display" style="font-weight:800;font-size:20px;color:var(--expense);" id="stockLowCount">0</div>
+          <div style="font-size:10px;color:var(--muted);">Low Stock</div>
+        </div>
+      </div>
+
+      <!-- Profit Breakdown Panel -->
+      <div id="stockProfitBreakdown" class="card" style="display:none;padding:14px;border-left:3px solid var(--sale);"></div>
+
+      <!-- Filter / Search -->
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input id="stockSearch" class="inp" type="text" placeholder="Search products..." style="flex:1;padding:10px 14px;font-size:13px;">
+        <select id="stockFilter" style="padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--border2);color:var(--fg);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;cursor:pointer;">
+          <option value="all">All</option>
+          <option value="low">Low Stock</option>
+          <option value="out">Out of Stock</option>
+        </select>
+      </div>
+
+      <!-- Product List -->
+      <div id="stockList">
+        <div style="text-align:center;padding:40px 20px;">
+          <div style="font-size:36px;margin-bottom:8px;">📦</div>
+          <div class="font-display" style="font-weight:700;font-size:15px;margin-bottom:4px;">No Products Yet</div>
+          <div style="font-size:13px;color:var(--muted);">Type a command above to add your first product</div>
+        </div>
       </div>
 
     </div>
@@ -775,12 +886,12 @@
       <div class="font-display" style="font-weight:700;font-size:18px;margin-bottom:6px;">Set Your PIN</div>
       <div style="font-size:13px;color:var(--muted);margin-bottom:20px;">4-digit PIN to encrypt your data locally.</div>
       <div style="display:flex;justify-content:center;gap:10px;margin-bottom:20px;">
-        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
-        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
-        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
-        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Syne',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
+        <input type="password" maxlength="1" inputmode="numeric" class="pin-inp" style="width:48px;height:52px;border-radius:12px;text-align:center;font-size:22px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;background:var(--card2);color:var(--fg);border:1px solid var(--border2);">
       </div>
-      <button id="savePinBtn" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;">Save PIN</button>
+      <button id="savePinBtn" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;">Save PIN</button>
     </div>
   </div>
 </div>
@@ -793,9 +904,301 @@
       <div class="font-display" style="font-weight:700;font-size:18px;margin-bottom:6px;">Your Store Name</div>
       <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">This will appear on your receipts and reports.</div>
       <input id="shopNameInput" type="text" maxlength="50"
-        style="width:100%;padding:14px;border-radius:12px;background:var(--card2);border:1px solid var(--border2);color:var(--fg);font-family:'Instrument Sans',sans-serif;font-size:15px;margin-bottom:14px;"
+        style="width:100%;padding:14px;border-radius:12px;background:var(--card2);border:1px solid var(--border2);color:var(--fg);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;margin-bottom:14px;"
         placeholder="e.g. Adwoa's Provision Store">
-      <button id="saveShopBtn" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;">Save</button>
+      <button id="saveShopBtn" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#111;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Entry Transaction Context Menu -->
+<div id="txCtxMenu" style="display:none;position:fixed;z-index:95;min-width:190px;">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);">
+    <div id="txCtxLabel" style="padding:12px 16px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12px;color:var(--gold);border-bottom:1px solid var(--border2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px;"></div>
+    <button id="txCtxEdit" style="width:100%;padding:12px 16px;background:none;border:none;color:var(--fg);text-align:left;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:10px;font-family:'Plus Jakarta Sans',sans-serif;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit Entry
+    </button>
+    <button id="txCtxDelete" style="width:100%;padding:12px 16px;background:none;border:none;color:var(--expense);text-align:left;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:10px;border-top:1px solid var(--border2);font-family:'Plus Jakarta Sans',sans-serif;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+      Delete Entry
+    </button>
+  </div>
+</div>
+
+<!-- Edit Transaction Modal -->
+<div id="editTxModal" style="display:none;position:fixed;inset:0;z-index:90;">
+  <div class="modal-bg" id="editTxBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:420px;margin:0 auto;">
+    <div class="modal-sheet" style="padding:22px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;">Edit Entry</div>
+        <button id="closeEditTx" style="width:30px;height:30px;border-radius:8px;background:var(--card2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <input type="hidden" id="editTxId">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Item / Description</div>
+          <input id="editTxItem" class="inp" type="text" style="padding:12px 14px;">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Quantity</div>
+            <input id="editTxQty" class="inp" type="number" min="1" style="padding:12px 14px;">
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Amount (GHC)</div>
+            <input id="editTxPrice" class="inp" type="number" min="0" step="0.01" style="padding:12px 14px;">
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Type</div>
+          <select id="editTxType" style="width:100%;padding:12px 14px;border-radius:12px;background:var(--card2);border:1px solid var(--border2);color:var(--fg);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;">
+            <option value="sale">Sale</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        <div id="editTxStatusRow">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Status</div>
+          <select id="editTxStatus" style="width:100%;padding:12px 14px;border-radius:12px;background:var(--card2);border:1px solid var(--border2);color:var(--fg);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;">
+            <option value="completed">Completed</option>
+            <option value="credit">Credit</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;">
+          <button id="cancelEditTx" style="padding:13px;border-radius:11px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Cancel</button>
+          <button id="saveEditTx" style="padding:13px;border-radius:11px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Transaction Confirm Modal -->
+<div id="deleteTxModal" style="display:none;position:fixed;inset:0;z-index:90;">
+  <div class="modal-bg" id="deleteTxBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:360px;margin:0 auto;">
+    <div class="modal-sheet" style="padding:24px;text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(244,63,94,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+      </div>
+      <div style="font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:6px;">Delete Entry?</div>
+      <div id="deleteTxLabel" style="font-size:13px;color:var(--muted);margin-bottom:20px;">This entry will be permanently removed.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <button id="cancelDeleteTx" style="padding:13px;border-radius:11px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Cancel</button>
+        <button id="confirmDeleteTx" style="padding:13px;border-radius:11px;background:var(--expense);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Long-press Context Menu (stock) -->
+<div id="ctxMenu" style="display:none;position:fixed;z-index:95;min-width:180px;">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);">
+    <div id="ctxProductName" style="padding:12px 16px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;color:var(--gold);border-bottom:1px solid var(--border2);"></div>
+    <button id="ctxEdit" style="width:100%;padding:12px 16px;background:none;border:none;color:var(--fg);text-align:left;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:10px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit Product
+    </button>
+    <button id="ctxDelete" style="width:100%;padding:12px 16px;background:none;border:none;color:var(--expense);text-align:left;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:10px;border-top:1px solid var(--border2);">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      Delete Product
+    </button>
+  </div>
+</div>
+
+<!-- Edit Product Modal -->
+<div id="editProductModal" style="display:none;position:fixed;inset:0;z-index:90;">
+  <div class="modal-bg" id="editProductBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:420px;margin:0 auto;max-height:90vh;overflow-y:auto;">
+    <div class="modal-sheet" style="padding:22px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+        <div class="font-display" style="font-weight:700;font-size:17px;">Edit Product</div>
+        <button id="closeEditProduct" style="width:30px;height:30px;border-radius:8px;background:var(--card2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <input type="hidden" id="editProductId">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Product Name</div>
+          <input id="editProdName" class="inp" type="text" style="padding:12px 14px;">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div>
+            <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Quantity</div>
+            <input id="editProdQty" class="inp" type="number" min="0" style="padding:12px 14px;">
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Low Stock Alert</div>
+            <input id="editProdLow" class="inp" type="number" min="0" style="padding:12px 14px;" placeholder="e.g. 5">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div>
+            <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Cost Price (GHC)</div>
+            <input id="editProdCost" class="inp" type="number" min="0" step="0.01" style="padding:12px 14px;">
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;">Selling Price (GHC)</div>
+            <input id="editProdSell" class="inp" type="number" min="0" step="0.01" style="padding:12px 14px;">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;">
+          <button id="cancelEditProduct" style="padding:13px;border-radius:11px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;">Cancel</button>
+          <button id="saveEditProduct" style="padding:13px;border-radius:11px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div id="deleteConfirmModal" style="display:none;position:fixed;inset:0;z-index:90;">
+  <div class="modal-bg" id="deleteConfirmBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:360px;margin:0 auto;">
+    <div class="modal-sheet" style="padding:24px;text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(244,63,94,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+      </div>
+      <div class="font-display" style="font-weight:700;font-size:17px;margin-bottom:6px;">Delete Product?</div>
+      <div id="deleteProductNameLabel" style="font-size:13px;color:var(--muted);margin-bottom:20px;">This will permanently remove the product and all its stock history.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <button id="cancelDelete" style="padding:13px;border-radius:11px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;">Cancel</button>
+        <button id="confirmDelete" style="padding:13px;border-radius:11px;background:var(--expense);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stock NLP Help Modal -->
+<div id="stockHelpModal" style="display:none;position:fixed;inset:0;z-index:90;">
+  <div class="modal-bg" id="stockHelpBg" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:16px;top:50%;transform:translateY(-50%);max-width:420px;margin:0 auto;max-height:90vh;overflow-y:auto;">
+    <div class="modal-sheet" style="padding:22px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div class="font-display" style="font-weight:700;font-size:17px;">Stock NLP Guide</div>
+        <button id="closeStockHelp" style="width:30px;height:30px;border-radius:8px;background:var(--card2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;font-size:13px;">
+        <div style="padding:12px;border-radius:10px;background:rgba(34,197,94,.07);border-left:3px solid var(--sale);">
+          <div style="font-weight:700;color:var(--sale);margin-bottom:6px;">➕ Adding Stock</div>
+          <div style="color:var(--muted);line-height:1.6;">"Add 50 bottles of Coke at 5 cedis, sell at 8"<br>"Restock 20 bags rice, cost 120, selling 150"<br>"New product: 100 tins of sardines, buy 3, sell 5"</div>
+        </div>
+        <div style="padding:12px;border-radius:10px;background:rgba(212,175,55,.07);border-left:3px solid var(--gold);">
+          <div style="font-weight:700;color:var(--gold);margin-bottom:6px;">🛒 Recording Sales (from stock)</div>
+          <div style="color:var(--muted);line-height:1.6;">"Sold 3 Coke"<br>"I sold 5 bags of rice"<br>"Sell 2 sardines"</div>
+        </div>
+        <div style="padding:12px;border-radius:10px;background:rgba(244,63,94,.07);border-left:3px solid var(--expense);">
+          <div style="font-weight:700;color:var(--expense);margin-bottom:6px;">🗑️ Deleting</div>
+          <div style="color:var(--muted);line-height:1.6;">"Delete Coke"<br>"Remove rice from stock"<br>Or long-press any product card for 2 seconds</div>
+        </div>
+        <div style="padding:12px;border-radius:10px;background:rgba(245,158,11,.07);border-left:3px solid var(--credit);">
+          <div style="font-weight:700;color:var(--credit);margin-bottom:6px;">✏️ Editing</div>
+          <div style="color:var(--muted);line-height:1.6;">"Edit Coke cost price to 6 cedis"<br>"Change rice selling price to 155"<br>Or long-press any card for manual edit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Install Hint Modal (for browsers that don't fire beforeinstallprompt) -->
+<div id="installHintModal" style="display:none;position:fixed;inset:0;z-index:90;align-items:center;justify-content:center;padding:20px;">
+  <div class="modal-bg" id="installHintBg" style="position:absolute;inset:0;"></div>
+  <div style="position:relative;max-width:380px;width:100%;">
+    <div class="modal-sheet" style="padding:24px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:18px;">Install ND Books</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Add to home screen for the full app experience</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        <div style="padding:12px;border-radius:10px;background:var(--card2);border:1px solid var(--border2);">
+          <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:4px;">📱 On iPhone / iPad (Safari)</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">Tap the <strong style="color:var(--fg);">Share</strong> button (↑) at the bottom → scroll down → tap <strong style="color:var(--fg);">"Add to Home Screen"</strong></div>
+        </div>
+        <div style="padding:12px;border-radius:10px;background:var(--card2);border:1px solid var(--border2);">
+          <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:4px;">🤖 On Android (Chrome)</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">Tap the <strong style="color:var(--fg);">three-dot menu</strong> (⋮) → tap <strong style="color:var(--fg);">"Add to Home Screen"</strong> or <strong style="color:var(--fg);">"Install App"</strong></div>
+        </div>
+        <div style="padding:12px;border-radius:10px;background:var(--card2);border:1px solid var(--border2);">
+          <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:4px;">💻 On Desktop (Chrome / Edge)</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">Look for the <strong style="color:var(--fg);">install icon</strong> (⊕) in the address bar on the right side and click it</div>
+        </div>
+      </div>
+      <button id="closeInstallHint" style="width:100%;padding:13px;border-radius:11px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Got it</button>
+    </div>
+  </div>
+</div>
+
+<!-- Data Storage Info Modal -->
+<div id="dataInfoModal" style="display:none;position:fixed;inset:0;z-index:90;align-items:center;justify-content:center;padding:20px;">
+  <div class="modal-bg" id="dataInfoBg" style="position:absolute;inset:0;"></div>
+  <div style="position:relative;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;">
+    <div class="modal-sheet" style="padding:24px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;">How Your Data is Stored</div>
+        <button id="closeDataInfo" style="width:30px;height:30px;border-radius:8px;background:var(--card2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Local storage card -->
+      <div style="padding:16px;border-radius:12px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.15);margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--sale);">Stored Locally on Your Device</div>
+            <div style="font-size:11px;color:var(--muted);">No internet or server required</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--fg);line-height:1.7;">
+          All your transactions, stock records, and settings are saved directly in your browser's built-in database (<strong>IndexedDB</strong>) — the same technology used by apps like Google Docs for offline storage. Your data <strong>never leaves your device</strong> and requires no account or subscription.
+        </div>
+      </div>
+
+      <!-- What is stored -->
+      <div style="padding:14px;border-radius:12px;background:var(--card2);border:1px solid var(--border2);margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">What gets saved</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          ${[
+            ['📝','Transactions','Sales, expenses, and credit entries'],
+            ['📦','Stock records','All products, quantities, and prices'],
+            ['📊','History','Full transaction history for reports'],
+            ['⚙️','Preferences','Theme, store name, and PIN'],
+          ].map(([icon,title,desc]) => `
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:16px;width:24px;text-align:center;">${icon}</span>
+              <div>
+                <div style="font-size:12px;font-weight:600;">${title}</div>
+                <div style="font-size:11px;color:var(--muted);">${desc}</div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- Warnings -->
+      <div style="padding:14px;border-radius:12px;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);margin-bottom:18px;">
+        <div style="font-size:12px;font-weight:700;color:var(--credit);margin-bottom:8px;">⚠️ Important to know</div>
+        <div style="font-size:12px;color:var(--fg);line-height:1.7;">
+          • Data is stored on <strong>this device only</strong> — it won't sync across phones or computers automatically<br>
+          • Clearing your browser's site data or cache <strong>will erase all records</strong><br>
+          • For backup: use the <strong>Export PDF</strong> button in Reports regularly<br>
+          • Installing the app (PWA) helps protect data from accidental browser clears
+        </div>
+      </div>
+
+      <button id="closeDataInfo2" style="width:100%;padding:13px;border-radius:11px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">Understood</button>
     </div>
   </div>
 </div>
@@ -803,6 +1206,8 @@
 <script>
 // ======= STATE =======
 let db, userPin = null, currentPeriod = 'daily', isRecording = false, recognition = null, isLight = false;
+let ctxTargetId = null; // product id for context menu
+let longPressTimer = null;
 
 // ======= CEDI CORRECTIONS =======
 function correctCedisMishearings(text) {
@@ -1017,6 +1422,16 @@ function initDB() {
   db.version(1).stores({
     transactions: '++id, type, item, qty, price, status, timestamp, encrypted'
   });
+  db.version(2).stores({
+    transactions: '++id, type, item, qty, price, status, timestamp, encrypted',
+    products:     '++id, name, nameLower, qty, costPrice, sellPrice, lowStockAlert, updated',
+    stockLog:     '++id, productId, action, qty, note, timestamp'
+  });
+  db.version(3).stores({
+    transactions: '++id, type, item, qty, price, costPrice, profit, source, status, timestamp, encrypted',
+    products:     '++id, name, nameLower, qty, costPrice, sellPrice, lowStockAlert, updated',
+    stockLog:     '++id, productId, action, qty, note, timestamp'
+  });
 }
 
 function enc(text, pin) {
@@ -1037,13 +1452,514 @@ function dec(encoded, pin) {
   } catch { return encoded; }
 }
 
+// ======================================================
+// ============== STOCK NLP PARSER =====================
+// ======================================================
+
+// Detect if text is a stock command (vs a regular sales/expense transaction)
+function isStockCommand(text) {
+  const n = text.toLowerCase();
+  return /\b(add|restock|new product|new stock|received stock|stock up|top up stock|replenish)\b/i.test(n)
+      || /\b(sell(?:ing)?\s+price|cost\s+price|buying\s+price|purchase\s+price|selling\s+at|cost\s+(?:is|at|price)?)\b/i.test(n)
+      || /\b(edit|change|update|modify|correct)\b.*\b(stock|product|price|cost|qty|quantity)\b/i.test(n)
+      || /\b(delete|remove|clear)\b.*\b(stock|product|entry|item)\b/i.test(n)
+      || /\b(delete|remove)\s+(?:the\s+)?[a-z]/i.test(n);
+}
+
+// Detect if text is a stock-sale (reduce stock qty)
+function isStockSaleCommand(text) {
+  const n = text.toLowerCase();
+  // Must have a sale verb AND NOT have cost/sell price markers (those are stock adds)
+  return /\b(sold|sell|i sold|i sell|sold out)\b/i.test(n)
+    && !/\b(sell(?:ing)?\s+price|cost\s+price|at\s+\d|selling\s+at)\b/i.test(n);
+}
+
+function parseStockCommand(raw) {
+  const text = correctCedisMishearings(raw);
+  const n = text.toLowerCase().trim();
+
+  // ---- EDIT commands ----
+  if (/\b(edit|change|update|modify|correct|set)\b/i.test(n)) {
+    const result = { action: 'edit', productName: null, field: null, value: null, raw: text };
+    // Extract product name: "edit [product]..." or "change [product]'s ..."
+    const prodM = n.match(/\b(?:edit|change|update|modify|correct|set)\s+(?:the\s+)?(?:(?:yesterday|today|monday|tuesday|wednesday|thursday|friday|saturday|sunday)['\s]*s?\s+)?([a-z][a-z0-9\s]+?)(?:\s+(?:cost|sell|selling|price|qty|quantity|stock|entry|to|from|should|must|\d))/i);
+    if (prodM) result.productName = prodM[1].trim();
+    // field
+    if (/cost\s*price|buying\s*price|purchase\s*price/.test(n)) result.field = 'costPrice';
+    else if (/sell(?:ing)?\s*price/.test(n)) result.field = 'sellPrice';
+    else if (/\b(qty|quantity|stock|amount)\b/.test(n)) result.field = 'qty';
+    // value
+    const valM = n.match(/(?:to|should be|is|was|at|be|instead of \d+[^,\n]*?(?:to|be)\s+)?(\d+(?:\.\d+)?)\s*(?:cedis?|ghc|ghs)?(?:\s|$)/);
+    if (valM) result.value = parseFloat(valM[1]);
+    return result;
+  }
+
+  // ---- DELETE commands ----
+  if (/\b(delete|remove|clear)\b/i.test(n)) {
+    const result = { action: 'delete', productName: null, raw: text };
+    const delM = n.match(/\b(?:delete|remove|clear)\s+(?:the\s+)?(?:stock\s+of\s+|product\s+)?(?:entry\s+(?:for|of)\s+)?([a-z][a-z0-9\s]+?)(?:\s+(?:from|i added|entry|stock|product|$))/i)
+               || n.match(/\b(?:delete|remove|clear)\s+(?:the\s+)?([a-z][a-z0-9\s]+)/i);
+    if (delM) result.productName = delM[1].trim().replace(/\s+(from|stock|product|entry|i|added|this|today|morning|yesterday)$/i,'').trim();
+    return result;
+  }
+
+  // ---- STOCK SALE commands ----
+  if (isStockSaleCommand(n)) {
+    const result = { action: 'stockSale', productName: null, qty: 1, raw: text };
+    const { qty, qtyStr } = extractQty(n);
+    result.qty = qty;
+    // Item: remove sale verb + qty string
+    let clean = n
+      .replace(/^(?:i\s+)?(?:sold|sell|i\s+sold|i\s+sell)\s+/i,'')
+      .replace(/\b(?:today|this morning|this afternoon|this evening|now)\b/ig,'')
+      .trim();
+    if (qtyStr) clean = clean.replace(qtyStr.toLowerCase(),'').trim();
+    clean = clean.replace(/^\d+\s+/,'').replace(/\b(?:of|the|some)\b\s*/gi,'').trim();
+    result.productName = clean.replace(/\b\w/g,c=>c.toUpperCase()).trim() || 'Unknown';
+    return result;
+  }
+
+  // ---- ADD STOCK commands ----
+  const result = { action: 'addStock', productName: null, qty: 0, costPrice: 0, sellPrice: 0, raw: text };
+
+  // Qty
+  const { qty, qtyStr } = extractQty(n);
+  result.qty = qty;
+
+  // Cost price: "cost 120" / "cost price 120" / "bought at 5" / "at 5 cedis" (before sell/selling)
+  const costM = n.match(/\b(?:cost(?:\s+price)?|bought\s+(?:at|for)|purchase\s+price|buying\s+price|cp)\s*[:=]?\s*(\d+(?:[.,]\d+)?)\b/i)
+             || n.match(/\bat\s+(\d+(?:[.,]\d+)?)\s*(?:cedis?|ghc|ghs)?\s+(?:and\s+)?(?:sell|selling)/i);
+  if (costM) result.costPrice = parseFloat(costM[1].replace(',','.'));
+
+  // Sell price: "sell 8" / "selling price 8" / "selling at 8" / "sp 8"
+  const sellM = n.match(/\b(?:sell(?:ing)?(?:\s+(?:price|at))?|sp|retail)\s*[:=]?\s*(\d+(?:[.,]\d+)?)\b/i);
+  if (sellM) result.sellPrice = parseFloat(sellM[1].replace(',','.'));
+
+  // Product name: strip verbs, numbers, price phrases, units
+  let clean = n
+    .replace(/^(?:add|restock|new\s+product|new\s+stock|stock\s+up|top\s+up|received)\s+/i,'')
+    .replace(new RegExp(`\\b\\d+(?:[.,]\\d+)?\\s*${UNIT_PAT}(?:\\s+of)?`,'ig'),'')
+    .replace(/\b\d+(?:[.,]\d+)?\s*(?:ghc|ghs|cedis?)\b/ig,'')
+    .replace(/\b(?:cost(?:\s+price)?|bought\s+(?:at|for)|purchase\s+price|cp|sell(?:ing)?(?:\s+(?:price|at))?|sp|retail|at|for)\s*[:=]?\s*\d+(?:[.,]\d+)?/ig,'')
+    .replace(/\b(?:and|,|;)\b/g,' ')
+    .replace(/\s{2,}/g,' ').trim()
+    // Remove leading digits (leftover qty)
+    .replace(/^\d+\s*/,'')
+    // Remove trailing noise
+    .replace(/\s+(?:bought|at|for|cost|sell|selling|price|cedis?|ghc|ghs)\s*$/i,'').trim();
+
+  result.productName = clean.replace(/\b\w/g,c=>c.toUpperCase()).trim() || 'Product';
+  return result;
+}
+
+// ======================================================
+// ============== STOCK DATABASE OPERATIONS =============
+// ======================================================
+
+async function getAllProducts() {
+  if (!db) return [];
+  return await db.products.toArray();
+}
+
+async function findProduct(name) {
+  if (!db) return null;
+  const lower = name.toLowerCase().trim();
+  // Exact match first
+  let p = await db.products.where('nameLower').equals(lower).first();
+  if (p) return p;
+  // Fuzzy: name contains search term or search term contains name
+  const all = await db.products.toArray();
+  return all.find(x => x.nameLower.includes(lower) || lower.includes(x.nameLower)) || null;
+}
+
+async function addOrRestockProduct(cmd) {
+  if (!db) return { ok: false, msg: 'Database not ready' };
+  const existing = await findProduct(cmd.productName);
+  if (existing) {
+    // Restock: add qty, update prices if provided
+    const updates = {
+      qty: existing.qty + cmd.qty,
+      updated: new Date().toISOString()
+    };
+    if (cmd.costPrice > 0) updates.costPrice = cmd.costPrice;
+    if (cmd.sellPrice > 0) updates.sellPrice = cmd.sellPrice;
+    await db.products.update(existing.id, updates);
+    await db.stockLog.add({ productId: existing.id, action: 'restock', qty: cmd.qty, note: cmd.raw, timestamp: new Date().toISOString() });
+    return { ok: true, action: 'restocked', product: { ...existing, ...updates }, added: cmd.qty };
+  } else {
+    const id = await db.products.add({
+      name: cmd.productName,
+      nameLower: cmd.productName.toLowerCase(),
+      qty: cmd.qty,
+      costPrice: cmd.costPrice,
+      sellPrice: cmd.sellPrice,
+      lowStockAlert: 5,
+      updated: new Date().toISOString()
+    });
+    const product = await db.products.get(id);
+    await db.stockLog.add({ productId: id, action: 'add', qty: cmd.qty, note: cmd.raw, timestamp: new Date().toISOString() });
+    return { ok: true, action: 'added', product, added: cmd.qty };
+  }
+}
+
+async function recordStockSale(cmd) {
+  if (!db) return { ok: false, msg: 'Database not ready' };
+  const product = await findProduct(cmd.productName);
+  if (!product) return { ok: false, msg: `Product "${cmd.productName}" not found in stock. Add it first.` };
+  if (product.qty < cmd.qty) return { ok: false, msg: `Only ${product.qty} ${product.name} left in stock. Cannot sell ${cmd.qty}.` };
+
+  const newQty = product.qty - cmd.qty;
+  await db.products.update(product.id, { qty: newQty, updated: new Date().toISOString() });
+
+  const saleAmount = cmd.qty * product.sellPrice;
+  const profit = cmd.qty * (product.sellPrice - product.costPrice);
+
+  // Also record in transactions with profit info
+  await db.transactions.add({
+    type: 'sale', status: 'completed',
+    item: product.name, qty: cmd.qty,
+    price: String(saleAmount),
+    costPrice: product.costPrice,
+    profit: profit,
+    source: 'stock',
+    encrypted: false,
+    timestamp: new Date().toISOString()
+  });
+
+  await db.stockLog.add({ productId: product.id, action: 'sale', qty: -cmd.qty, note: cmd.raw, timestamp: new Date().toISOString() });
+  return { ok: true, product: { ...product, qty: newQty }, sold: cmd.qty, saleAmount, profit };
+}
+
+async function editProductByCmd(cmd) {
+  if (!db) return { ok: false, msg: 'No edit target identified' };
+  const product = await findProduct(cmd.productName || '');
+  if (!product) return { ok: false, msg: `Product "${cmd.productName}" not found.` };
+  if (!cmd.field || cmd.value === null) return { ok: false, msg: 'Could not determine what to change. Try: "Edit Coke cost price to 6"' };
+
+  const updates = { [cmd.field]: cmd.value, updated: new Date().toISOString() };
+  await db.products.update(product.id, updates);
+  await db.stockLog.add({ productId: product.id, action: 'edit', qty: 0, note: `${cmd.field} → ${cmd.value}`, timestamp: new Date().toISOString() });
+  return { ok: true, product: { ...product, ...updates }, field: cmd.field, value: cmd.value };
+}
+
+async function deleteProductByCmd(cmd) {
+  if (!db) return { ok: false, msg: 'No product name identified' };
+  const product = await findProduct(cmd.productName || '');
+  if (!product) return { ok: false, msg: `Product "${cmd.productName}" not found.` };
+  await db.products.delete(product.id);
+  await db.stockLog.where('productId').equals(product.id).delete();
+  return { ok: true, name: product.name };
+}
+
+async function deleteProductById(id) {
+  if (!db) return;
+  await db.products.delete(id);
+  await db.stockLog.where('productId').equals(id).delete();
+}
+
+async function saveProductEdits(id, name, qty, costPrice, sellPrice, lowStockAlert) {
+  if (!db) return;
+  await db.products.update(id, {
+    name, nameLower: name.toLowerCase(),
+    qty: parseInt(qty) || 0,
+    costPrice: parseFloat(costPrice) || 0,
+    sellPrice: parseFloat(sellPrice) || 0,
+    lowStockAlert: parseInt(lowStockAlert) || 5,
+    updated: new Date().toISOString()
+  });
+}
+
+// ======================================================
+// ============== STOCK UI RENDERING ====================
+// ======================================================
+
+function renderProfitBreakdown(products) {
+  const el = document.getElementById('stockProfitBreakdown');
+  if (!el) return;
+  const withProfit = products.filter(p => (p.totalProfit || 0) > 0);
+  if (!withProfit.length) {
+    el.style.display = 'none';
+    return;
+  }
+  const total = withProfit.reduce((a, p) => a + p.totalProfit, 0);
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--sale);text-transform:uppercase;letter-spacing:.5px;">📈 Profit from Tracked Products</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Cumulative profit across all sales</div>
+      </div>
+      <div class="font-display" style="font-size:20px;color:var(--sale);">GHC ${total.toFixed(2)}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      ${withProfit.sort((a,b) => b.totalProfit - a.totalProfit).map(p => {
+        const pct = total > 0 ? ((p.totalProfit / total) * 100).toFixed(0) : 0;
+        return `<div style="display:flex;align-items:center;gap:10px;">
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+              <span style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</span>
+              <span style="font-size:12px;font-weight:700;color:var(--sale);flex-shrink:0;margin-left:8px;">GHC ${p.totalProfit.toFixed(2)}</span>
+            </div>
+            <div style="height:5px;background:var(--card2);border-radius:3px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:var(--sale);border-radius:3px;transition:width .5s;"></div>
+            </div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px;">${pct}% of total · GHC ${(p.sellPrice - p.costPrice).toFixed(2)}/unit margin</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+async function renderStock(filter = 'all', search = '') {
+  const products = await getAllProducts();
+  const el = document.getElementById('stockList');
+
+  // Accumulate profit per product from transactions
+  const allTx = db ? await db.transactions.toArray() : [];
+  const profitByProduct = {};
+  for (const t of allTx) {
+    if (t.source === 'stock' && t.type === 'sale' && (t.profit || 0) > 0) {
+      const name = t.encrypted && userPin ? dec(t.item, userPin) : t.item;
+      const key = name.toLowerCase();
+      profitByProduct[key] = (profitByProduct[key] || 0) + (t.profit || 0);
+    }
+  }
+
+  // Attach accumulated profit to each product
+  const productsWithProfit = products.map(p => ({
+    ...p,
+    totalProfit: profitByProduct[p.nameLower] || profitByProduct[p.name.toLowerCase()] || 0
+  }));
+
+  let filtered = productsWithProfit;
+  if (search) filtered = filtered.filter(p => p.nameLower.includes(search.toLowerCase()));
+  if (filter === 'low')  filtered = filtered.filter(p => p.qty > 0 && p.qty <= (p.lowStockAlert || 5));
+  if (filter === 'out')  filtered = filtered.filter(p => p.qty <= 0);
+
+  // Stats
+  document.getElementById('stockTotalProducts').textContent = products.length;
+  const totalVal = products.reduce((a,p) => a + p.qty * p.costPrice, 0);
+  document.getElementById('stockTotalValue').textContent = 'GHC ' + totalVal.toFixed(0);
+  const lowCount = products.filter(p => p.qty > 0 && p.qty <= (p.lowStockAlert || 5)).length
+                 + products.filter(p => p.qty <= 0).length;
+  document.getElementById('stockLowCount').textContent = lowCount;
+
+  // Render profit breakdown panel
+  renderProfitBreakdown(productsWithProfit);
+
+  if (!filtered.length) {
+    el.innerHTML = `<div style="text-align:center;padding:32px 20px;">
+      <div style="font-size:32px;margin-bottom:8px;">${search ? '🔍' : '📦'}</div>
+      <div style="font-size:13px;color:var(--muted);">${search ? 'No products match your search' : filter === 'low' ? 'No low-stock products' : filter === 'out' ? 'No out-of-stock products' : 'No products yet'}</div>
+    </div>`;
+    return;
+  }
+
+  el.innerHTML = filtered.map(p => {
+    const profitPer = p.sellPrice - p.costPrice;
+    const margin = p.costPrice > 0 ? ((profitPer / p.costPrice) * 100).toFixed(0) : 0;
+    const isOut = p.qty <= 0;
+    const isLow = !isOut && p.qty <= (p.lowStockAlert || 5);
+    const statusColor = isOut ? 'var(--expense)' : isLow ? 'var(--credit)' : 'var(--sale)';
+    const statusLabel = isOut ? 'Out of Stock' : isLow ? `Low (${p.qty})` : p.qty;
+    const stockBarPct = Math.min(100, (p.qty / Math.max(p.qty + 10, 20)) * 100);
+    const totalProfit = (p.totalProfit || 0);
+    const hasProfitHistory = totalProfit > 0;
+
+    return `<div class="product-card card" data-id="${p.id}" style="padding:14px;margin-bottom:10px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:all .2s;position:relative;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <div class="font-display" style="font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div>
+            <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:${isOut?'rgba(244,63,94,.12)':isLow?'rgba(245,158,11,.12)':'rgba(34,197,94,.1)'};color:${statusColor};flex-shrink:0;">${statusLabel}</span>
+          </div>
+          <div style="display:flex;gap:12px;font-size:11px;color:var(--muted);margin-bottom:8px;flex-wrap:wrap;">
+            <span>Cost: <strong style="color:var(--fg);">GHC ${p.costPrice.toFixed(2)}</strong></span>
+            <span>Sell: <strong style="color:var(--gold);">GHC ${p.sellPrice.toFixed(2)}</strong></span>
+            <span>Margin: <strong style="color:var(--sale);">${margin}%</strong></span>
+          </div>
+          <div style="height:4px;background:var(--card2);border-radius:2px;overflow:hidden;">
+            <div style="height:100%;width:${stockBarPct}%;background:${statusColor};border-radius:2px;transition:width .5s;"></div>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div>
+              <div class="font-display" style="font-size:24px;color:${statusColor};line-height:1;">${p.qty}</div>
+              <div style="font-size:10px;color:var(--muted);">units</div>
+            </div>
+            <!-- Three-dot hint -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" style="opacity:.35;margin-top:-4px;" title="Long-press or right-click"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
+          </div>
+          <div style="font-size:11px;color:var(--sale);font-weight:600;">+GHC ${profitPer.toFixed(2)}/unit</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid var(--border2);">
+        <div style="font-size:10px;color:var(--muted);">
+          Value: <strong style="color:var(--fg);">GHC ${(p.qty * p.costPrice).toFixed(2)}</strong>
+          · Potential: <strong style="color:var(--gold);">GHC ${(p.qty * p.sellPrice).toFixed(2)}</strong>
+        </div>
+        ${hasProfitHistory ? `<div style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+          <span style="font-size:10px;font-weight:700;color:var(--sale);">Total profit: GHC ${totalProfit.toFixed(2)}</span>
+        </div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Attach long-press listeners
+  document.querySelectorAll('.product-card').forEach(card => {
+    attachLongPress(card);
+  });
+}
+
+function attachLongPress(card) {
+  const id = parseInt(card.dataset.id);
+
+  const startPress = (e) => {
+    if (e.button === 2) return; // right-click handled separately
+    longPressTimer = setTimeout(() => {
+      card.style.transform = '';
+      card.style.opacity = '';
+      openCtxMenu(id, e);
+    }, 700);
+    card.style.transform = 'scale(0.98)';
+    card.style.opacity = '0.85';
+    card.style.transition = 'all .15s';
+  };
+
+  const cancelPress = () => {
+    clearTimeout(longPressTimer);
+    card.style.transform = '';
+    card.style.opacity = '';
+  };
+
+  card.addEventListener('mousedown', startPress);
+  card.addEventListener('touchstart', startPress, { passive: true });
+  card.addEventListener('mouseup', cancelPress);
+  card.addEventListener('mouseleave', cancelPress);
+  card.addEventListener('touchend', cancelPress);
+  card.addEventListener('touchcancel', cancelPress);
+
+  // Right-click support
+  card.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    cancelPress();
+    openCtxMenu(id, e);
+  });
+}
+
+async function openCtxMenu(id, e) {
+  ctxTargetId = id;
+  const product = await db.products.get(id);
+  if (!product) return;
+
+  const menu = document.getElementById('ctxMenu');
+  document.getElementById('ctxProductName').textContent = product.name;
+  menu.style.display = 'block';
+
+  // Position near touch/click
+  const x = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : window.innerWidth / 2);
+  const y = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : window.innerHeight / 2);
+  const mw = 200, mh = 130;
+  menu.style.left = Math.min(x, window.innerWidth - mw - 10) + 'px';
+  menu.style.top  = Math.min(y, window.innerHeight - mh - 10) + 'px';
+
+  // Haptic if available
+  if (navigator.vibrate) navigator.vibrate(30);
+}
+
+function closeCtxMenu() {
+  document.getElementById('ctxMenu').style.display = 'none';
+  ctxTargetId = null;
+}
+
+async function openEditModal(id) {
+  const p = await db.products.get(id);
+  if (!p) return;
+  document.getElementById('editProductId').value = id;
+  document.getElementById('editProdName').value  = p.name;
+  document.getElementById('editProdQty').value   = p.qty;
+  document.getElementById('editProdCost').value  = p.costPrice;
+  document.getElementById('editProdSell').value  = p.sellPrice;
+  document.getElementById('editProdLow').value   = p.lowStockAlert || 5;
+  document.getElementById('editProductModal').style.display = 'flex';
+}
+
+async function openDeleteModal(id) {
+  const p = await db.products.get(id);
+  if (!p) return;
+  document.getElementById('deleteProductNameLabel').textContent = `Delete "${p.name}"? This cannot be undone.`;
+  document.getElementById('deleteConfirmModal').style.display = 'flex';
+  // Store id temporarily on the confirm button
+  document.getElementById('confirmDelete').dataset.id = id;
+}
+
+function showStockFeedback(html, type = 'success') {
+  const el = document.getElementById('stockFeedback');
+  const colors = { success: 'rgba(34,197,94,.12)', error: 'rgba(244,63,94,.12)', info: 'rgba(212,175,55,.1)' };
+  const borders = { success: 'var(--sale)', error: 'var(--expense)', info: 'var(--gold)' };
+  el.style.cssText = `display:block;padding:12px 14px;border-radius:12px;background:${colors[type]};border-left:3px solid ${borders[type]};font-size:13px;line-height:1.5;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);`;
+  el.innerHTML = html;
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+// ======= PROCESS STOCK INPUT =======
+async function processStockInput(raw) {
+  if (!raw.trim()) return;
+  const cmd = parseStockCommand(raw);
+  document.getElementById('stockInput').value = '';
+
+  if (cmd.action === 'addStock') {
+    if (!cmd.productName || cmd.productName === 'Product') {
+      showStockFeedback('⚠️ Could not identify product name. Try: <em>"Add 50 bottles of Coke at 5 cedis, sell at 8"</em>', 'error'); return;
+    }
+    const r = await addOrRestockProduct(cmd);
+    if (r.ok) {
+      const verb = r.action === 'restocked' ? 'Restocked' : 'Added';
+      showStockFeedback(`✅ <strong>${verb} ${r.added} × ${r.product.name}</strong><br>
+        Cost: GHC ${r.product.costPrice.toFixed(2)} · Sell: GHC ${r.product.sellPrice.toFixed(2)} · Total in stock: <strong>${r.product.qty}</strong>`, 'success');
+    }
+  } else if (cmd.action === 'stockSale') {
+    const r = await recordStockSale(cmd);
+    if (r.ok) {
+      const warn = r.product.qty <= (r.product.lowStockAlert || 5) ? ` ⚠️ Low stock: ${r.product.qty} left!` : '';
+      showStockFeedback(`🛒 <strong>Sold ${r.sold} × ${r.product.name}</strong> for GHC ${r.saleAmount.toFixed(2)}<br>
+        Profit: <strong style="color:var(--sale)">GHC ${r.profit.toFixed(2)}</strong> · Remaining: ${r.product.qty} units${warn}`, 'success');
+      await updateAll();
+      await refreshChat(); // show in Entry tab too
+    } else showStockFeedback(`❌ ${r.msg}`, 'error');
+  } else if (cmd.action === 'edit') {
+    const r = await editProductByCmd(cmd);
+    if (r.ok) {
+      const fieldLabel = { costPrice: 'Cost Price', sellPrice: 'Selling Price', qty: 'Quantity' }[r.field] || r.field;
+      showStockFeedback(`✏️ <strong>${r.product.name}</strong> updated: ${fieldLabel} → <strong>GHC ${r.value}</strong>`, 'info');
+    } else showStockFeedback(`❌ ${r.msg}`, 'error');
+  } else if (cmd.action === 'delete') {
+    const r = await deleteProductByCmd(cmd);
+    if (r.ok) showStockFeedback(`🗑️ <strong>${r.name}</strong> removed from stock.`, 'info');
+    else showStockFeedback(`❌ ${r.msg}`, 'error');
+  }
+
+  await renderStock(
+    document.getElementById('stockFilter').value,
+    document.getElementById('stockSearch').value
+  );
+}
+
 // ======= DB OPS =======
 async function saveTx(tx) {
   if (!db) return null;
   return await db.transactions.add({
-    ...tx,
+    type: tx.type,
+    status: tx.status || 'completed',
     item: userPin ? enc(tx.item, userPin) : tx.item,
+    qty: tx.qty,
     price: userPin ? enc(String(tx.price), userPin) : String(tx.price),
+    costPrice: tx.costPrice || 0,
+    profit: tx.profit || 0,
+    source: tx.source || 'entry',   // 'entry' | 'stock'
     encrypted: !!userPin,
     timestamp: new Date().toISOString()
   });
@@ -1060,20 +1976,91 @@ async function getTxByPeriod(period) {
   return rows.map(t => ({
     ...t,
     item: userPin && t.encrypted ? dec(t.item, userPin) : t.item,
-    price: parseFloat(userPin && t.encrypted ? dec(t.price, userPin) : t.price) || 0
+    price: parseFloat(userPin && t.encrypted ? dec(t.price, userPin) : t.price) || 0,
+    profit: t.profit || 0,
+    costPrice: t.costPrice || 0,
+    source: t.source || 'entry'
   }));
+}
+
+// Get today's transactions for the chat (all types including stock)
+async function getAllTxToday() {
+  return await getTxByPeriod('daily');
+}
+
+// Update a transaction record — auto-reconciles stock if it's a stock-sale
+async function updateTx(id, fields) {
+  if (!db) return;
+  // Fetch the original transaction to detect stock reconciliation needs
+  const original = await db.transactions.get(id);
+  const updates = { ...fields };
+  if (userPin && fields.item) updates.item = enc(fields.item, userPin);
+  if (userPin && fields.price !== undefined) updates.price = enc(String(fields.price), userPin);
+  else if (fields.price !== undefined) updates.price = String(fields.price);
+  await db.transactions.update(id, updates);
+
+  // If it was a stock sale, reconcile the product's qty
+  if (original && original.source === 'stock' && original.type === 'sale') {
+    const oldQty  = original.qty || 0;
+    const newQty  = fields.qty !== undefined ? (fields.qty || 0) : oldQty;
+    const qtyDiff = oldQty - newQty;  // positive = returned to stock, negative = more sold
+    if (qtyDiff !== 0) {
+      const itemName = original.encrypted && userPin ? dec(original.item, userPin) : original.item;
+      const product  = await findProduct(itemName);
+      if (product) {
+        const newStock = Math.max(0, product.qty + qtyDiff);
+        await db.products.update(product.id, { qty: newStock, updated: new Date().toISOString() });
+        await db.stockLog.add({
+          productId: product.id, action: 'edit',
+          qty: qtyDiff,
+          note: `Entry corrected: qty changed ${oldQty}→${newQty} (${qtyDiff > 0 ? '+' : ''}${qtyDiff} returned)`,
+          timestamp: new Date().toISOString()
+        });
+      }
+    }
+    // Recalculate profit if qty changed
+    if (qtyDiff !== 0) {
+      const product = await findProduct(original.encrypted && userPin ? dec(original.item, userPin) : original.item);
+      if (product) {
+        const newProfit = (fields.qty || 0) * (product.sellPrice - product.costPrice);
+        await db.transactions.update(id, { profit: Math.max(0, newProfit) });
+      }
+    }
+  }
+}
+
+// Delete a transaction — returns qty to stock if it was a stock sale
+async function deleteTx(id) {
+  if (!db) return;
+  const tx = await db.transactions.get(id);
+  if (tx && tx.source === 'stock' && tx.type === 'sale') {
+    const itemName = tx.encrypted && userPin ? dec(tx.item, userPin) : tx.item;
+    const product  = await findProduct(itemName);
+    if (product) {
+      const restored = product.qty + (tx.qty || 0);
+      await db.products.update(product.id, { qty: restored, updated: new Date().toISOString() });
+      await db.stockLog.add({
+        productId: product.id, action: 'edit',
+        qty: tx.qty || 0,
+        note: `Sale entry deleted — ${tx.qty} unit(s) returned to stock`,
+        timestamp: new Date().toISOString()
+      });
+    }
+  }
+  await db.transactions.delete(id);
 }
 
 async function getSummary(period) {
   const txs = await getTxByPeriod(period);
-  let sales=0,expenses=0,credit=0,sc=0,ec=0,cc=0;
+  let sales=0,expenses=0,credit=0,sc=0,ec=0,cc=0,totalProfit=0;
   for (const t of txs) {
     if (t.type==='sale') {
       if (t.status==='credit') { credit+=t.price; cc++; }
       else { sales+=t.price; sc++; }
+      totalProfit += (t.profit || 0);
     } else if (t.type==='expense') { expenses+=t.price; ec++; }
   }
-  return { sales,expenses,credit,balance:sales-expenses,saleCount:sc,expenseCount:ec,creditCount:cc,transactions:txs };
+  return { sales,expenses,credit,balance:sales-expenses,totalProfit,saleCount:sc,expenseCount:ec,creditCount:cc,transactions:txs };
 }
 
 async function getHourly() {
@@ -1233,32 +2220,48 @@ async function updateReports() {
   document.getElementById('rptExpCount').textContent  = s.expenseCount;
   document.getElementById('rptCredCount').textContent = s.creditCount;
 
+  // Show profit row only if there are any tracked-profit sales
+  const profitRow = document.getElementById('rptProfitRow');
+  if (s.totalProfit > 0) {
+    profitRow.style.display = 'block';
+    document.getElementById('rptProfit').textContent = fCur(s.totalProfit);
+  } else {
+    profitRow.style.display = 'none';
+  }
+
   const el = document.getElementById('rptTxList');
   if (!s.transactions.length) { el.innerHTML='<div style="font-size:13px;text-align:center;padding:16px 0;color:var(--muted);">No transactions in this period</div>'; return; }
 
   el.innerHTML = [...s.transactions].reverse().map(t => {
     const c = t.type==='sale'?(t.status==='credit'?'var(--credit)':'var(--sale)'):'var(--expense)';
-    const lbl = t.type==='sale'?(t.status==='credit'?'CREDIT':'SALE'):'EXPENSE';
+    const lbl = t.source==='stock' ? 'STOCK SALE' : t.type==='sale'?(t.status==='credit'?'CREDIT':'SALE'):'EXPENSE';
     const d = new Date(t.timestamp);
-    return `<div class="tx-row">
-      <div style="display:flex;align-items:center;gap:10px;min-width:0;">
-        <div style="width:38px;height:38px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-size:13px;">${t.qty}</div>
-        <div style="min-width:0;">
-          <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.item}</div>
-          <div style="font-size:10px;color:var(--muted);">${fShort(d)} at ${fTime(d)}</div>
+    const hasProfit = (t.profit || 0) > 0;
+    return `<div class="tx-row" style="flex-direction:column;align-items:stretch;gap:6px;padding:10px 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-size:13px;">${t.qty}</div>
+          <div style="min-width:0;">
+            <div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.item}</div>
+            <div style="font-size:10px;color:var(--muted);">${fShort(d)} · ${fTime(d)}</div>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;margin-left:8px;">
+          <div style="color:${c};font-weight:700;font-size:14px;font-family:'DM Serif Display',serif;">${fCur(t.price)}</div>
+          <div style="font-size:10px;color:${c};font-weight:600;">${lbl}</div>
         </div>
       </div>
-      <div style="text-align:right;flex-shrink:0;margin-left:8px;">
-        <div style="color:${c};font-weight:600;font-size:13px;">${fCur(t.price)}</div>
-        <div style="font-size:10px;color:${c};">${lbl}</div>
-      </div>
+      ${hasProfit ? `<div style="display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:8px;background:rgba(34,197,94,.08);width:fit-content;margin-left:48px;">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+        <span style="font-size:11px;font-weight:700;color:var(--sale);">Profit: GHC ${(t.profit).toFixed(2)}</span>
+      </div>` : ''}
     </div>`;
   }).join('');
 }
 
 // ======= CHAT =======
 async function loadChat() {
-  const txs = await getTxByPeriod('daily');
+  const txs = await getAllTxToday(); // includes stock sales
   const msgs = document.getElementById('chatMessages');
   const welcome = document.getElementById('welcomeMsg');
   msgs.innerHTML = '';
@@ -1268,29 +2271,138 @@ async function loadChat() {
   txs.forEach(t => renderBubble(t, false));
 }
 
+// Refresh just the chat (re-render from DB)
+async function refreshChat() {
+  await loadChat();
+}
+
 function renderBubble(tx, isNew=true) {
   const msgs = document.getElementById('chatMessages');
   document.getElementById('welcomeMsg').style.display = 'none';
 
-  const cls  = tx.type==='sale'?(tx.status==='credit'?'b-credit':'b-sale'):'b-expense';
-  const color= tx.type==='sale'?(tx.status==='credit'?'var(--credit)':'var(--sale)'):'var(--expense)';
-  const lbl  = tx.type==='sale'?(tx.status==='credit'?'Sale – Credit':'Sale'):'Expense';
-  const time = isNew ? fTime(new Date()) : fTime(new Date(tx.timestamp));
+  const isStock = tx.source === 'stock';
+  const cls   = tx.type==='sale' ? (tx.status==='credit' ? 'b-credit' : 'b-sale') : 'b-expense';
+  const color  = tx.type==='sale' ? (tx.status==='credit' ? 'var(--credit)' : 'var(--sale)') : 'var(--expense)';
+  const lbl    = isStock ? '📦 Stock Sale'
+               : tx.type==='sale' ? (tx.status==='credit' ? 'Sale — Credit' : 'Sale') : 'Expense';
+  const time   = isNew ? fTime(new Date()) : fTime(new Date(tx.timestamp));
+  const profit = tx.profit || 0;
+  const hasProfit = profit > 0;
 
   const el = document.createElement('div');
   el.className = `bubble ${cls}`;
+  el.dataset.txId = tx.id || '';
+  el.style.cssText = 'cursor:pointer;user-select:none;-webkit-user-select:none;position:relative;';
+
+  // Profit badge HTML
+  const profitBadge = hasProfit
+    ? `<div style="display:inline-flex;align-items:center;gap:4px;margin-top:5px;padding:3px 8px;border-radius:999px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+        <span style="font-size:11px;font-weight:700;color:var(--sale);">Profit: GHC ${profit.toFixed(2)}</span>
+       </div>`
+    : '';
+
   el.innerHTML = `
-    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:${color};margin-bottom:6px;">${lbl}</div>
-    <div style="font-size:13px;margin-bottom:6px;">${tx.qty}× ${tx.item}</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <span class="font-display" style="font-weight:700;font-size:18px;">${fCur(tx.price)}</span>
-      <span style="font-size:10px;color:var(--muted);">${time}</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:${color};">${lbl}</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="font-size:10px;color:var(--muted);">${time}</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" style="opacity:.4;" title="Long-press or right-click to edit/delete"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+      </div>
     </div>
-    <button class="receipt-btn" data-id="${tx.id||''}">Generate Receipt</button>
+    <div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--fg);">${tx.qty}× ${tx.item}</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:8px;">
+      <div>
+        <div style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--fg);line-height:1.05;letter-spacing:-.5px;">${fCur(tx.price)}</div>
+        ${profitBadge}
+      </div>
+      <button class="receipt-btn" style="margin-top:0;flex-shrink:0;width:auto;padding:5px 11px;font-size:11px;font-weight:600;">Receipt</button>
+    </div>
   `;
+
   msgs.appendChild(el);
-  if (isNew) document.getElementById('chatContainer').scrollTop = 99999;
-  el.querySelector('.receipt-btn').addEventListener('click', () => showReceipt(tx));
+  if (isNew) {
+    el.style.animation = 'popIn .3s cubic-bezier(.34,1.56,.64,1) forwards';
+    document.getElementById('chatContainer').scrollTop = 99999;
+  }
+
+  el.querySelector('.receipt-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    showReceipt(tx);
+  });
+
+  // Long-press (700ms) — also works on mobile
+  let lpTimer = null;
+  const startLP = (e) => {
+    if (e.target.closest('.receipt-btn')) return; // don't trigger on receipt btn
+    lpTimer = setTimeout(() => {
+      el.style.opacity = '';
+      el.style.transform = '';
+      openTxCtxMenu(tx, e);
+    }, 700);
+    el.style.opacity = '0.8';
+    el.style.transform = 'scale(0.98)';
+    el.style.transition = 'all .15s';
+  };
+  const cancelLP = () => {
+    clearTimeout(lpTimer);
+    el.style.opacity = '';
+    el.style.transform = '';
+  };
+  el.addEventListener('mousedown', startLP);
+  el.addEventListener('touchstart', startLP, { passive: true });
+  el.addEventListener('mouseup', cancelLP);
+  el.addEventListener('mouseleave', cancelLP);
+  el.addEventListener('touchend', cancelLP);
+  el.addEventListener('touchcancel', cancelLP);
+
+  // Right-click context menu
+  el.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    openTxCtxMenu(tx, e);
+  });
+}
+
+// ======= TRANSACTION CONTEXT MENU =======
+let currentTxTarget = null;
+
+function openTxCtxMenu(tx, e) {
+  currentTxTarget = tx;
+  const menu = document.getElementById('txCtxMenu');
+  document.getElementById('txCtxLabel').textContent = `${tx.qty}× ${tx.item} — ${fCur(tx.price)}`;
+  menu.style.display = 'block';
+
+  const x = e.clientX || (e.touches?.[0]?.clientX ?? window.innerWidth/2);
+  const y = e.clientY || (e.touches?.[0]?.clientY ?? window.innerHeight/2);
+  menu.style.left = Math.min(x, window.innerWidth - 210) + 'px';
+  menu.style.top  = Math.min(y, window.innerHeight - 130) + 'px';
+  if (navigator.vibrate) navigator.vibrate(30);
+}
+
+function closeTxCtxMenu() {
+  document.getElementById('txCtxMenu').style.display = 'none';
+  currentTxTarget = null;
+}
+
+function openEditTxModal(tx) {
+  document.getElementById('editTxId').value    = tx.id;
+  document.getElementById('editTxItem').value  = tx.item;
+  document.getElementById('editTxQty').value   = tx.qty;
+  document.getElementById('editTxPrice').value = tx.price;
+  document.getElementById('editTxType').value  = tx.type || 'sale';
+  document.getElementById('editTxStatus').value = tx.status || 'completed';
+  const statusRow = document.getElementById('editTxStatusRow');
+  statusRow.style.display = (tx.type === 'sale') ? 'block' : 'none';
+  document.getElementById('editTxType').onchange = (e) => {
+    statusRow.style.display = e.target.value === 'sale' ? 'block' : 'none';
+  };
+  document.getElementById('editTxModal').style.display = 'flex';
+}
+
+function openDeleteTxModal(tx) {
+  document.getElementById('deleteTxLabel').textContent = `Delete "${tx.qty}× ${tx.item}" (${fCur(tx.price)})?`;
+  document.getElementById('confirmDeleteTx').dataset.id = tx.id;
+  document.getElementById('deleteTxModal').style.display = 'flex';
 }
 
 function addUserMsg(text) {
@@ -1309,6 +2421,41 @@ function addUserMsg(text) {
 // ======= PROCESS INPUT =======
 async function processInput(text) {
   if (!text.trim()) return;
+
+  const currentTab = document.querySelector('.tab.active')?.dataset?.tab;
+
+  // Pure stock management commands (add/restock/edit/delete products) always go to stock tab
+  if (isStockCommand(text)) {
+    if (currentTab !== 'stock') switchTab('stock');
+    await processStockInput(text);
+    document.getElementById('msgInput').value = '';
+    return;
+  }
+
+  // Stock-sale command ("sold X"): only route to stock tab if we're already ON stock tab
+  // or if the product actually exists in the stock DB
+  if (isStockSaleCommand(text) && currentTab === 'stock') {
+    await processStockInput(text);
+    document.getElementById('msgInput').value = '';
+    return;
+  }
+
+  // If it looks like a stock sale from entry tab, check if product exists in stock first
+  if (isStockSaleCommand(text) && currentTab !== 'stock') {
+    const cmd = parseStockCommand(text);
+    if (cmd.action === 'stockSale' && cmd.productName) {
+      const product = await findProduct(cmd.productName);
+      if (product) {
+        // Product is in stock — route to stock processor and show stock tab
+        switchTab('stock');
+        await processStockInput(text);
+        document.getElementById('msgInput').value = '';
+        return;
+      }
+    }
+    // Product not in stock — fall through to regular entry processing
+  }
+
   addUserMsg(text);
   document.getElementById('msgInput').value = '';
 
@@ -1325,10 +2472,8 @@ async function processInput(text) {
     for (const tx of txs) {
       await saveTx(tx);
       renderBubble(tx, true);
-      // Small stagger for multiple entries
       if (txs.length > 1) await new Promise(r => setTimeout(r, 120));
     }
-    // If multiple transactions, show a summary note
     if (txs.length > 1) {
       const msgs = document.getElementById('chatMessages');
       const el = document.createElement('div');
@@ -1387,8 +2532,8 @@ function showReceipt(tx) {
       <div class="font-display" style="font-weight:800;font-size:22px;">${fCur(tx.price)}</div>
     </div>
     <div style="display:flex;gap:10px;">
-      <button id="closeRcpt" style="flex:1;padding:12px;border-radius:10px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;">Close</button>
-      <button id="shareRcpt" style="flex:1;padding:12px;border-radius:10px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;">
+      <button id="closeRcpt" style="flex:1;padding:12px;border-radius:10px;background:var(--card2);color:var(--muted);border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;">Close</button>
+      <button id="shareRcpt" style="flex:1;padding:12px;border-radius:10px;background:var(--gold);color:#111;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         Share
       </button>
@@ -1504,6 +2649,10 @@ function switchTab(name) {
     v.classList.toggle('active', v.id===`${name}View`);
   });
   if (name==='dashboard'||name==='reports') updateAll();
+  if (name==='stock') renderStock(
+    document.getElementById('stockFilter').value,
+    document.getElementById('stockSearch').value
+  );
 }
 window.switchTab = switchTab;
 
@@ -1626,11 +2775,229 @@ async function init() {
     else copyClip(txt);
   });
 
+  // Data info modal
+  document.getElementById('dataInfoBtn').addEventListener('click', () => { document.getElementById('dataInfoModal').style.display = 'flex'; });
+  document.getElementById('closeDataInfo').addEventListener('click', () => { document.getElementById('dataInfoModal').style.display = 'none'; });
+  document.getElementById('closeDataInfo2').addEventListener('click', () => { document.getElementById('dataInfoModal').style.display = 'none'; });
+  document.getElementById('dataInfoBg').addEventListener('click', () => { document.getElementById('dataInfoModal').style.display = 'none'; });
+
+  // Install hint modal
+  document.getElementById('closeInstallHint').addEventListener('click', () => { document.getElementById('installHintModal').style.display = 'none'; });
+  document.getElementById('installHintBg').addEventListener('click', () => { document.getElementById('installHintModal').style.display = 'none'; });
+
+  // ======= TRANSACTION EDIT/DELETE LISTENERS =======
+
+  // Tx context menu actions
+  document.getElementById('txCtxEdit').addEventListener('click', () => {
+    const tx = currentTxTarget; closeTxCtxMenu();
+    if (tx) openEditTxModal(tx);
+  });
+  document.getElementById('txCtxDelete').addEventListener('click', () => {
+    const tx = currentTxTarget; closeTxCtxMenu();
+    if (tx) openDeleteTxModal(tx);
+  });
+  // Close tx ctx menu on outside click
+  document.addEventListener('click', e => {
+    if (!document.getElementById('txCtxMenu').contains(e.target)) closeTxCtxMenu();
+  });
+
+  // Edit transaction modal
+  document.getElementById('closeEditTx').addEventListener('click', () => { document.getElementById('editTxModal').style.display='none'; });
+  document.getElementById('cancelEditTx').addEventListener('click', () => { document.getElementById('editTxModal').style.display='none'; });
+  document.getElementById('editTxBg').addEventListener('click', () => { document.getElementById('editTxModal').style.display='none'; });
+  document.getElementById('saveEditTx').addEventListener('click', async () => {
+    const id     = parseInt(document.getElementById('editTxId').value);
+    const item   = document.getElementById('editTxItem').value.trim();
+    const qty    = parseInt(document.getElementById('editTxQty').value) || 1;
+    const price  = parseFloat(document.getElementById('editTxPrice').value) || 0;
+    const type   = document.getElementById('editTxType').value;
+    const status = document.getElementById('editTxStatus').value;
+    if (!item) { alert('Item name cannot be empty'); return; }
+
+    // Check if this is a stock-sale so we can warn about stock reconciliation
+    const original = await db.transactions.get(id);
+    const isStockSale = original && original.source === 'stock' && original.type === 'sale';
+    const oldQty = original ? (original.qty || 0) : 0;
+
+    await updateTx(id, { item, qty, price, type, status });
+    document.getElementById('editTxModal').style.display = 'none';
+
+    // If a stock sale qty changed, also refresh stock view and notify
+    if (isStockSale && oldQty !== qty) {
+      const diff = oldQty - qty;
+      const msg = diff > 0
+        ? `✅ Entry updated. ${diff} unit(s) returned to stock.`
+        : `⚠️ Entry updated. ${Math.abs(diff)} additional unit(s) deducted from stock.`;
+      await renderStock(
+        document.getElementById('stockFilter').value,
+        document.getElementById('stockSearch').value
+      );
+      // Show feedback if we're on stock tab, otherwise use a quick alert-style bubble
+      const currentTab = document.querySelector('.tab.active')?.dataset?.tab;
+      if (currentTab === 'stock') {
+        showStockFeedback(msg, diff >= 0 ? 'success' : 'info');
+      }
+    }
+
+    await refreshChat();
+    await updateAll();
+  });
+
+  // Delete transaction modal
+  document.getElementById('cancelDeleteTx').addEventListener('click', () => { document.getElementById('deleteTxModal').style.display='none'; });
+  document.getElementById('deleteTxBg').addEventListener('click', () => { document.getElementById('deleteTxModal').style.display='none'; });
+  document.getElementById('confirmDeleteTx').addEventListener('click', async (e) => {
+    const id = parseInt(e.target.dataset.id);
+    const original = await db.transactions.get(id);
+    const wasStockSale = original && original.source === 'stock' && original.type === 'sale';
+    await deleteTx(id);
+    document.getElementById('deleteTxModal').style.display = 'none';
+    if (wasStockSale) {
+      await renderStock(
+        document.getElementById('stockFilter').value,
+        document.getElementById('stockSearch').value
+      );
+    }
+    await refreshChat();
+    await updateAll();
+  });
+
+  // ======= STOCK EVENT LISTENERS =======
+  document.getElementById('stockSendBtn').addEventListener('click', () => processStockInput(document.getElementById('stockInput').value));
+  document.getElementById('stockInput').addEventListener('keypress', e => { if (e.key === 'Enter') processStockInput(e.target.value); });
+
+  // Stock mic
+  document.getElementById('stockMicBtn').addEventListener('click', () => {
+    if (!recognition) { const ok = initVoice(); if (!ok) { alert('Voice not supported. Try Chrome.'); return; } }
+    // Override result to go to stock input
+    recognition.onresult = e => {
+      const t = e.results[e.results.length-1][0].transcript;
+      document.getElementById('stockInput').value = t;
+      if (e.results[e.results.length-1].isFinal) processStockInput(t);
+    };
+    isRecording ? recognition.stop() : recognition.start();
+    document.getElementById('stockMicBtn').classList.toggle('recording', !isRecording);
+  });
+
+  // Quick stock examples
+  document.querySelectorAll('.stock-quick').forEach(b => {
+    b.addEventListener('click', () => processStockInput(b.textContent.trim()));
+  });
+
+  // Stock search & filter
+  document.getElementById('stockSearch').addEventListener('input', e => renderStock(document.getElementById('stockFilter').value, e.target.value));
+  document.getElementById('stockFilter').addEventListener('change', e => renderStock(e.target.value, document.getElementById('stockSearch').value));
+
+  // Stock help modal
+  document.getElementById('stockHelpBtn').addEventListener('click', () => { document.getElementById('stockHelpModal').style.display = 'flex'; });
+  document.getElementById('closeStockHelp').addEventListener('click', () => { document.getElementById('stockHelpModal').style.display = 'none'; });
+  document.getElementById('stockHelpBg').addEventListener('click', () => { document.getElementById('stockHelpModal').style.display = 'none'; });
+
+  // Context menu
+  document.getElementById('ctxEdit').addEventListener('click', async () => {
+    const id = ctxTargetId; closeCtxMenu();
+    if (id) openEditModal(id);
+  });
+  document.getElementById('ctxDelete').addEventListener('click', async () => {
+    const id = ctxTargetId; closeCtxMenu();
+    if (id) openDeleteModal(id);
+  });
+  // Close context menu on outside click
+  document.addEventListener('click', e => {
+    if (!document.getElementById('ctxMenu').contains(e.target)) closeCtxMenu();
+  });
+
+  // Edit product modal
+  document.getElementById('closeEditProduct').addEventListener('click', () => { document.getElementById('editProductModal').style.display = 'none'; });
+  document.getElementById('cancelEditProduct').addEventListener('click', () => { document.getElementById('editProductModal').style.display = 'none'; });
+  document.getElementById('editProductBg').addEventListener('click', () => { document.getElementById('editProductModal').style.display = 'none'; });
+  document.getElementById('saveEditProduct').addEventListener('click', async () => {
+    const id  = parseInt(document.getElementById('editProductId').value);
+    const name = document.getElementById('editProdName').value.trim();
+    if (!name) { alert('Product name cannot be empty'); return; }
+    await saveProductEdits(
+      id, name,
+      document.getElementById('editProdQty').value,
+      document.getElementById('editProdCost').value,
+      document.getElementById('editProdSell').value,
+      document.getElementById('editProdLow').value
+    );
+    document.getElementById('editProductModal').style.display = 'none';
+    showStockFeedback(`✏️ <strong>${name}</strong> updated successfully.`, 'info');
+    await renderStock(document.getElementById('stockFilter').value, document.getElementById('stockSearch').value);
+  });
+
+  // Delete confirm modal
+  document.getElementById('cancelDelete').addEventListener('click', () => { document.getElementById('deleteConfirmModal').style.display = 'none'; });
+  document.getElementById('deleteConfirmBg').addEventListener('click', () => { document.getElementById('deleteConfirmModal').style.display = 'none'; });
+  document.getElementById('confirmDelete').addEventListener('click', async (e) => {
+    const id = parseInt(e.target.dataset.id);
+    const p = await db.products.get(id);
+    const name = p ? p.name : 'Product';
+    await deleteProductById(id);
+    document.getElementById('deleteConfirmModal').style.display = 'none';
+    showStockFeedback(`🗑️ <strong>${name}</strong> deleted.`, 'info');
+    await renderStock(document.getElementById('stockFilter').value, document.getElementById('stockSearch').value);
+  });
+
   await updateAll();
   await loadChat();
 }
 
-document.addEventListener('DOMContentLoaded', init);
+// ======= PWA INSTALL =======
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('installBtn');
+  if (btn) { btn.style.display = 'flex'; }
+});
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('installBtn');
+  if (btn) btn.style.display = 'none';
+  deferredInstallPrompt = null;
+});
+
+async function triggerInstall() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') deferredInstallPrompt = null;
+  } else {
+    document.getElementById('installHintModal').style.display = 'flex';
+  }
+}
+
+// Inline service worker for offline support (registered via blob URL)
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  const swCode = `
+const CACHE = 'nd-accounting-v1';
+const ASSETS = [self.location.href];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  self.skipWaiting();
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys =>
+    Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+  ));
+  self.clients.claim();
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match(e.request)))
+  );
+});
+  `;
+  const blob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+document.addEventListener('DOMContentLoaded', () => { init(); registerServiceWorker(); });
 </script>
 </body>
 </html>
